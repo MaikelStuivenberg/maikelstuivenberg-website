@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "maikelstuivenberg-website:build:production"
+              "buildTarget": "maikelstuivenberg-website:build:production"
             },
             "development": {
-              "browserTarget": "maikelstuivenberg-website:build:development"
+              "buildTarget": "maikelstuivenberg-website:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "maikelstuivenberg-website:build"
+            "buildTarget": "maikelstuivenberg-website:build"
           }
         },
         "test": {
