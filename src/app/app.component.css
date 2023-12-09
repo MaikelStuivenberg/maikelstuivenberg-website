@@ -1,0 +1,12 @@
+.header {
+    text-align: center;
+    font-size: 48pt;
+}
+
+.content {
+    padding: 0 80px;
+    max-width: 1000px;
+    margin: 10px auto;
+
+    border-top: 2px solid rgba(0, 96, 148, 0.396);
+}
