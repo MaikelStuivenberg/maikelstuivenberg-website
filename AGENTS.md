@@ -112,3 +112,4 @@ No environment variables required.
 ## Agent skills
 
 React best-practice guidance is available in `.agents/skills/vercel-react-best-practices/`. Apply relevant rules when maintaining or extending this codebase.
+
