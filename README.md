@@ -1,27 +1,57 @@
-# MaikelstuivenbergWebsite
+# maikelstuivenberg.nl
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+Personal website and app support pages for apps by Maikel Stuivenberg (Encore, Bravo, Qwixx).
 
-## Development server
+## Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- React 19 + TypeScript
+- Vite 7
+- Tailwind CSS v4
+- React Router DOM 7
 
-## Code scaffolding
+## Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173).
+
+Node 20+ (see `.nvmrc`).
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+npm run preview
+```
 
-## Running unit tests
+Production output is written to `dist/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Routes
 
-## Running end-to-end tests
+| Path | Page |
+|------|------|
+| `/` | Redirects to `/home` |
+| `/home` | Home |
+| `/privacy` | Privacy policy |
+| `/contact` | Contact |
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Deployment
 
-## Further help
+Static hosting (e.g. Cloudflare Pages):
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| Setting | Value |
+|---------|-------|
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Node version | 20 |
+
+`public/_redirects` provides SPA fallback for client-side routing.
+
+`public/app-ads.txt` must remain available at `/app-ads.txt` for Google AdMob verification.
+
+## Agent documentation
+
+See [AGENTS.md](AGENTS.md) for conventions and file map for AI coding agents.

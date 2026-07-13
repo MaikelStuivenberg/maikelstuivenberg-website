@@ -1,0 +1,171 @@
+import { PageMeta } from "@/components/PageMeta";
+
+export function PrivacyPage() {
+  return (
+    <>
+      <PageMeta
+        title="Privacy Policy — Maikelstuivenberg.nl"
+        description="Privacy policy for apps by Maikel Stuivenberg, including Encore, Bravo, and Qwixx."
+      />
+      <article className="space-y-6 text-base leading-relaxed [&_h1]:text-2xl [&_h1]:font-semibold [&_h2]:text-xl [&_h2]:font-semibold [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+        <h1>Privacy Policy for Apps</h1>
+
+        <section className="space-y-3">
+          <h2>1. Introduction</h2>
+          <p>
+            This Privacy Policy applies to all Apps developed and published by{" "}
+            <strong>Maikel Stuivenberg</strong>, including <strong>Encore, Bravo, Qwixx</strong>.
+            This Privacy Policy outlines how we collect, use, and share information about you when
+            you use our Apps.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>2. Information We Collect</h2>
+          <p>
+            We only collect <strong>non-personally identifiable information (non-PII)</strong>, as
+            described below:
+          </p>
+
+          <p>
+            <strong>a. Non-Personally Identifiable Information (non-PII)</strong>
+            <br />
+            Our apps may collect non-PII, such as device type, operating system, IP address, usage
+            statistics, and other technical data. This data helps us improve app performance and
+            enhance your user experience.
+          </p>
+
+          <p>
+            <strong>b. Crash and Performance Data</strong>
+            <br />
+            We use Firebase Analytics and Firebase Crashlytics to monitor app performance, detect
+            bugs, and understand app usage. These tools automatically collect device-specific
+            information, events, and diagnostic data in the event of crashes or app failures. This
+            data helps us troubleshoot issues and improve app stability.
+          </p>
+
+          <p>
+            <strong>c. Firebase Analytics</strong>
+            <br />
+            Firebase Analytics tracks non-PII such as app usage trends, user interactions, and app
+            performance metrics. This information is aggregated and anonymous, helping us optimize
+            the user experience.
+          </p>
+
+          <p>
+            <strong>d. Google AdMob</strong>
+            <br />
+            Our apps may display optional ads using Google AdMob. The Google Mobile Ads SDK
+            automatically collects the following data for advertising, analytics, and fraud
+            prevention purposes:
+          </p>
+
+          <ul>
+            <li>
+              <strong>IP address:</strong> Collected to estimate the general location of the device.
+            </li>
+            <li>
+              <strong>User product interactions:</strong> Includes app launch, taps, and video
+              views.
+            </li>
+            <li>
+              <strong>Diagnostic information:</strong> Includes crash logs, app launch times, hang
+              rates, and energy usage.
+            </li>
+            <li>
+              <strong>Device and Account identifiers:</strong> Collects Android advertising ID, app
+              set ID, and, if applicable, other identifiers related to signed-in accounts on the
+              device.
+            </li>
+          </ul>
+
+          <p>
+            All user data collected by the Google Mobile Ads SDK is encrypted in transit using the
+            Transport Layer Security (TLS) protocol.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>3. How We Use Your Information</h2>
+          <p>
+            <strong>Improving App Performance</strong>: We use crash logs, analytics data, and other
+            non-PII to improve app performance, user interface, and functionality.
+          </p>
+          <p>
+            <strong>Enhancing User Experience</strong>: The insights from Firebase Analytics help us
+            to better understand how users interact with our apps and where we can improve the user
+            experience.
+          </p>
+          <p>
+            <strong>Troubleshooting &amp; Debugging</strong>: Crash reports help us identify and
+            resolve bugs or other issues that might negatively impact your experience.
+          </p>
+          <p>
+            <strong>Advertising</strong>: Google AdMob helps us display optional ads to fund the
+            development and maintenance of our apps.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>4. Sharing Your Information</h2>
+          <p>
+            We do not sell your information. However, we may share non-PII with third-party service
+            providers (such as Google Firebase and Google AdMob) who help us analyze app performance,
+            display ads, and troubleshoot issues. These providers are obligated to use your data
+            solely for the purposes of providing these services.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>5. Data Retention</h2>
+          <p>
+            We do not directly retain any non-PII. Data collected by Firebase Analytics, Firebase
+            Crashlytics, and Google AdMob may be retained by Google. You can stop all data collection
+            by uninstalling the app.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>6. Data Security</h2>
+          <p>
+            We make efforts to securely transmit non-PII to Google services using industry-standard
+            encryption methods, such as Transport Layer Security (TLS). However, as the data is
+            ultimately processed and stored by Google, we encourage users to review Google&apos;s
+            privacy policies for more information about how they safeguard and retain data.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>7. Your Choices</h2>
+          <p>
+            You cannot disable data collection for Google Analytics, Crashlytics, or AdMob through
+            app settings. To completely stop the collection of any data, you will need to uninstall
+            the app.
+          </p>
+          <p>
+            If you prefer not to see personalized ads from Google AdMob, you can adjust your ad
+            preferences in your Google account settings or uninstall the app to stop seeing ads
+            altogether.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>8. Children&apos;s Privacy</h2>
+          <p>
+            Our apps are not intended for use by children under the age of 13. We do not knowingly
+            collect PII from children. If you believe we have inadvertently collected such
+            information, please contact us to remove it.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2>9. Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. We encourage you to review it
+            periodically. Continued use of our apps constitutes acceptance of any changes.
+          </p>
+        </section>
+      </article>
+    </>
+  );
+}
