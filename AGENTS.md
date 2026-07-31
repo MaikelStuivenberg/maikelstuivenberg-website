@@ -55,7 +55,8 @@ Routes are defined in `src/App.tsx`. Navigation links are in `src/components/lay
 ## Content rules
 
 - **Privacy policy** (`src/pages/PrivacyPage.tsx`) is legal copy. Edit carefully; do not change meaning without explicit intent.
-- **Contact email** is `app@maikelstuivenberg.nl` — defined in `src/lib/constants.ts` as `CONTACT_EMAIL`.
+- **Contact email** is `mail@maikelstuivenberg.nl` — defined in `src/lib/constants.ts` as `CONTACT_EMAIL`.
+- **KvK number** is `42128026` — defined in `src/lib/constants.ts` as `KVK_NUMBER` (shown on Contact).
 - **App names** referenced on the site: Encore, Bravo, Qwixx.
 
 ## Static files

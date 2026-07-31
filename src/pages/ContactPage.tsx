@@ -1,5 +1,5 @@
 import { PageMeta } from "@/components/PageMeta";
-import { CONTACT_EMAIL } from "@/lib/constants";
+import { CONTACT_EMAIL, KVK_NUMBER } from "@/lib/constants";
 
 export function ContactPage() {
   return (
@@ -11,6 +11,9 @@ export function ContactPage() {
       <p className="text-base leading-relaxed">
         Do you have any questions about my apps? Feel free to contact me at{" "}
         <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+      <p className="mt-4 text-base leading-relaxed">
+        KvK-nummer: {KVK_NUMBER}
       </p>
     </>
   );
