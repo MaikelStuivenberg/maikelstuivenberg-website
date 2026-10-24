@@ -608,12 +608,24 @@
   min-height: 0;
   max-height: clamp(6.5rem, min(38cqh, 46%), 52cqh);
   padding: 0.15rem clamp(0.35rem, 2cqw, 0.75rem) 0;
+  text-align: center;
+}
+
+.kiosk-attract-map-center {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  text-align: center;
+  line-height: 0;
 }
 
 .kiosk-attract-map-svg {
   width: 100%;
   height: 100%;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: top;
 }
 
 .kiosk-attract-map-fill {
@@ -678,6 +690,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  width: 100%;
+  text-align: center;
   gap: clamp(0.35rem, min(1.8cqw, 1.4cqh), var(--kiosk-attract-gap));
   padding: clamp(0.35rem, 1cqh, 0.75rem) var(--kiosk-attract-pad-x) 0;
 }
@@ -704,7 +718,8 @@
   align-items: stretch;
   width: 100%;
   max-width: min(36rem, 100%);
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 2.5rem var(--kiosk-attract-pad-x) clamp(0.5rem, 1.5cqh, 1.25rem);
 }
 
@@ -728,7 +743,7 @@
   gap: clamp(0.35rem, min(1.4cqw, 1.1cqh), 0.65rem);
   width: 100%;
   max-width: min(34rem, 100%);
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   border: 0;
   background: transparent;
@@ -996,7 +1011,8 @@
   align-self: stretch;
   width: 100%;
   max-width: min(36rem, 100%);
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
   min-height: clamp(2.75rem, min(11cqw, 7cqh), 6.5rem);
   padding: clamp(0.5rem, 1.5cqh, 1rem) clamp(0.85rem, 3cqw, 2rem);
   border-radius: var(--kiosk-radius-lg);
@@ -1082,7 +1098,8 @@
 
   .kiosk-attract-mid {
     flex: none;
-    padding-block: clamp(0.35rem, 1.2cqh, 0.85rem);
+    padding-top: clamp(0.35rem, 1.2cqh, 0.85rem);
+    padding-bottom: clamp(0.35rem, 1.2cqh, 0.85rem);
   }
 
   .kiosk-attract-actions {
@@ -1102,28 +1119,33 @@
   }
 
   .kiosk-attract-map-panel {
-    flex: none;
+    flex: 1 1 auto;
     max-height: none;
     min-height: 0;
     height: auto;
     padding: 0.25rem 5% 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    text-align: center;
+  }
+
+  .kiosk-attract-map-center {
+    height: 100%;
+    min-height: 0;
   }
 
   .kiosk-attract-map-svg {
-    flex: 1 1 auto;
-    min-height: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
     max-width: 90%;
-    margin-inline: auto;
+    height: 100%;
+    min-height: 0;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .kiosk-attract-hero-copy {
     gap: clamp(0.75rem, 2cqh, 1.25rem);
-    padding-inline: var(--kiosk-attract-pad-x);
+    padding-left: var(--kiosk-attract-pad-x);
+    padding-right: var(--kiosk-attract-pad-x);
   }
 
   .kiosk-attract-actions {
@@ -1229,7 +1251,8 @@
   }
 
   .kiosk-attract-mid {
-    padding-block: 0.15rem;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
   }
 
   .kiosk-attract-actions {
@@ -1253,7 +1276,8 @@
   .kiosk-attract-cta {
     min-height: 2.5rem;
     font-size: clamp(0.88rem, 3.8cqw, 1rem);
-    padding-block: 0.35rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
   }
 
   .kiosk-shell-header {
