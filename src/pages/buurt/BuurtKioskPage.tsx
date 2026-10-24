@@ -159,7 +159,7 @@ function KioskShell({
             width={120}
             height={128}
           />
-          <div className="min-w-0 leading-tight">
+          <div className="kiosk-header-brand-text min-w-0 leading-tight">
             <p className="kiosk-header-title font-bold text-[var(--kiosk-red)]">
               {m.programme}
             </p>
@@ -597,7 +597,6 @@ function BuurtKioskApp() {
                 <LocationMapSheet
                   location={selected}
                   newLabel={m.locationNewBadge}
-                  campaignTagline={m.campaignTagline}
                   placeJoinLabel={m.placeJoinHere}
                   qrHint={m.mapSheetQrHint}
                   closeLabel={m.mapSheetClose}

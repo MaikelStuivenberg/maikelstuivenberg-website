@@ -50,28 +50,26 @@ export function KioskHeaderNav({
 
   return (
     <nav
-      className="kiosk-header-nav flex shrink-0 items-stretch gap-1.5 sm:gap-2"
+      className="kiosk-header-nav flex shrink-0 items-center gap-1 sm:gap-1.5"
       aria-label="Kiosk navigation"
     >
       {canBack ? (
         <button
           type="button"
-          className="kiosk-header-nav-btn kiosk-btn-ghost"
+          className="kiosk-header-pill-btn kiosk-btn-ghost"
           onClick={onBack}
           aria-label={backLabel}
         >
-          <BackIcon className="kiosk-header-nav-icon" />
-          <span className="kiosk-header-nav-label">{backLabel}</span>
+          <BackIcon className="kiosk-header-pill-icon" />
         </button>
       ) : null}
       <button
         type="button"
-        className="kiosk-header-nav-btn kiosk-btn-ghost"
+        className="kiosk-header-pill-btn kiosk-btn-ghost"
         onClick={onHome}
         aria-label={homeLabel}
       >
-        <HomeIcon className="kiosk-header-nav-icon" />
-        <span className="kiosk-header-nav-label">{homeLabel}</span>
+        <HomeIcon className="kiosk-header-pill-icon" />
       </button>
     </nav>
   );

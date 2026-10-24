@@ -3,7 +3,6 @@ import {
   MapContainer,
   TileLayer,
   CircleMarker,
-  Popup,
   useMap,
 } from "react-leaflet";
 import type { KioskLocation } from "./types";
@@ -35,6 +34,42 @@ function FitBounds({ locations }: { locations: KioskLocation[] }) {
       { padding: [40, 40], maxZoom: 12 },
     );
   }, [locations, map]);
+  return null;
+}
+
+function PanSelectedAboveSheet({
+  selectedId,
+  locations,
+}: {
+  selectedId?: string | null;
+  locations: KioskLocation[];
+}) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.closePopup();
+  }, [selectedId, map]);
+
+  useEffect(() => {
+    if (!selectedId) return;
+    const loc = locations.find((l) => l.id === selectedId);
+    if (!loc) return;
+
+    const run = () => {
+      const size = map.getSize();
+      if (size.y < 1) return;
+      const offsetPx = Math.round(size.y * 0.2);
+      const point = map.project([loc.lat, loc.lon], map.getZoom());
+      const shifted = point.subtract([0, offsetPx]);
+      const target = map.unproject(shifted, map.getZoom());
+      map.panTo(target, { animate: true, duration: 0.35 });
+    };
+
+    run();
+    const t = window.setTimeout(run, 120);
+    return () => window.clearTimeout(t);
+  }, [selectedId, locations, map]);
+
   return null;
 }
 
@@ -100,6 +135,9 @@ export function KioskMap({
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {fitBounds ? <FitBounds locations={markers} /> : null}
+        {selectedId ? (
+          <PanSelectedAboveSheet selectedId={selectedId} locations={markers} />
+        ) : null}
         {softwareRotated ? <MapZoomButtons /> : null}
         {markers.map((loc) => {
           const selected = loc.id === selectedId;
@@ -149,13 +187,7 @@ export function KioskMap({
                 eventHandlers={{
                   click: () => onSelect?.(loc),
                 }}
-              >
-                <Popup>
-                  <strong>{loc.title}</strong>
-                  <br />
-                  {loc.address}
-                </Popup>
-              </CircleMarker>
+              />
             </Fragment>
           );
         })}

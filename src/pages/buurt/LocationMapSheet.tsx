@@ -4,7 +4,6 @@ import type { KioskLocation } from "./types";
 type Props = {
   location: KioskLocation;
   newLabel: string;
-  campaignTagline: string;
   placeJoinLabel: string;
   qrHint: string;
   closeLabel: string;
@@ -13,14 +12,13 @@ type Props = {
   onHelp: () => void;
 };
 
-function qrImageUrl(data: string): string {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=128x128&margin=8&data=${encodeURIComponent(data)}`;
+function qrImageUrl(data: string, px: number): string {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=${px}x${px}&margin=8&data=${encodeURIComponent(data)}`;
 }
 
 export function LocationMapSheet({
   location,
   newLabel,
-  campaignTagline,
   placeJoinLabel,
   qrHint,
   closeLabel,
@@ -42,7 +40,6 @@ export function LocationMapSheet({
       </button>
       <div className="kiosk-map-sheet-body">
         <div className="kiosk-map-sheet-copy">
-          <p className="kiosk-campaign-tagline">{campaignTagline}</p>
           <p className="kiosk-map-sheet-kicker">{placeJoinLabel}</p>
           <p className="kiosk-map-sheet-title">
             <LocationNameWithBadge
@@ -56,9 +53,9 @@ export function LocationMapSheet({
         <div className="kiosk-map-sheet-qr">
           <img
             className="kiosk-map-sheet-qr-img"
-            src={qrImageUrl(qrTarget)}
-            width={128}
-            height={128}
+            src={qrImageUrl(qrTarget, 180)}
+            width={180}
+            height={180}
             alt=""
           />
           <p className="kiosk-map-sheet-qr-hint">{qrHint}</p>
