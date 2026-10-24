@@ -27,6 +27,7 @@ export const en: Messages = {
   searchPlaceholder: "Postcode or town",
   spaceKeyLabel: "space",
   searchGo: "Search",
+  searchSending: "Searching…",
   searchBack: "Back",
   searchEmptyHint: "Enter a postcode or town, then tap Search.",
   searchError: "Not found. Try a postcode or place name.",
@@ -57,6 +58,7 @@ export const en: Messages = {
   signupConsent:
     "I agree that The Salvation Army may use my details for the lunch draw and a short volunteer follow-up email. They will be deleted afterwards.",
   signupSubmit: "Send",
+  signupSending: "Sending…",
   signupSkip: "Back to map",
   signupNeedConsent: "Check the box to enter the lunch draw.",
   signupNeedEmail: "Enter a valid email address.",

@@ -469,6 +469,40 @@
   height: clamp(1.25rem, min(5.5vw, 3.5dvh), 1.85rem);
 }
 
+.kiosk-inline-spinner {
+  display: inline-block;
+  width: clamp(1.1rem, min(4.5vw, 2.8dvh), 1.65rem);
+  height: clamp(1.1rem, min(4.5vw, 2.8dvh), 1.65rem);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: kiosk-inline-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.buurt-kiosk button.kiosk-key.kiosk-key--submit:disabled {
+  opacity: 1;
+  cursor: wait;
+}
+
+@keyframes kiosk-inline-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kiosk-touch-btn--pending {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: wait;
+}
+
+.kiosk-touch-btn--pending:disabled {
+  opacity: 0.92;
+}
+
 @media (min-width: 600px) and (min-height: 900px) {
   .kiosk-key {
     min-height: clamp(3.25rem, 5.5vh, 5rem);

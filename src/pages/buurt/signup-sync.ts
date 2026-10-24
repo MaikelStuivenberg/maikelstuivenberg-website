@@ -1,10 +1,13 @@
 import type { Locale } from "./i18n";
 import {
   loadOutbox,
+  removeOutboxEntry,
   saveOutbox,
   type SignupOutboxEntry,
 } from "./kiosk-storage";
 import { SUPABASE_ANON_KEY, SUPABASE_SIGNUPS_URL } from "./supabase-config";
+
+export const SIGNUP_SYNC_TIMEOUT_MS = 4000;
 
 export type SignupPayload = {
   name: string;
@@ -14,6 +17,8 @@ export type SignupPayload = {
   postcode: string | null;
   source: string;
 };
+
+type PostResult = "ok" | "duplicate" | "failed";
 
 function supabaseHeaders(): HeadersInit {
   return {
@@ -25,25 +30,37 @@ function supabaseHeaders(): HeadersInit {
 }
 
 export async function postSignupToSupabase(
-  payload: SignupPayload,
-): Promise<boolean> {
+  entry: SignupOutboxEntry,
+): Promise<PostResult> {
   try {
     const res = await fetch(SUPABASE_SIGNUPS_URL, {
       method: "POST",
       headers: supabaseHeaders(),
       body: JSON.stringify({
-        name: payload.name,
-        email: payload.email,
-        consent: payload.consent,
-        language: payload.language,
-        postcode: payload.postcode,
-        source: payload.source,
+        id: entry.localId,
+        name: entry.name,
+        email: entry.email,
+        consent: entry.consent,
+        language: entry.language,
+        postcode: entry.postcode,
+        source: entry.source,
       }),
     });
-    return res.ok;
+    if (res.ok) return "ok";
+    if (res.status === 409) return "duplicate";
+    return "failed";
   } catch {
-    return false;
+    return "failed";
   }
+}
+
+function settleOutboxEntry(entry: SignupOutboxEntry): Promise<PostResult> {
+  return postSignupToSupabase(entry).then((result) => {
+    if (result === "ok" || result === "duplicate") {
+      removeOutboxEntry(entry.localId);
+    }
+    return result;
+  });
 }
 
 export async function flushSignupOutbox(): Promise<number> {
@@ -52,15 +69,10 @@ export async function flushSignupOutbox(): Promise<number> {
 
   const remaining: SignupOutboxEntry[] = [];
   for (const entry of outbox) {
-    const ok = await postSignupToSupabase({
-      name: entry.name,
-      email: entry.email,
-      consent: entry.consent,
-      language: entry.language,
-      postcode: entry.postcode,
-      source: entry.source,
-    });
-    if (!ok) remaining.push(entry);
+    const result = await postSignupToSupabase(entry);
+    if (result !== "ok" && result !== "duplicate") {
+      remaining.push(entry);
+    }
   }
 
   saveOutbox(remaining);
@@ -81,10 +93,21 @@ export function enqueueSignupOutbox(
   return entry;
 }
 
-export async function submitSignupWithSync(
+/** Queue locally first, try Supabase (max ~4s wait), then background retry. */
+export async function submitSignupOptimistic(
   payload: SignupPayload,
 ): Promise<void> {
-  const sent = await postSignupToSupabase(payload);
-  if (!sent) enqueueSignupOutbox(payload);
-  await flushSignupOutbox();
+  const entry = enqueueSignupOutbox(payload);
+  const sync = settleOutboxEntry(entry);
+
+  const raced = await Promise.race([
+    sync.then(() => "done" as const),
+    new Promise<"timeout">((resolve) => {
+      window.setTimeout(() => resolve("timeout"), SIGNUP_SYNC_TIMEOUT_MS);
+    }),
+  ]);
+
+  if (raced === "timeout") {
+    void sync;
+  }
 }

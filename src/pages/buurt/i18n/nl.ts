@@ -25,6 +25,7 @@ export const nl = {
   searchPlaceholder: "Postcode of woonplaats",
   spaceKeyLabel: "spatie",
   searchGo: "Zoek",
+  searchSending: "Zoeken…",
   searchBack: "Terug",
   searchEmptyHint: "Typ een postcode of plaats en tik op Zoek.",
   searchError: "Niet gevonden. Probeer een postcode of plaats.",
@@ -56,6 +57,7 @@ export const nl = {
   signupConsent:
     "Ik geef toestemming dat het Leger des Heils mijn gegevens gebruikt voor de lunchloting en eventueel een korte vrijwilligersmail. Daarna worden ze verwijderd.",
   signupSubmit: "Versturen",
+  signupSending: "Even versturen…",
   signupSkip: "Terug naar de kaart",
   signupNeedConsent: "Vink het vakje aan om mee te doen met de lunch.",
   signupNeedEmail: "Vul een geldig e-mailadres in.",

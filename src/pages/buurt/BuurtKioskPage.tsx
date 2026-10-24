@@ -18,7 +18,7 @@ import {
   KIOSK_ADMIN_PIN,
   loadOutbox,
 } from "./kiosk-storage";
-import { flushSignupOutbox, submitSignupWithSync } from "./signup-sync";
+import { flushSignupOutbox, submitSignupOptimistic } from "./signup-sync";
 import type {
   GeoPoint,
   KioskLocation,
@@ -164,6 +164,8 @@ export function BuurtKioskPage() {
   const [searchError, setSearchError] = useState<"empty" | "notfound" | null>(
     null,
   );
+  const [searchPending, setSearchPending] = useState(false);
+  const [signupSubmitting, setSignupSubmitting] = useState(false);
   const [origin, setOrigin] = useState<GeoPoint | null>(null);
   const [selected, setSelected] = useState<KioskLocation | null>(null);
   const [name, setName] = useState("");
@@ -188,6 +190,8 @@ export function BuurtKioskPage() {
     setMapMode("all");
     setSearchQuery("");
     setSearchError(null);
+    setSearchPending(false);
+    setSignupSubmitting(false);
     setOrigin(null);
     setSelected(null);
     setName("");
@@ -270,6 +274,7 @@ export function BuurtKioskPage() {
   };
 
   const handleSearch = async () => {
+    if (searchPending) return;
     bumpIdle();
     setSearchError(null);
     const query = searchQuery.trim();
@@ -277,18 +282,24 @@ export function BuurtKioskPage() {
       setSearchError("empty");
       return;
     }
-    const point = await geocodeDutch(query);
-    if (!point) {
-      setSearchError("notfound");
-      return;
+    setSearchPending(true);
+    try {
+      const point = await geocodeDutch(query);
+      if (!point) {
+        setSearchError("notfound");
+        return;
+      }
+      setOrigin(point);
+      setMapMode("nearby");
+      setSelected(null);
+      go("map");
+    } finally {
+      setSearchPending(false);
     }
-    setOrigin(point);
-    setMapMode("nearby");
-    setSelected(null);
-    go("map");
   };
 
   const submitSignup = async () => {
+    if (signupSubmitting) return;
     bumpIdle();
     if (!name.trim()) {
       setSignupField("name");
@@ -305,17 +316,22 @@ export function BuurtKioskPage() {
       return;
     }
     setSignupError(null);
+    setSignupSubmitting(true);
     const postcode = searchQuery.trim().slice(0, 40) || null;
-    await submitSignupWithSync({
-      name: name.trim(),
-      email: email.trim(),
-      consent: true,
-      language: locale,
-      postcode,
-      source: "kiosk",
-    });
-    refreshOutboxCount();
-    go("thanks");
+    try {
+      await submitSignupOptimistic({
+        name: name.trim(),
+        email: email.trim(),
+        consent: true,
+        language: locale,
+        postcode,
+        source: "kiosk",
+      });
+      refreshOutboxCount();
+      go("thanks");
+    } finally {
+      setSignupSubmitting(false);
+    }
   };
 
   const startAdminHold = () => {
@@ -459,6 +475,8 @@ export function BuurtKioskPage() {
                 }}
                 onSubmit={() => void handleSearch()}
                 submitLabel={m.searchGo}
+                submitPending={searchPending}
+                submitPendingLabel={m.searchSending}
                 spaceLabel={m.spaceKeyLabel}
               />
             </div>
@@ -678,10 +696,22 @@ export function BuurtKioskPage() {
                 </button>
                 <button
                   type="button"
-                  className="kiosk-touch-btn kiosk-btn-primary font-bold"
-                  onClick={submitSignup}
+                  className={cn(
+                    "kiosk-touch-btn kiosk-btn-primary font-bold",
+                    signupSubmitting && "kiosk-touch-btn--pending",
+                  )}
+                  disabled={signupSubmitting}
+                  aria-busy={signupSubmitting}
+                  onClick={() => void submitSignup()}
                 >
-                  {m.signupSubmit}
+                  {signupSubmitting ? (
+                    <>
+                      <span className="kiosk-inline-spinner" aria-hidden="true" />
+                      {m.signupSending}
+                    </>
+                  ) : (
+                    m.signupSubmit
+                  )}
                 </button>
               </div>
             </div>
