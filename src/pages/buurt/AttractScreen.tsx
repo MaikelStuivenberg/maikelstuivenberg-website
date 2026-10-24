@@ -13,11 +13,11 @@ type Props = {
   questionIndex: number;
   tagline: string;
   cta: string;
-  lunchPromoLine1: string;
-  lunchPromoLine2Before: string;
+  lunchTapeLabel: string;
+  lunchHeadline1: string;
+  lunchHeadline2Prefix: string;
   soulStationName: string;
-  lunchPromoLine2After: string;
-  lunchPromoNewLabel: string;
+  lunchFinePrint: string;
   placesCount: number | string;
   placesCountTemplate: string;
   locations: KioskLocation[];
@@ -63,11 +63,11 @@ export function AttractScreen({
   questionIndex,
   tagline,
   cta,
-  lunchPromoLine1,
-  lunchPromoLine2Before,
+  lunchTapeLabel,
+  lunchHeadline1,
+  lunchHeadline2Prefix,
   soulStationName,
-  lunchPromoLine2After,
-  lunchPromoNewLabel,
+  lunchFinePrint,
   placesCount,
   placesCountTemplate,
   locations,
@@ -204,15 +204,18 @@ export function AttractScreen({
         </div>
       </button>
 
-      <div className="kiosk-attract-actions">
+      <div className="kiosk-attract-mid">
         <AttractLunchPromo
-          line1={lunchPromoLine1}
-          line2Before={lunchPromoLine2Before}
+          tapeLabel={lunchTapeLabel}
+          headlineLine1={lunchHeadline1}
+          headlineLine2Prefix={lunchHeadline2Prefix}
           soulStationName={soulStationName}
-          line2After={lunchPromoLine2After}
-          newLabel={lunchPromoNewLabel}
+          finePrint={lunchFinePrint}
           onActivate={onLunchPromo}
         />
+      </div>
+
+      <div className="kiosk-attract-actions">
         <button type="button" className="kiosk-attract-cta" onClick={onStart}>
           <TouchFingerIcon />
           <span>{cta}</span>

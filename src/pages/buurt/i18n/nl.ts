@@ -13,10 +13,11 @@ export const nl = {
     "Geloven in de Buurt: de eerste stap in je eigen straat.",
   ],
   attractCta: "Tik om te starten",
-  attractLunchPromo: "🎁 Win 1 van de 3 gratis lunches",
-  attractLunchPromoSubBefore: "bij ",
-  attractLunchPromoSubAfter: " in Amsterdam",
+  attractLunchTape: "Nieuw in Amsterdam",
+  attractLunchHeadline1: "Win een gratis lunch",
+  attractLunchHeadline2Prefix: "bij ",
   soulStationName: "Soul Station",
+  attractLunchFinePrint: "3 winnaars · iedereen mag meedoen",
   attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",
@@ -70,7 +71,7 @@ export const nl = {
   thanksTitle: "Top, bedankt!",
   thanksBody:
     "Je maakt kans op een lunch bij Soul Station in Amsterdam.",
-  locationNewBadge: "NIEUW",
+  locationNewBadge: "Nieuw",
   thanksDone: "Klaar",
 
   adminTitle: "Export inschrijvingen",

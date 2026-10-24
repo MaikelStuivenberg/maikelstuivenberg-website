@@ -682,6 +682,18 @@
   padding: clamp(0.35rem, 1cqh, 0.75rem) var(--kiosk-attract-pad-x) 0;
 }
 
+.kiosk-attract-mid {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: clamp(0.25rem, 1cqh, 0.75rem) var(--kiosk-attract-pad-x);
+}
+
 .kiosk-attract-actions {
   position: relative;
   z-index: 3;
@@ -690,20 +702,20 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: clamp(0.4rem, min(1.5cqw, 1.2cqh), 0.65rem);
   width: 100%;
   max-width: min(36rem, 100%);
   margin-inline: auto;
-  padding: clamp(0.35rem, 1cqh, 0.65rem) var(--kiosk-attract-pad-x)
-    clamp(0.5rem, 1.5cqh, 1.25rem);
+  padding: 2.5rem var(--kiosk-attract-pad-x) clamp(0.5rem, 1.5cqh, 1.25rem);
 }
 
-.kiosk-attract-lunch-promo-tap {
+.kiosk-lunch-lockup {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.12rem, 0.5cqh, 0.22rem);
+  gap: clamp(0.35rem, min(1.4cqw, 1.1cqh), 0.65rem);
   width: 100%;
+  max-width: min(34rem, 100%);
   margin: 0;
   padding: 0;
   border: 0;
@@ -717,39 +729,108 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.kiosk-attract-lunch-promo-tap:active {
-  opacity: 0.92;
+.kiosk-lunch-lockup:active {
+  opacity: 0.94;
 }
 
-.kiosk-attract-lunch-promo-line {
-  display: block;
-  font-size: clamp(0.88rem, min(3.9cqw, 2.65cqh), 1.12rem);
+.kiosk-lunch-tape {
+  display: inline-block;
+  margin: 0;
+  padding: 0.32em 0.9em 0.28em;
+  font-size: clamp(0.52rem, min(2.35cqw, 1.65cqh), 0.82rem);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--kiosk-navy);
+  background: var(--kiosk-yellow-sticker);
+  box-shadow: 0 2px 8px rgba(7, 35, 41, 0.16);
+  transform: rotate(-4deg);
+  clip-path: polygon(
+    0% 18%,
+    2.5% 0%,
+    5% 18%,
+    7.5% 0%,
+    10% 18%,
+    12.5% 0%,
+    15% 18%,
+    17.5% 0%,
+    20% 18%,
+    22.5% 0%,
+    25% 18%,
+    27.5% 0%,
+    30% 18%,
+    32.5% 0%,
+    35% 18%,
+    37.5% 0%,
+    40% 18%,
+    42.5% 0%,
+    45% 18%,
+    47.5% 0%,
+    50% 18%,
+    52.5% 0%,
+    55% 18%,
+    57.5% 0%,
+    60% 18%,
+    62.5% 0%,
+    65% 18%,
+    67.5% 0%,
+    70% 18%,
+    72.5% 0%,
+    75% 18%,
+    77.5% 0%,
+    80% 18%,
+    82.5% 0%,
+    85% 18%,
+    87.5% 0%,
+    90% 18%,
+    92.5% 0%,
+    95% 18%,
+    97.5% 0%,
+    100% 18%,
+    100% 100%,
+    0% 100%
+  );
+  animation:
+    kiosk-lunch-tape-in 0.55s ease-out both,
+    kiosk-lunch-tape-tilt 6s ease-in-out 0.65s infinite;
 }
 
-.kiosk-attract-lunch-promo-sub {
+.kiosk-lunch-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.02em;
+  width: 100%;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--kiosk-navy);
+  font-size: clamp(0.82rem, min(6.2cqw, 4.55cqh), 3.2rem);
+}
+
+.kiosk-lunch-headline-line {
   display: block;
-  font-size: clamp(0.72rem, min(3cqw, 2.1cqh), 0.95rem);
-  font-weight: 600;
+}
+
+.kiosk-lunch-fine {
+  display: block;
+  max-width: min(28rem, 96%);
+  font-size: clamp(0.72rem, min(2.85cqw, 2cqh), 1.08rem);
+  font-weight: 400;
   line-height: 1.35;
-  color: var(--kiosk-teal);
-  max-width: min(22rem, 96%);
+  color: rgba(7, 35, 41, 0.68);
 }
 
-.kiosk-attract-lunch-promo-soul-wrap {
-  position: relative;
-  display: inline;
-  white-space: nowrap;
-  padding-right: clamp(1.6rem, 7cqw, 2.1rem);
-}
-
-.kiosk-attract-lunch-promo-sticker {
+.kiosk-lunch-flourish {
   position: absolute;
-  left: calc(100% - 0.35rem);
-  top: -0.42em;
-  margin-left: 0;
+  right: clamp(0.25rem, 4cqw, 1.25rem);
+  bottom: clamp(-0.15rem, -0.5cqh, 0.15rem);
+  width: clamp(1.75rem, min(7.5cqw, 5cqh), 2.75rem);
+  height: auto;
+  color: var(--kiosk-red);
+  opacity: 0.88;
+  pointer-events: none;
 }
 
 .kiosk-soul-station-mark {
@@ -772,58 +853,63 @@
   border-radius: 1px;
 }
 
-.kiosk-new-sticker {
+.kiosk-location-new-tag {
   display: inline-block;
   flex-shrink: 0;
-  padding: 0.14em 0.42em 0.12em;
-  font-size: clamp(0.52rem, min(2.2cqw, 1.55cqh), 0.68rem);
+  padding: 0.12em 0.42em 0.1em;
+  font-size: clamp(0.58rem, min(2.35cqw, 1.65cqh), 0.72rem);
   font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   color: var(--kiosk-navy);
   background: var(--kiosk-yellow-sticker);
-  transform: rotate(-6deg);
-  box-shadow: 0 2px 6px rgba(7, 35, 41, 0.22);
-  animation:
-    kiosk-sticker-enter 0.55s ease-out both,
-    kiosk-sticker-wobble 5s ease-in-out 0.6s infinite;
-}
-
-.kiosk-location-new-sticker {
-  font-size: clamp(0.48rem, 2.1cqw, 0.62rem);
-  vertical-align: middle;
-  margin-left: 0.15em;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(7, 35, 41, 0.14);
+  vertical-align: baseline;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kiosk-new-sticker {
-    animation: none;
+  .kiosk-lunch-tape {
+    animation: kiosk-lunch-tape-in 0.55s ease-out both;
   }
 }
 
-@keyframes kiosk-sticker-enter {
+@keyframes kiosk-lunch-tape-in {
   from {
     opacity: 0;
-    transform: rotate(-12deg) scale(0.88);
+    transform: rotate(-8deg) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: rotate(-6deg) scale(1);
+    transform: rotate(-4deg) scale(1);
   }
 }
 
-@keyframes kiosk-sticker-wobble {
+@keyframes kiosk-lunch-tape-tilt {
   0%,
-  86%,
+  88%,
   100% {
+    transform: rotate(-4deg);
+  }
+  92% {
     transform: rotate(-6deg);
   }
-  90% {
-    transform: rotate(-8deg) scale(1.05);
+  96% {
+    transform: rotate(-2deg);
   }
-  94% {
-    transform: rotate(-4deg) scale(1.02);
+}
+
+@media (max-height: 640px) {
+  .kiosk-lunch-fine {
+    display: none;
+  }
+
+  .kiosk-lunch-headline {
+    font-size: clamp(0.78rem, min(5.6cqw, 4.1cqh), 2.35rem);
+  }
+
+  .kiosk-attract-actions {
+    padding-top: clamp(1.75rem, 5cqh, 2.5rem);
   }
 }
 
@@ -987,10 +1073,31 @@
 @media (min-width: 600px) and (min-height: 900px) {
   .kiosk-attract {
     display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto auto;
     grid-template-columns: 1fr;
     row-gap: var(--kiosk-attract-gap-lg);
     align-content: stretch;
+  }
+
+  .kiosk-attract-mid {
+    flex: none;
+    padding-block: clamp(0.35rem, 1.2cqh, 0.85rem);
+  }
+
+  .kiosk-attract-actions {
+    padding-top: 4rem;
+  }
+
+  .kiosk-lunch-headline {
+    font-size: clamp(1.65rem, min(4.6cqw, 3.45cqh), 3.2rem);
+  }
+
+  .kiosk-lunch-tape {
+    font-size: clamp(0.68rem, 1.65cqw, 0.95rem);
+  }
+
+  .kiosk-lunch-fine {
+    font-size: clamp(0.95rem, min(2.4cqw, 1.85cqh), 1.35rem);
   }
 
   .kiosk-attract-map-panel {
@@ -1020,22 +1127,7 @@
 
   .kiosk-attract-actions {
     max-width: min(42rem, 92%);
-    gap: clamp(0.65rem, 1.8cqh, 1rem);
-    padding: clamp(0.5rem, 1.5cqh, 1rem) var(--kiosk-attract-pad-x)
-      clamp(2rem, 5cqh, 3.5rem);
-  }
-
-  .kiosk-attract-lunch-promo-line {
-    font-size: clamp(1.15rem, min(4.25cqw, 3.2cqh), 2.35rem);
-  }
-
-  .kiosk-attract-lunch-promo-sub {
-    font-size: clamp(1rem, min(3.4cqw, 2.5cqh), 1.65rem);
-    max-width: 36rem;
-  }
-
-  .kiosk-new-sticker {
-    font-size: clamp(0.62rem, 1.6cqw, 0.85rem);
+    padding: 4rem var(--kiosk-attract-pad-x) clamp(2rem, 5cqh, 3.5rem);
   }
 
   .kiosk-attract-question {
@@ -1057,7 +1149,6 @@
   .kiosk-attract-cta {
     min-height: clamp(4.5rem, 12cqh, 6.5rem);
     font-size: clamp(1.75rem, 5cqw, 2.75rem);
-    margin-top: var(--kiosk-attract-gap);
   }
 
   .kiosk-attract-cta-icon {
@@ -1136,17 +1227,31 @@
     gap: 0.2rem;
   }
 
+  .kiosk-attract-mid {
+    padding-block: 0.15rem;
+  }
+
   .kiosk-attract-actions {
-    gap: 0.3rem;
+    padding-top: 1.5rem;
     padding-bottom: 0.35rem;
   }
 
-  .kiosk-attract-lunch-promo-line {
-    font-size: clamp(0.72rem, 3.2cqw, 0.88rem);
+  .kiosk-lunch-headline {
+    font-size: clamp(0.72rem, min(4.8cqh, 5.5cqw), 1.05rem);
   }
 
-  .kiosk-attract-lunch-promo-sub {
-    font-size: clamp(0.65rem, 2.85cqw, 0.78rem);
+  .kiosk-lunch-tape {
+    font-size: clamp(0.45rem, 2.2cqw, 0.58rem);
+    padding: 0.28em 0.65em;
+  }
+
+  .kiosk-lunch-fine {
+    display: none;
+  }
+
+  .kiosk-lunch-flourish {
+    width: 1.35rem;
+    opacity: 0.75;
   }
 
   .kiosk-attract-cta {

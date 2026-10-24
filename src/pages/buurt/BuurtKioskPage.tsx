@@ -424,11 +424,11 @@ function BuurtKioskApp() {
             questionIndex={questionIndex}
             tagline={m.campaignTagline}
             cta={m.attractCta}
-            lunchPromoLine1={m.attractLunchPromo}
-            lunchPromoLine2Before={m.attractLunchPromoSubBefore}
+            lunchTapeLabel={m.attractLunchTape}
+            lunchHeadline1={m.attractLunchHeadline1}
+            lunchHeadline2Prefix={m.attractLunchHeadline2Prefix}
             soulStationName={m.soulStationName}
-            lunchPromoLine2After={m.attractLunchPromoSubAfter}
-            lunchPromoNewLabel={m.locationNewBadge}
+            lunchFinePrint={m.attractLunchFinePrint}
             placesCount={locations.length || "…"}
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}

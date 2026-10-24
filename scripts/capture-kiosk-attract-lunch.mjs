@@ -9,6 +9,11 @@ const shots = [
   { name: "attract-lunch-360x640", viewport: { width: 360, height: 640 } },
   { name: "attract-lunch-390x844", viewport: { width: 390, height: 844 } },
   {
+    name: "attract-lunch-390x844-en",
+    viewport: { width: 390, height: 844 },
+    locale: "en",
+  },
+  {
     name: "attract-lunch-390x844-rotate90",
     viewport: { width: 390, height: 844 },
     url: `${BASE}?rotate=90`,
@@ -22,7 +27,11 @@ const browser = await chromium.launch();
 for (const shot of shots) {
   const page = await browser.newPage({ viewport: shot.viewport });
   await page.goto(shot.url ?? BASE, { waitUntil: "networkidle" });
-  await page.waitForSelector(".kiosk-attract-lunch-promo-tap", { timeout: 15_000 });
+  if (shot.locale === "en") {
+    await page.locator("button.kiosk-lang-btn", { hasText: /^en$/i }).click();
+    await page.waitForTimeout(250);
+  }
+  await page.waitForSelector(".kiosk-lunch-lockup", { timeout: 15_000 });
   await page.waitForTimeout(600);
   await page.screenshot({
     path: path.join(OUT, `${shot.name}.png`),

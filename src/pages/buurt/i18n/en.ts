@@ -15,10 +15,11 @@ export const en: Messages = {
     "Geloven in de Buurt: your first step starts on your own street.",
   ],
   attractCta: "Tap to start",
-  attractLunchPromo: "🎁 Win 1 of 3 free lunches",
-  attractLunchPromoSubBefore: "at ",
-  attractLunchPromoSubAfter: " in Amsterdam",
+  attractLunchTape: "New in Amsterdam",
+  attractLunchHeadline1: "Win a free lunch",
+  attractLunchHeadline2Prefix: "at ",
   soulStationName: "Soul Station",
+  attractLunchFinePrint: "3 winners · everyone can enter",
   attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
@@ -71,7 +72,7 @@ export const en: Messages = {
 
   thanksTitle: "Thanks!",
   thanksBody: "You’re in the draw for a lunch at Soul Station in Amsterdam.",
-  locationNewBadge: "NEW",
+  locationNewBadge: "New",
   thanksDone: "Done",
 
   adminTitle: "Export sign-ups",
