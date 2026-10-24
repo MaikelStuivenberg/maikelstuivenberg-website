@@ -1,23 +1,24 @@
+import { useEffect, useMemo, useState } from "react";
+import type { KioskLocation } from "./types";
+import {
+  netherlandsOutlinePath,
+  NL_VIEW,
+  projectLocations,
+} from "./nl-map";
+
 type Props = {
   questions: string[];
   questionIndex: number;
   cta: string;
+  placesCountLabel: string;
+  locations: KioskLocation[];
   onStart: () => void;
 };
-
-const PIN_SPOTS = [
-  { left: "38%", top: "42%", delay: "0s" },
-  { left: "52%", top: "38%", delay: "0.8s" },
-  { left: "46%", top: "55%", delay: "1.6s" },
-  { left: "58%", top: "48%", delay: "2.2s" },
-  { left: "42%", top: "62%", delay: "1.1s" },
-  { left: "50%", top: "28%", delay: "2.8s" },
-];
 
 function TouchFingerIcon() {
   return (
     <svg
-      className="h-10 w-10 shrink-0"
+      className="kiosk-attract-cta-icon"
       viewBox="0 0 24 24"
       aria-hidden="true"
       fill="currentColor"
@@ -33,56 +34,75 @@ export function AttractScreen({
   questions,
   questionIndex,
   cta,
+  placesCountLabel,
+  locations,
   onStart,
 }: Props) {
   const question = questions[questionIndex];
+  const outlinePath = useMemo(() => netherlandsOutlinePath(), []);
+  const dots = useMemo(() => projectLocations(locations), [locations]);
+  const [spotlight, setSpotlight] = useState(0);
+
+  useEffect(() => {
+    if (dots.length === 0) return;
+    const id = window.setInterval(() => {
+      setSpotlight((s) => (s + 1) % dots.length);
+    }, 1400);
+    return () => window.clearInterval(id);
+  }, [dots.length]);
+
+  const spotlightIds = useMemo(() => {
+    if (dots.length === 0) return new Set<string>();
+    const ids = new Set<string>();
+    for (let offset = -1; offset <= 1; offset += 1) {
+      const idx = (spotlight + offset + dots.length) % dots.length;
+      ids.add(dots[idx].id);
+    }
+    return ids;
+  }, [dots, spotlight]);
 
   return (
     <button
       type="button"
-      className="kiosk-attract relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl text-center shadow-inner"
+      className="kiosk-attract flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl text-center shadow-inner"
       onClick={onStart}
     >
       <div className="kiosk-attract-gradient" aria-hidden="true" />
       <div className="kiosk-attract-lines" aria-hidden="true" />
 
-      <div className="kiosk-attract-map-wrap" aria-hidden="true">
+      <div className="kiosk-attract-map-panel" aria-hidden="true">
         <svg
-          className="kiosk-attract-map"
-          viewBox="0 0 200 240"
-          xmlns="http://www.w3.org/2000/svg"
+          className="kiosk-attract-map-svg"
+          viewBox={`0 0 ${NL_VIEW.width} ${NL_VIEW.height}`}
+          preserveAspectRatio="xMidYMid meet"
         >
-          <path
-            className="kiosk-attract-map-fill"
-            d="M48 32 L148 28 L172 52 L188 88 L178 128 L158 168 L128 198 L88 212 L52 196 L28 158 L22 108 L32 58 L48 32 Z"
-          />
-          <path
-            className="kiosk-attract-map-stroke"
-            d="M48 32 L148 28 L172 52 L188 88 L178 128 L158 168 L128 198 L88 212 L52 196 L28 158 L22 108 L32 58 L48 32 Z"
-          />
+          <path className="kiosk-attract-map-fill" d={outlinePath} />
+          <path className="kiosk-attract-map-stroke" d={outlinePath} />
+          {dots.map((dot) => {
+            const active = spotlightIds.has(dot.id);
+            return (
+              <circle
+                key={dot.id}
+                cx={dot.x}
+                cy={dot.y}
+                r={active ? 9 : 4.5}
+                className={
+                  active ? "kiosk-attract-dot kiosk-attract-dot--spot" : "kiosk-attract-dot"
+                }
+              />
+            );
+          })}
         </svg>
-        {PIN_SPOTS.map((pin, i) => (
-          <span
-            key={i}
-            className="kiosk-attract-pin"
-            style={{
-              left: pin.left,
-              top: pin.top,
-              animationDelay: pin.delay,
-            }}
-          />
-        ))}
       </div>
 
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-10 px-6 py-8">
+      <div className="kiosk-attract-copy">
         <p key={questionIndex} className="kiosk-attract-question">
           {question}
         </p>
+        <p className="kiosk-attract-count">{placesCountLabel}</p>
         <div className="kiosk-attract-cta">
           <TouchFingerIcon />
-          <span className="text-2xl font-bold tracking-tight md:text-3xl">
-            {cta}
-          </span>
+          <span>{cta}</span>
         </div>
       </div>
     </button>

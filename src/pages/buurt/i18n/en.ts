@@ -13,6 +13,7 @@ export const en: Messages = {
     "Geloven in de Buurt: your first step starts on your own street.",
   ],
   attractCta: "Tap to start",
+  attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
   chooseAll: "Show all places",

@@ -11,6 +11,7 @@ export const nl = {
     "Geloven in de Buurt: de eerste stap in je eigen straat.",
   ],
   attractCta: "Tik om te starten",
+  attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",
   chooseAll: "Laat alle plekken zien",

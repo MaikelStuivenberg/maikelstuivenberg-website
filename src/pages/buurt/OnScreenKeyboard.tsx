@@ -49,7 +49,7 @@ function KeyButton({
       onPointerDown={(e) => e.preventDefault()}
       onClick={onPress}
       className={cn(
-        "min-h-14 rounded-xl bg-white/95 text-xl font-semibold text-[var(--kiosk-navy)] shadow-sm active:scale-95 active:bg-[var(--kiosk-mint)]",
+        "min-h-[3.75rem] rounded-xl bg-white/95 text-2xl font-semibold text-[var(--kiosk-navy)] shadow-sm active:scale-95 active:bg-[var(--kiosk-mint)]",
         wide && "col-span-2",
       )}
     >
@@ -94,7 +94,7 @@ export function OnScreenKeyboard({
           type="button"
           onPointerDown={(e) => e.preventDefault()}
           onClick={onBackspace}
-          className="min-h-14 rounded-xl bg-[var(--kiosk-navy)] text-lg font-semibold text-white active:opacity-90"
+          className="min-h-[3.75rem] rounded-xl bg-[var(--kiosk-navy)] text-xl font-semibold text-white active:opacity-90"
         >
           ⌫
         </button>
@@ -103,7 +103,7 @@ export function OnScreenKeyboard({
             type="button"
             onPointerDown={(e) => e.preventDefault()}
             onClick={onEnter}
-            className="min-h-14 rounded-xl bg-[var(--kiosk-red)] text-lg font-bold text-white active:opacity-90"
+            className="min-h-[3.75rem] rounded-xl bg-[var(--kiosk-red)] text-xl font-bold text-white active:opacity-90"
           >
             OK
           </button>

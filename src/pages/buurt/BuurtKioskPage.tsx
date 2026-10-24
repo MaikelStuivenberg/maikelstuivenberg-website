@@ -64,7 +64,7 @@ function LanguageToggle({
           type="button"
           onClick={() => onChange(code)}
           className={cn(
-            "min-h-12 min-w-[4.5rem] rounded-full px-4 text-lg font-bold uppercase tracking-wide transition-colors",
+            "kiosk-lang-btn rounded-full px-5 font-bold uppercase tracking-wide transition-colors",
             locale === code
               ? "bg-[var(--kiosk-red)] text-white"
               : "text-[var(--kiosk-navy)]",
@@ -94,20 +94,20 @@ function KioskShell({
       onPointerDown={onActivity}
       onTouchStart={onActivity}
     >
-      <header className="flex items-center justify-between gap-3 px-4 py-3">
-        <div className="flex min-w-0 items-center gap-3">
+      <header className="flex items-center justify-between gap-4 px-5 py-4">
+        <div className="flex min-w-0 items-center gap-4">
           <img
             src={LDH_LOGO_PATH}
             alt="Leger des Heils"
-            className="h-14 w-auto shrink-0"
-            width={52}
-            height={56}
+            className="kiosk-header-logo shrink-0"
+            width={120}
+            height={128}
           />
           <div className="min-w-0 leading-tight">
-            <p className="truncate text-sm font-bold text-[var(--kiosk-red)]">
+            <p className="kiosk-header-title truncate font-bold text-[var(--kiosk-red)]">
               {t(locale).programme}
             </p>
-            <p className="truncate text-xs text-[var(--kiosk-teal)]">
+            <p className="kiosk-header-sub truncate text-[var(--kiosk-teal)]">
               {t(locale).programmeSub}
             </p>
           </div>
@@ -321,36 +321,43 @@ export function BuurtKioskPage() {
             questions={[...m.attractQuestions]}
             questionIndex={questionIndex}
             cta={m.attractCta}
+            placesCountLabel={m.attractPlacesCount.replace(
+              "{count}",
+              String(locations.length || "…"),
+            )}
+            locations={locations}
             onStart={() => go("choose")}
           />
         )}
 
         {screen === "choose" && (
-          <div className="flex flex-1 flex-col justify-center gap-6">
-            <h1 className="text-center text-3xl font-extrabold text-[var(--kiosk-navy)]">
+          <div className="flex flex-1 flex-col justify-center gap-8">
+            <h1 className="kiosk-screen-title text-center text-[var(--kiosk-navy)]">
               {m.chooseTitle}
             </h1>
             <button
               type="button"
-              className="rounded-2xl bg-[var(--kiosk-red)] px-6 py-8 text-left text-white shadow-lg active:scale-[0.98]"
+              className="kiosk-choice-btn rounded-2xl bg-[var(--kiosk-red)] text-left text-white shadow-lg active:scale-[0.98]"
               onClick={() => {
                 setMapMode("all");
                 setSelected(null);
                 go("map");
               }}
             >
-              <span className="block text-2xl font-bold">{m.chooseAll}</span>
-              <span className="mt-2 block text-lg opacity-90">{m.chooseAllHint}</span>
+              <span className="kiosk-choice-title block">{m.chooseAll}</span>
+              <span className="kiosk-choice-hint mt-2 block opacity-90">
+                {m.chooseAllHint}
+              </span>
             </button>
             <button
               type="button"
-              className="rounded-2xl border-2 border-[var(--kiosk-teal)] bg-white px-6 py-8 text-left shadow-lg active:scale-[0.98]"
+              className="kiosk-choice-btn rounded-2xl border-2 border-[var(--kiosk-teal)] bg-white text-left shadow-lg active:scale-[0.98]"
               onClick={() => go("search")}
             >
-              <span className="block text-2xl font-bold text-[var(--kiosk-navy)]">
+              <span className="kiosk-choice-title block text-[var(--kiosk-navy)]">
                 {m.chooseNear}
               </span>
-              <span className="mt-2 block text-lg text-[var(--kiosk-teal)]">
+              <span className="kiosk-choice-hint mt-2 block text-[var(--kiosk-teal)]">
                 {m.chooseNearHint}
               </span>
             </button>
@@ -364,9 +371,9 @@ export function BuurtKioskPage() {
 
         {screen === "search" && (
           <div className="flex min-h-0 flex-1 flex-col gap-4">
-            <h1 className="text-2xl font-bold">{m.searchTitle}</h1>
+            <h1 className="kiosk-screen-title">{m.searchTitle}</h1>
             <div
-              className="rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-4 py-4 text-2xl font-semibold"
+              className="kiosk-input-display rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-5 py-4"
               role="textbox"
               aria-label={m.searchPlaceholder}
             >
@@ -390,14 +397,14 @@ export function BuurtKioskPage() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
-                className="min-h-14 rounded-xl bg-[var(--kiosk-navy)] text-lg font-semibold text-white"
+                className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-navy)] text-white"
                 onClick={() => go("choose")}
               >
                 {m.searchBack}
               </button>
               <button
                 type="button"
-                className="min-h-14 rounded-xl bg-[var(--kiosk-red)] text-lg font-bold text-white"
+                className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-red)] text-white"
                 onClick={handleSearch}
               >
                 {m.searchGo}
@@ -409,12 +416,12 @@ export function BuurtKioskPage() {
         {screen === "map" && (
           <div className="flex min-h-0 flex-1 flex-col gap-3">
             <div className="flex items-center justify-between gap-2">
-              <h1 className="text-xl font-bold">
+              <h1 className="kiosk-screen-title text-[var(--kiosk-navy)]">
                 {mapMode === "all" ? m.mapAllTitle : m.mapNearTitle}
               </h1>
               <button
                 type="button"
-                className="shrink-0 rounded-lg bg-[var(--kiosk-navy)] px-4 py-2 text-sm font-semibold text-white"
+                className="kiosk-touch-btn shrink-0 rounded-xl bg-[var(--kiosk-navy)] px-5 text-white"
                 onClick={() => go("choose")}
               >
                 {m.mapBack}
@@ -456,8 +463,10 @@ export function BuurtKioskPage() {
                           : "border-transparent bg-white",
                       )}
                     >
-                      <p className="font-bold leading-snug">{loc.title}</p>
-                      <p className="text-sm text-[var(--kiosk-teal)]">
+                      <p className="kiosk-screen-body font-bold leading-snug">
+                        {loc.title}
+                      </p>
+                      <p className="text-base text-[var(--kiosk-teal)] md:text-lg">
                         {kindLabel(loc.kind, locale)}
                         {dist != null &&
                           ` · ${dist.toFixed(1)} ${m.mapDistance}`}
@@ -498,7 +507,7 @@ export function BuurtKioskPage() {
             )}
             <button
               type="button"
-              className="min-h-16 rounded-2xl bg-[var(--kiosk-red)] text-xl font-bold text-white shadow-lg"
+              className="kiosk-touch-btn min-h-[4.75rem] rounded-2xl bg-[var(--kiosk-red)] text-white shadow-lg"
               onClick={() => go("signup")}
             >
               {m.mapHelp}
@@ -508,8 +517,8 @@ export function BuurtKioskPage() {
 
         {screen === "signup" && (
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto">
-            <h1 className="text-2xl font-bold">{m.signupTitle}</h1>
-            <p className="text-base leading-snug">{m.signupIntro}</p>
+            <h1 className="kiosk-screen-title">{m.signupTitle}</h1>
+            <p className="kiosk-screen-body">{m.signupIntro}</p>
             {selected && (
               <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
                 {selected.title}
