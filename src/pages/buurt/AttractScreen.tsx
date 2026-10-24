@@ -115,6 +115,7 @@ export function AttractScreen({
         </div>
 
         <div className="kiosk-attract-map-panel" aria-hidden="true">
+          <div className="kiosk-attract-map-center">
           <svg
             className="kiosk-attract-map-svg"
             viewBox={`0 0 ${NL_VIEW.width} ${NL_VIEW.height}`}
@@ -188,6 +189,7 @@ export function AttractScreen({
               );
             })}
           </svg>
+          </div>
         </div>
 
         <div className="kiosk-attract-hero-copy">
