@@ -170,9 +170,10 @@
 /* Header */
 .kiosk-shell-header {
   flex-shrink: 0;
-  align-items: flex-start;
-  gap: var(--kiosk-space-2);
-  padding: clamp(0.5rem, 1.6cqh, 1.25rem) clamp(0.75rem, 3cqw, 1.5rem);
+  align-items: center;
+  gap: clamp(0.35rem, 1.5cqw, 0.75rem);
+  padding: clamp(0.5rem, 1.6cqh, 1.25rem) clamp(0.5rem, 2.5cqw, 1.5rem);
+  overflow: hidden;
 }
 
 .kiosk-header-logo {
@@ -180,24 +181,32 @@
   width: auto;
 }
 
+.kiosk-header-brand-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  max-height: 2.4em;
+}
+
 .kiosk-header-title {
-  font-size: clamp(1rem, min(3.8cqw, 2.8cqh), 1.65rem);
+  display: block;
+  font-size: clamp(0.9rem, min(3.4cqw, 2.5cqh), 1.65rem);
   line-height: 1.15;
-  overflow: visible;
-  text-overflow: unset;
-  white-space: normal;
 }
 
 .kiosk-header-sub {
-  font-size: clamp(0.8rem, min(2.6cqw, 1.9cqh), 1.15rem);
-  line-height: 1.2;
-  overflow: visible;
-  white-space: normal;
+  display: block;
+  font-size: clamp(0.75rem, min(2.4cqw, 1.75cqh), 1.15rem);
+  line-height: 1.15;
 }
 
-@media (max-height: 680px), (max-width: 380px) {
-  .kiosk-header-sub {
-    display: none;
+@media (min-width: 600px) {
+  .kiosk-header-brand-text {
+    display: block;
+    overflow: visible;
+    max-height: none;
+    -webkit-line-clamp: unset;
   }
 }
 
@@ -307,6 +316,128 @@
   flex-shrink: 0;
 }
 
+.kiosk-btn-ghost {
+  border-radius: var(--kiosk-radius);
+  border: 2px solid rgba(7, 35, 41, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--kiosk-navy);
+  box-shadow: var(--kiosk-shadow-soft);
+  transition: background-color 0.1s ease, border-color 0.1s ease;
+}
+
+.kiosk-btn-ghost:active {
+  background: var(--kiosk-mint);
+  border-color: rgba(7, 35, 41, 0.4);
+}
+
+.kiosk-header-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: clamp(2.5rem, min(11cqw, 5.5cqh), 3.75rem);
+  min-width: clamp(2.5rem, min(11cqw, 5.5cqh), 3.75rem);
+  padding: clamp(0.35rem, 1.2cqw, 0.5rem);
+  border-radius: 999px;
+  touch-action: manipulation;
+}
+
+.kiosk-header-pill-icon {
+  width: clamp(1.05rem, min(4.2cqw, 3cqh), 1.45rem);
+  height: clamp(1.05rem, min(4.2cqw, 3cqh), 1.45rem);
+  flex-shrink: 0;
+}
+
+.kiosk-signup-form {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+  padding-bottom: clamp(0.15rem, 0.6cqh, 0.35rem);
+}
+
+.kiosk-signup-stack {
+  flex: 0 1 auto;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.35rem, min(1.2cqw, 1cqh), 0.65rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.kiosk-signup-heading {
+  flex-shrink: 0;
+  font-size: clamp(1rem, min(3.8cqw, 2.8cqh), 1.35rem);
+  line-height: 1.15;
+}
+
+.kiosk-signup-place {
+  flex-shrink: 0;
+  font-size: clamp(0.75rem, min(2.6cqw, 2cqh), 0.95rem);
+}
+
+.kiosk-signup-fields {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.3rem, min(1cqw, 0.85cqh), 0.5rem);
+}
+
+.kiosk-signup-field {
+  padding: clamp(0.45rem, min(1.5cqw, 1.2cqh), 0.65rem)
+    clamp(0.65rem, min(2.2cqw, 1.6cqh), 0.85rem);
+}
+
+.kiosk-signup-field-label {
+  display: block;
+  font-size: clamp(0.7rem, min(2.4cqw, 1.8cqh), 0.85rem);
+  font-weight: 600;
+}
+
+.kiosk-signup-field .kiosk-field-value {
+  font-size: clamp(0.95rem, min(3.6cqw, 2.6cqh), 1.15rem);
+}
+
+.kiosk-signup-lunch {
+  flex: 0 0 auto;
+  padding: clamp(0.45rem, min(1.5cqw, 1.2cqh), 0.65rem)
+    clamp(0.65rem, min(2.2cqw, 1.6cqh), 0.85rem);
+  display: block;
+}
+
+.kiosk-signup-lunch-title {
+  margin: 0 0 clamp(0.2rem, min(0.65cqw, 0.55cqh), 0.35rem);
+  font-size: clamp(0.85rem, min(2.8cqw, 2.1cqh), 1rem);
+  line-height: 1.2;
+}
+
+.kiosk-signup-lunch-body {
+  margin: 0;
+  font-size: clamp(0.7rem, min(2.35cqw, 1.75cqh), 0.82rem);
+  line-height: 1.3;
+  color: var(--kiosk-navy);
+}
+
+.kiosk-signup-consent {
+  margin-top: clamp(0.35rem, min(1.2cqw, 1cqh), 0.55rem);
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.35rem, min(1.2cqw, 1cqh), 0.5rem);
+  font-size: clamp(0.65rem, min(2.2cqw, 1.65cqh), 0.78rem);
+  line-height: 1.25;
+}
+
+.kiosk-signup-consent-check {
+  margin-top: 0.1rem;
+  width: clamp(1.1rem, min(4cqw, 2.8cqh), 1.35rem);
+  height: clamp(1.1rem, min(4cqw, 2.8cqh), 1.35rem);
+  flex-shrink: 0;
+}
+
 .kiosk-search-go-btn {
   min-width: clamp(4.5rem, 18cqw, 7.5rem);
 }
@@ -376,6 +507,32 @@
 
 .kiosk-key-row--bottom-alt .kiosk-key--space {
   grid-column: 1;
+}
+
+.kiosk-key-row--bottom-name {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.1fr) minmax(0, 3fr) minmax(0, 0.85fr) minmax(0, 0.85fr)
+    minmax(0, 2.35fr);
+  gap: clamp(0.2rem, min(0.55cqw, 0.4cqh), 0.45rem);
+}
+
+.kiosk-key-row--bottom-name-alt {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.1fr) minmax(0, 3.5fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+  gap: clamp(0.2rem, min(0.55cqw, 0.4cqh), 0.45rem);
+}
+
+.kiosk-key--shift {
+  background: rgba(200, 217, 212, 0.35);
+  font-size: clamp(0.9rem, min(3.5cqw, 2.4cqh), 1.25rem);
+}
+
+.kiosk-key--shift-on {
+  background: var(--kiosk-navy);
+  color: #fff;
+  border-color: var(--kiosk-navy);
 }
 
 .kiosk-key-row--symbols {
@@ -1038,9 +1195,127 @@
   gap: clamp(0.35rem, 1cqh, 0.75rem);
 }
 
+.kiosk-map-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: clamp(8rem, 22cqh, 40cqh);
+  display: flex;
+  flex-direction: column;
+}
+
+.kiosk-map-stage .kiosk-map-canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .kiosk-map-canvas {
   flex: 1 1 auto;
   min-height: clamp(8rem, 22cqh, 40cqh);
+}
+
+.kiosk-map-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  max-height: none;
+  padding: clamp(0.55rem, min(1.8cqw, 1.5cqh), 0.85rem)
+    clamp(0.65rem, min(2.2cqw, 1.8cqh), 1rem)
+    clamp(0.5rem, min(1.5cqw, 1.2cqh), 0.75rem);
+  border-radius: clamp(0.85rem, 2.5cqw, 1.25rem) clamp(0.85rem, 2.5cqw, 1.25rem) 0 0;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(200, 217, 212, 0.85);
+  border-bottom: none;
+  box-shadow: 0 -10px 32px rgba(7, 35, 41, 0.14);
+  overflow: hidden;
+  text-align: left;
+}
+
+.kiosk-map-sheet-close {
+  position: absolute;
+  top: clamp(0.35rem, 1.2cqh, 0.55rem);
+  right: clamp(0.35rem, 1.2cqw, 0.55rem);
+  z-index: 2;
+  width: clamp(2.25rem, 9cqw, 2.75rem);
+  height: clamp(2.25rem, 9cqw, 2.75rem);
+  border-radius: 999px;
+  border: 2px solid rgba(7, 35, 41, 0.2);
+  background: #fff;
+  color: var(--kiosk-navy);
+  font-size: clamp(1.35rem, 5cqw, 1.65rem);
+  font-weight: 700;
+  line-height: 1;
+  touch-action: manipulation;
+}
+
+.kiosk-map-sheet-close:active {
+  background: var(--kiosk-mint);
+}
+
+.kiosk-map-sheet-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(0.45rem, min(1.6cqw, 1.3cqh), 0.75rem);
+  align-items: start;
+  padding-right: clamp(2rem, 7cqw, 2.5rem);
+}
+
+.kiosk-map-sheet-main {
+  min-width: 0;
+}
+
+.kiosk-map-sheet-kicker {
+  margin: 0 0 clamp(0.15rem, 0.5cqh, 0.25rem);
+  font-size: clamp(0.7rem, min(2.4cqw, 1.75cqh), 0.85rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kiosk-teal);
+}
+
+.kiosk-map-sheet-title {
+  margin: 0 0 clamp(0.2rem, 0.6cqh, 0.35rem);
+  font-size: clamp(0.95rem, min(3.6cqw, 2.6cqh), 1.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--kiosk-navy);
+}
+
+.kiosk-map-sheet-address {
+  margin: 0;
+  font-size: clamp(0.75rem, min(2.5cqw, 1.85cqh), 0.9rem);
+  line-height: 1.3;
+  color: var(--kiosk-teal);
+}
+
+.kiosk-map-sheet-qr {
+  width: clamp(5.5rem, 21cqw, 11.5rem);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.kiosk-map-sheet-qr-img {
+  display: inline-block;
+  width: clamp(5rem, 20cqw, 11.25rem);
+  height: clamp(5rem, 20cqw, 11.25rem);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: clamp(0.35rem, 1cqw, 0.5rem);
+  border: 1px solid rgba(200, 217, 212, 0.9);
+  background: #fff;
+}
+
+.kiosk-map-sheet-qr-hint {
+  margin: clamp(0.2rem, 0.6cqh, 0.35rem) 0 0;
+  font-size: clamp(0.6rem, min(2.1cqw, 1.55cqh), 0.72rem);
+  line-height: 1.25;
+  color: var(--kiosk-teal);
+}
+
+.kiosk-map-sheet-cta {
+  width: 100%;
+  margin-top: clamp(0.4rem, min(1.2cqw, 1cqh), 0.55rem);
 }
 
 .kiosk-map-list {
@@ -1185,6 +1460,84 @@
 
   .kiosk-header-title {
     font-size: clamp(1.1rem, 2.8cqw, 1.65rem);
+  }
+
+  .kiosk-header-pill-btn {
+    min-height: clamp(3.25rem, 7cqh, 4.25rem);
+    min-width: clamp(3.25rem, 7cqh, 4.25rem);
+  }
+
+  .kiosk-header-pill-icon {
+    width: clamp(1.35rem, 3cqw, 1.85rem);
+    height: clamp(1.35rem, 3cqw, 1.85rem);
+  }
+
+  .kiosk-lang-btn {
+    min-height: clamp(3.25rem, 7cqh, 4.25rem);
+    min-width: clamp(3.25rem, 7cqh, 4.25rem);
+  }
+
+  .kiosk-signup-heading {
+    font-size: clamp(1.65rem, 3.5cqw, 2.25rem);
+  }
+
+  .kiosk-signup-place {
+    font-size: clamp(1.15rem, 2.4cqw, 1.5rem);
+  }
+
+  .kiosk-signup-field {
+    padding: clamp(0.75rem, 1.8cqh, 1.1rem) clamp(1rem, 2.2cqw, 1.35rem);
+  }
+
+  .kiosk-signup-field-label {
+    font-size: clamp(1.15rem, 2.4cqw, 1.45rem);
+  }
+
+  .kiosk-signup-field .kiosk-field-value {
+    font-size: clamp(1.65rem, 3.5cqw, 2.15rem);
+  }
+
+  .kiosk-signup-lunch-title {
+    font-size: clamp(1.45rem, 3cqw, 1.85rem);
+  }
+
+  .kiosk-signup-lunch-body {
+    font-size: clamp(1.2rem, 2.5cqw, 1.55rem);
+  }
+
+  .kiosk-signup-consent {
+    font-size: clamp(1.05rem, 2.2cqw, 1.35rem);
+  }
+
+  .kiosk-signup-consent-check {
+    width: clamp(1.5rem, 3cqw, 1.85rem);
+    height: clamp(1.5rem, 3cqw, 1.85rem);
+  }
+
+  .kiosk-map-sheet-kicker {
+    font-size: clamp(0.85rem, 1.8cqw, 1.05rem);
+  }
+
+  .kiosk-map-sheet-title {
+    font-size: clamp(1.45rem, 3.2cqw, 2rem);
+  }
+
+  .kiosk-map-sheet-address {
+    font-size: clamp(1.15rem, 2.4cqw, 1.45rem);
+  }
+
+  .kiosk-map-sheet-qr-img {
+    width: 11.25rem;
+    height: 11.25rem;
+  }
+
+  .kiosk-map-sheet-qr-hint {
+    font-size: clamp(0.95rem, 2cqw, 1.15rem);
+  }
+
+  .kiosk-map-sheet-cta {
+    min-height: clamp(3.5rem, 7cqh, 4.5rem);
+    font-size: clamp(1.35rem, 2.8cqw, 1.75rem);
   }
 }
 
@@ -1440,8 +1793,9 @@
 }
 
 .kiosk-header-tools {
-  align-items: stretch;
-  max-width: min(58%, 24rem);
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
 }
 
 .kiosk-home-btn {
@@ -1500,12 +1854,16 @@
 
   .kiosk-header-tools {
     gap: 0.25rem;
-    max-width: min(62%, 26rem);
   }
 
   .kiosk-lang-btn {
     min-width: clamp(2.35rem, min(10cqw, 5.2cqh), 2.75rem);
-    padding-inline: clamp(0.4rem, 1.6cqw, 0.55rem);
+    padding-left: clamp(0.4rem, 1.6cqw, 0.55rem);
+    padding-right: clamp(0.4rem, 1.6cqw, 0.55rem);
+  }
+
+  .kiosk-header-logo {
+    height: clamp(2.35rem, min(10cqw, 8cqh), 3.25rem);
   }
 }
 

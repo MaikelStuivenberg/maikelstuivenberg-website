@@ -1,9 +1,8 @@
-import { Fragment, useEffect, useMemo } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import {
   MapContainer,
   TileLayer,
   CircleMarker,
-  Popup,
   useMap,
 } from "react-leaflet";
 import type { KioskLocation } from "./types";
@@ -21,6 +20,19 @@ type Props = {
   softwareRotated?: boolean;
 };
 
+function usePhoneMapPins(): boolean {
+  const [phone, setPhone] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 600,
+  );
+  useEffect(() => {
+    const update = () => setPhone(window.innerWidth < 600);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return phone;
+}
+
 function FitBounds({ locations }: { locations: KioskLocation[] }) {
   const map = useMap();
   useEffect(() => {
@@ -35,6 +47,42 @@ function FitBounds({ locations }: { locations: KioskLocation[] }) {
       { padding: [40, 40], maxZoom: 12 },
     );
   }, [locations, map]);
+  return null;
+}
+
+function PanSelectedAboveSheet({
+  selectedId,
+  locations,
+}: {
+  selectedId?: string | null;
+  locations: KioskLocation[];
+}) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.closePopup();
+  }, [selectedId, map]);
+
+  useEffect(() => {
+    if (!selectedId) return;
+    const loc = locations.find((l) => l.id === selectedId);
+    if (!loc) return;
+
+    const run = () => {
+      const size = map.getSize();
+      if (size.y < 1) return;
+      const offsetPx = Math.round(size.y * 0.2);
+      const point = map.project([loc.lat, loc.lon], map.getZoom());
+      const shifted = point.subtract([0, offsetPx]);
+      const target = map.unproject(shifted, map.getZoom());
+      map.panTo(target, { animate: true, duration: 0.35 });
+    };
+
+    run();
+    const t = window.setTimeout(run, 120);
+    return () => window.clearTimeout(t);
+  }, [selectedId, locations, map]);
+
   return null;
 }
 
@@ -80,6 +128,10 @@ export function KioskMap({
   softwareRotated = false,
 }: Props) {
   const markers = useMemo(() => locations, [locations]);
+  const phonePins = usePhoneMapPins();
+  const pin = phonePins
+    ? { base: 8, featured: 9, selected: 9, halo: 17, haloFeatured: 19, ring: 12, ringSel: 14 }
+    : { base: 10, featured: 11, selected: 11, halo: 21, haloFeatured: 23, ring: 14, ringSel: 16 };
 
   return (
     <div className="relative h-full w-full min-h-[280px]">
@@ -100,17 +152,35 @@ export function KioskMap({
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {fitBounds ? <FitBounds locations={markers} /> : null}
+        {selectedId ? (
+          <PanSelectedAboveSheet selectedId={selectedId} locations={markers} />
+        ) : null}
         {softwareRotated ? <MapZoomButtons /> : null}
         {markers.map((loc) => {
           const selected = loc.id === selectedId;
           const featured = isSoulStation(loc.id);
-          const pinRadius = selected ? 14 : featured ? 12 : 10;
+          const pinRadius = selected ? pin.selected : featured ? pin.featured : pin.base;
           return (
             <Fragment key={loc.id}>
+              {selected ? (
+                <CircleMarker
+                  center={[loc.lat, loc.lon]}
+                  radius={featured ? pin.haloFeatured : pin.halo}
+                  pathOptions={{
+                    color: "#ffffff",
+                    weight: 4,
+                    fillColor: LDH_BRAND.red,
+                    fillOpacity: 0.15,
+                  }}
+                  eventHandlers={{
+                    click: () => onSelect?.(loc),
+                  }}
+                />
+              ) : null}
               {featured ? (
                 <CircleMarker
                   center={[loc.lat, loc.lon]}
-                  radius={selected ? 18 : 16}
+                  radius={selected ? pin.ringSel : pin.ring}
                   pathOptions={{
                     color: LDH_BRAND.yellow,
                     weight: 3,
@@ -134,13 +204,7 @@ export function KioskMap({
                 eventHandlers={{
                   click: () => onSelect?.(loc),
                 }}
-              >
-                <Popup>
-                  <strong>{loc.title}</strong>
-                  <br />
-                  {loc.address}
-                </Popup>
-              </CircleMarker>
+              />
             </Fragment>
           );
         })}

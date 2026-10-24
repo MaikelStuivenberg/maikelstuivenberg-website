@@ -6,6 +6,7 @@ const BASE = process.env.KIOSK_URL ?? "http://localhost:4173/buurt";
 const VIEWPORTS = [
   { label: "1080x1920", width: 1080, height: 1920 },
   { label: "390x844", width: 390, height: 844 },
+  { label: "360x640", width: 360, height: 640 },
 ];
 
 const OUT_ROOT = process.env.KIOSK_SHOT_OUT ?? "docs/kiosk-screenshots/after";
@@ -26,12 +27,14 @@ async function captureFlow(page, outDir) {
 
   if (onlyAttractChoice) return;
 
-  await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
+  await page
+    .getByRole("button", { name: /Zoek in jouw buurt|Search your neighbourhood/i })
+    .click();
   await snap("03-search-location");
 
   await page
-    .locator("button.kiosk-touch-btn")
-    .filter({ hasText: /^(Terug|Back)$/ })
+    .getByRole("button", { name: /Terug|Back/i })
+    .first()
     .click();
   await page
     .getByRole("button", { name: /Laat alle plekken|Show all places/i })

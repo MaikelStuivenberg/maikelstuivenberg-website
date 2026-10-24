@@ -29,7 +29,9 @@ import type {
 import { AttractScreen } from "./AttractScreen";
 import { LocationNameWithBadge } from "./LocationNameWithBadge";
 import { LDH_LOGO_PATH } from "./brand";
-import { KioskHomeButton } from "./KioskHomeButton";
+import { KioskHeaderNav } from "./KioskHeaderNav";
+import { LocationMapSheet } from "./LocationMapSheet";
+import { appendNameKey } from "./name-input";
 import { useKioskAutoFullscreen } from "./useKioskAutoFullscreen";
 import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
 import {
@@ -126,15 +128,22 @@ function KioskShell({
   locale,
   onLocaleChange,
   onActivity,
-  headerTools,
+  nav,
   children,
 }: {
   locale: Locale;
   onLocaleChange: (l: Locale) => void;
   onActivity: () => void;
-  headerTools?: ReactNode;
+  nav?: {
+    homeLabel: string;
+    backLabel: string;
+    onHome: () => void;
+    onBack?: () => void;
+    showBack: boolean;
+  };
   children: ReactNode;
 }) {
+  const m = t(locale);
   return (
     <div
       className="buurt-kiosk flex flex-col"
@@ -142,7 +151,7 @@ function KioskShell({
       onTouchStart={onActivity}
     >
       <header className="kiosk-shell-header flex justify-between">
-        <div className="flex min-w-0 flex-1 items-start gap-2 sm:gap-4">
+        <div className="kiosk-header-brand flex min-w-0 flex-1 items-start gap-2 sm:gap-3">
           <img
             src={LDH_LOGO_PATH}
             alt="Leger des Heils"
@@ -150,17 +159,25 @@ function KioskShell({
             width={120}
             height={128}
           />
-          <div className="min-w-0 leading-tight">
+          <div className="kiosk-header-brand-text min-w-0 leading-tight">
             <p className="kiosk-header-title font-bold text-[var(--kiosk-red)]">
-              {t(locale).programme}
+              {m.programme}
             </p>
             <p className="kiosk-header-sub text-[var(--kiosk-teal)]">
-              {t(locale).programmeSub}
+              {m.programmeSub}
             </p>
           </div>
         </div>
         <div className="kiosk-header-tools flex shrink-0 items-stretch gap-1.5 sm:gap-2">
-          {headerTools}
+          {nav ? (
+            <KioskHeaderNav
+              homeLabel={nav.homeLabel}
+              backLabel={nav.backLabel}
+              onHome={nav.onHome}
+              onBack={nav.onBack}
+              showBack={nav.showBack}
+            />
+          ) : null}
           <LanguageToggle locale={locale} onChange={onLocaleChange} />
         </div>
       </header>
@@ -303,6 +320,43 @@ function BuurtKioskApp() {
     setScreen(next);
   };
 
+  const goHome = () => {
+    bumpIdle();
+    resetKiosk();
+  };
+
+  const goBack = () => {
+    bumpIdle();
+    if (screen === "search" || screen === "map") {
+      go("choose");
+      return;
+    }
+    if (screen === "signup") {
+      go("map");
+      return;
+    }
+    if (screen === "thanks") {
+      resetKiosk();
+      return;
+    }
+    if (screen === "admin") {
+      setAdminUnlocked(false);
+      setAdminPin("");
+      resetKiosk();
+    }
+  };
+
+  const headerNav =
+    screen === "attract"
+      ? undefined
+      : {
+          homeLabel: m.navHome,
+          backLabel: m.navBack,
+          onHome: goHome,
+          onBack: goBack,
+          showBack: screen !== "choose",
+        };
+
   const handleSearch = async () => {
     if (searchPending) return;
     bumpIdle();
@@ -406,17 +460,7 @@ function BuurtKioskApp() {
           setLocale(l);
         }}
         onActivity={bumpIdle}
-        headerTools={
-          screen !== "attract" ? (
-            <KioskHomeButton
-              label={m.navHome}
-              onClick={() => {
-                bumpIdle();
-                resetKiosk();
-              }}
-            />
-          ) : null
-        }
+        nav={headerNav}
       >
         {screen === "attract" && (
           <AttractScreen
@@ -507,13 +551,6 @@ function BuurtKioskApp() {
                   {m.searchError}
                 </p>
               )}
-              <button
-                type="button"
-                className="kiosk-touch-btn kiosk-btn-secondary shrink-0"
-                onClick={() => go("choose")}
-              >
-                {m.searchBack}
-              </button>
             </div>
             <div className="kiosk-keyboard-dock">
               <OnScreenKeyboard
@@ -538,31 +575,36 @@ function BuurtKioskApp() {
 
         {screen === "map" && (
           <div className="kiosk-map-layout kiosk-screen">
-            <div className="flex items-center justify-between gap-2">
-              <h1 className="kiosk-screen-title text-[var(--kiosk-navy)]">
-                {mapMode === "all" ? m.mapAllTitle : m.mapNearTitle}
-              </h1>
-              <button
-                type="button"
-                className="kiosk-touch-btn kiosk-btn-secondary shrink-0 px-4"
-                onClick={() => go("choose")}
-              >
-                {m.mapBack}
-              </button>
-            </div>
-            <div className="kiosk-map-canvas">
-              <KioskMap
-                locations={mapLocations}
-                center={mapCenter}
-                zoom={mapMode === "all" ? 7 : 11}
-                selectedId={selected?.id}
-                onSelect={(loc) => {
-                  setSelected(loc);
-                  bumpIdle();
-                }}
-                fitBounds={mapMode === "all"}
-                softwareRotated={isRotated}
-              />
+            <h1 className="kiosk-screen-title text-[var(--kiosk-navy)]">
+              {mapMode === "all" ? m.mapAllTitle : m.mapNearTitle}
+            </h1>
+            <div className="kiosk-map-stage">
+              <div className="kiosk-map-canvas">
+                <KioskMap
+                  locations={mapLocations}
+                  center={mapCenter}
+                  zoom={mapMode === "all" ? 7 : 11}
+                  selectedId={selected?.id}
+                  onSelect={(loc) => {
+                    setSelected(loc);
+                    bumpIdle();
+                  }}
+                  fitBounds={mapMode === "all"}
+                  softwareRotated={isRotated}
+                />
+              </div>
+              {selected ? (
+                <LocationMapSheet
+                  location={selected}
+                  newLabel={m.locationNewBadge}
+                  placeJoinLabel={m.placeJoinHere}
+                  qrHint={m.mapSheetQrHint}
+                  closeLabel={m.mapSheetClose}
+                  helpCta={m.mapHelp}
+                  onClose={() => setSelected(null)}
+                  onHelp={() => go("signup")}
+                />
+              ) : null}
             </div>
             {mapMode === "nearby" && nearbyList.length === 0 && (
               <p className="text-center text-lg">{m.mapNoResults}</p>
@@ -602,193 +644,112 @@ function BuurtKioskApp() {
                 },
               )}
             </div>
-            {selected && (
-              <div className="kiosk-card shrink-0 p-4">
-                <p className="kiosk-campaign-tagline">{m.campaignTagline}</p>
-                <p className="mt-2 text-sm font-bold uppercase tracking-wide text-[var(--kiosk-teal)]">
-                  {m.placeJoinHere}
-                </p>
-                <p className="mt-1 text-lg font-bold">
-                  <LocationNameWithBadge
-                    locationId={selected.id}
-                    title={selected.title}
-                    newLabel={m.locationNewBadge}
-                  />
-                </p>
-                <p className="mt-1 text-sm">{selected.address}</p>
-                <div className="mt-3 flex flex-col gap-2">
-                  {selected.url && (
-                    <a
-                      href={selected.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold text-[var(--kiosk-red)] underline"
-                    >
-                      {selected.url.replace(/^https?:\/\//, "")}
-                    </a>
-                  )}
-                  <a
-                    href={m.linksVolunteerVacancies}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-semibold text-[var(--kiosk-red)] underline"
-                  >
-                    {m.volunteerLink}
-                  </a>
-                </div>
-              </div>
-            )}
-            <button
-              type="button"
-              className="kiosk-touch-btn kiosk-btn-primary shrink-0"
-              onClick={() => go("signup")}
-            >
-              {m.mapHelp}
-            </button>
+            {!selected ? (
+              <button
+                type="button"
+                className="kiosk-touch-btn kiosk-btn-primary shrink-0"
+                onClick={() => go("signup")}
+              >
+                {m.mapHelp}
+              </button>
+            ) : null}
           </div>
         )}
 
         {screen === "signup" && (
           <div className="kiosk-screen kiosk-screen--signup">
-            <div className="kiosk-signup-scroll kiosk-screen--scroll">
-              <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
-                {m.campaignTagline}
-              </h1>
-              <p className="kiosk-signup-subtitle font-bold text-[var(--kiosk-navy)]">
+            <div className="kiosk-signup-form">
+              <div className="kiosk-signup-stack">
+              <p className="kiosk-signup-heading font-bold text-[var(--kiosk-navy)]">
                 {m.signupTitle}
               </p>
-              <p className="kiosk-screen-body">{m.signupIntro}</p>
-              {selected && (
-                <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
+              {selected ? (
+                <p className="kiosk-signup-place truncate font-medium text-[var(--kiosk-teal)]">
                   <LocationNameWithBadge
                     locationId={selected.id}
                     title={selected.title}
                     newLabel={m.locationNewBadge}
                   />
                 </p>
-              )}
-              <div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSignupField("name");
-                    if (signupError?.field === "name") setSignupError(null);
-                  }}
-                  className={cn(
-                    "kiosk-card kiosk-field px-4 py-3",
-                    signupField === "name" && "kiosk-field--focused",
-                    signupError?.field === "name" && "kiosk-field--error",
-                  )}
-                >
-                  <span className="block text-sm font-semibold">{m.signupName}</span>
-                  <SignupFieldValue value={name} focused={signupField === "name"} />
-                </button>
-                {signupError?.field === "name" && (
-                  <p className="kiosk-field-error" role="alert">{signupError.message}</p>
-                )}
+              ) : null}
+              <div className="kiosk-card kiosk-signup-lunch">
+                <p className="kiosk-signup-lunch-title font-bold text-[var(--kiosk-red)]">
+                  {m.signupLunchTitle}
+                </p>
+                <p className="kiosk-signup-lunch-body">{m.signupLunchBody}</p>
               </div>
-              <div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSignupField("email");
-                    if (signupError?.field === "email") setSignupError(null);
-                  }}
-                  className={cn(
-                    "kiosk-card kiosk-field px-4 py-3",
-                    signupField === "email" && "kiosk-field--focused",
-                    signupError?.field === "email" && "kiosk-field--error",
-                  )}
-                >
-                  <span className="block text-sm font-semibold">{m.signupEmail}</span>
-                  <SignupFieldValue value={email} focused={signupField === "email"} />
-                </button>
-                {signupError?.field === "email" && (
-                  <p className="kiosk-field-error" role="alert">{signupError.message}</p>
-                )}
-              </div>
-              <div className="kiosk-card p-4">
-                <p className="font-bold text-[var(--kiosk-red)]">{m.signupLunchTitle}</p>
-                <p className="mt-1 text-sm">{m.signupLunchBody}</p>
-                <label className="mt-3 flex items-start gap-3 text-sm leading-snug">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => {
-                      setConsent(e.target.checked);
-                      if (signupError?.field === "consent") setSignupError(null);
+              <div className="kiosk-signup-fields">
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSignupField("name");
+                      if (signupError?.field === "name") setSignupError(null);
                     }}
-                    className="mt-1 h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
-                  />
-                  <span>{m.signupConsent}</span>
-                </label>
-                {signupError?.field === "consent" && (
-                  <p className="kiosk-field-error mt-2" role="alert">
-                    {signupError.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2 text-sm">
-                <a
-                  href={m.linksVolunteerVacancies}
-                  className="font-semibold text-[var(--kiosk-red)] underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {m.volunteerLink}
-                </a>
-                <a
-                  href={m.linksBuurtwerk}
-                  className="font-semibold text-[var(--kiosk-red)] underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {m.volunteerBuurtLink}
-                </a>
-                <a
-                  href={m.linksVolunteerForm}
-                  className="font-semibold text-[var(--kiosk-red)] underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {m.volunteerGeneralLink}
-                </a>
-              </div>
-              <div className="grid grid-cols-2 gap-3 pb-2">
-                <button
-                  type="button"
-                  className="kiosk-touch-btn kiosk-btn-secondary font-semibold"
-                  onClick={() => go("map")}
-                >
-                  {m.signupSkip}
-                </button>
-                <button
-                  type="button"
-                  className={cn(
-                    "kiosk-touch-btn kiosk-btn-primary font-bold",
-                    signupSubmitting && "kiosk-touch-btn--pending",
+                    className={cn(
+                      "kiosk-card kiosk-field kiosk-signup-field",
+                      signupField === "name" && "kiosk-field--focused",
+                      signupError?.field === "name" && "kiosk-field--error",
+                    )}
+                  >
+                    <span className="kiosk-signup-field-label">{m.signupName}</span>
+                    <SignupFieldValue value={name} focused={signupField === "name"} />
+                  </button>
+                  {signupError?.field === "name" && (
+                    <p className="kiosk-field-error" role="alert">
+                      {signupError.message}
+                    </p>
                   )}
-                  disabled={signupSubmitting}
-                  aria-busy={signupSubmitting}
-                  onClick={() => void submitSignup()}
-                >
-                  {signupSubmitting ? (
-                    <>
-                      <span className="kiosk-inline-spinner" aria-hidden="true" />
-                      {m.signupSending}
-                    </>
-                  ) : (
-                    m.signupSubmit
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSignupField("email");
+                      if (signupError?.field === "email") setSignupError(null);
+                    }}
+                    className={cn(
+                      "kiosk-card kiosk-field kiosk-signup-field",
+                      signupField === "email" && "kiosk-field--focused",
+                      signupError?.field === "email" && "kiosk-field--error",
+                    )}
+                  >
+                    <span className="kiosk-signup-field-label">{m.signupEmail}</span>
+                    <SignupFieldValue value={email} focused={signupField === "email"} />
+                  </button>
+                  {signupError?.field === "email" && (
+                    <p className="kiosk-field-error" role="alert">
+                      {signupError.message}
+                    </p>
                   )}
-                </button>
+                </div>
+              </div>
+              <label className="kiosk-signup-consent">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    if (signupError?.field === "consent") setSignupError(null);
+                  }}
+                  className="kiosk-signup-consent-check accent-[var(--kiosk-red)]"
+                />
+                <span>{m.signupConsent}</span>
+              </label>
+              {signupError?.field === "consent" && (
+                <p className="kiosk-field-error mt-1" role="alert">
+                  {signupError.message}
+                </p>
+              )}
               </div>
             </div>
             <div className="kiosk-keyboard-dock">
               <OnScreenKeyboard
                 mode={signupField === "email" ? "email" : "name"}
+                compact
                 onKey={(k) => {
                   if (signupField === "name") {
-                    setName((n) => (n + k).slice(0, 80));
+                    setName((n) => appendNameKey(n, k));
                     if (signupError?.field === "name") setSignupError(null);
                   } else {
                     setEmail((e) => (e + k).slice(0, 120));
@@ -804,6 +765,11 @@ function BuurtKioskApp() {
                     if (signupError?.field === "email") setSignupError(null);
                   }
                 }}
+                onSubmit={() => void submitSignup()}
+                submitLabel={m.signupSubmit}
+                submitPending={signupSubmitting}
+                submitPendingLabel={m.signupSending}
+                submitVariant="send"
                 spaceLabel={m.spaceKeyLabel}
               />
             </div>
