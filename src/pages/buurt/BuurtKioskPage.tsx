@@ -659,6 +659,7 @@ function BuurtKioskApp() {
         {screen === "signup" && (
           <div className="kiosk-screen kiosk-screen--signup">
             <div className="kiosk-signup-form">
+              <div className="kiosk-signup-stack">
               <p className="kiosk-signup-heading font-bold text-[var(--kiosk-navy)]">
                 {m.signupTitle}
               </p>
@@ -671,6 +672,12 @@ function BuurtKioskApp() {
                   />
                 </p>
               ) : null}
+              <div className="kiosk-card kiosk-signup-lunch">
+                <p className="kiosk-signup-lunch-title font-bold text-[var(--kiosk-red)]">
+                  {m.signupLunchTitle}
+                </p>
+                <p className="kiosk-signup-lunch-body">{m.signupLunchBody}</p>
+              </div>
               <div className="kiosk-signup-fields">
                 <div>
                   <button
@@ -717,28 +724,23 @@ function BuurtKioskApp() {
                   )}
                 </div>
               </div>
-              <div className="kiosk-card kiosk-signup-lunch">
-                <p className="kiosk-signup-lunch-title font-bold text-[var(--kiosk-red)]">
-                  {m.signupLunchTitle}
+              <label className="kiosk-signup-consent">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    if (signupError?.field === "consent") setSignupError(null);
+                  }}
+                  className="kiosk-signup-consent-check accent-[var(--kiosk-red)]"
+                />
+                <span>{m.signupConsent}</span>
+              </label>
+              {signupError?.field === "consent" && (
+                <p className="kiosk-field-error mt-1" role="alert">
+                  {signupError.message}
                 </p>
-                <p className="kiosk-signup-lunch-body">{m.signupLunchBody}</p>
-                <label className="kiosk-signup-consent">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => {
-                      setConsent(e.target.checked);
-                      if (signupError?.field === "consent") setSignupError(null);
-                    }}
-                    className="kiosk-signup-consent-check accent-[var(--kiosk-red)]"
-                  />
-                  <span>{m.signupConsent}</span>
-                </label>
-                {signupError?.field === "consent" && (
-                  <p className="kiosk-field-error mt-1" role="alert">
-                    {signupError.message}
-                  </p>
-                )}
+              )}
               </div>
             </div>
             <div className="kiosk-keyboard-dock">

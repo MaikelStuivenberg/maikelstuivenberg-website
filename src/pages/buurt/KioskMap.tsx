@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -19,6 +19,19 @@ type Props = {
   /** CSS-rotated kiosk: disable drag/pinch; use +/- controls and marker taps. */
   softwareRotated?: boolean;
 };
+
+function usePhoneMapPins(): boolean {
+  const [phone, setPhone] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 600,
+  );
+  useEffect(() => {
+    const update = () => setPhone(window.innerWidth < 600);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return phone;
+}
 
 function FitBounds({ locations }: { locations: KioskLocation[] }) {
   const map = useMap();
@@ -115,6 +128,10 @@ export function KioskMap({
   softwareRotated = false,
 }: Props) {
   const markers = useMemo(() => locations, [locations]);
+  const phonePins = usePhoneMapPins();
+  const pin = phonePins
+    ? { base: 8, featured: 9, selected: 9, halo: 17, haloFeatured: 19, ring: 12, ringSel: 14 }
+    : { base: 10, featured: 11, selected: 11, halo: 21, haloFeatured: 23, ring: 14, ringSel: 16 };
 
   return (
     <div className="relative h-full w-full min-h-[280px]">
@@ -142,13 +159,13 @@ export function KioskMap({
         {markers.map((loc) => {
           const selected = loc.id === selectedId;
           const featured = isSoulStation(loc.id);
-          const pinRadius = selected ? 15 : featured ? 12 : 10;
+          const pinRadius = selected ? pin.selected : featured ? pin.featured : pin.base;
           return (
             <Fragment key={loc.id}>
               {selected ? (
                 <CircleMarker
                   center={[loc.lat, loc.lon]}
-                  radius={featured ? 22 : 20}
+                  radius={featured ? pin.haloFeatured : pin.halo}
                   pathOptions={{
                     color: "#ffffff",
                     weight: 4,
@@ -163,7 +180,7 @@ export function KioskMap({
               {featured ? (
                 <CircleMarker
                   center={[loc.lat, loc.lon]}
-                  radius={selected ? 18 : 16}
+                  radius={selected ? pin.ringSel : pin.ring}
                   pathOptions={{
                     color: LDH_BRAND.yellow,
                     weight: 3,

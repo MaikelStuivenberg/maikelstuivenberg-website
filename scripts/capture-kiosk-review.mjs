@@ -38,6 +38,14 @@ async function captureSet(page, outDir) {
 
   await page.locator(".leaflet-interactive").first().click({ force: true });
   await page.waitForSelector(".kiosk-map-sheet", { timeout: 10_000 });
+  await page.waitForFunction(
+    () => {
+      const img = document.querySelector(".kiosk-map-sheet-qr-img");
+      if (!img || !(img instanceof HTMLImageElement)) return false;
+      return img.complete && img.naturalWidth > 48 && !img.src.includes("image/svg+xml");
+    },
+    { timeout: 8_000 },
+  );
   await snap(page, outDir, "map-sheet");
 
   await page

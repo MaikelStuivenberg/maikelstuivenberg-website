@@ -1,4 +1,5 @@
 import { LocationNameWithBadge } from "./LocationNameWithBadge";
+import { MapSheetQr } from "./MapSheetQr";
 import type { KioskLocation } from "./types";
 
 type Props = {
@@ -11,10 +12,6 @@ type Props = {
   onClose: () => void;
   onHelp: () => void;
 };
-
-function qrImageUrl(data: string, px: number): string {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${px}x${px}&margin=8&data=${encodeURIComponent(data)}`;
-}
 
 export function LocationMapSheet({
   location,
@@ -38,8 +35,8 @@ export function LocationMapSheet({
       >
         ×
       </button>
-      <div className="kiosk-map-sheet-body">
-        <div className="kiosk-map-sheet-copy">
+      <div className="kiosk-map-sheet-layout">
+        <div className="kiosk-map-sheet-main">
           <p className="kiosk-map-sheet-kicker">{placeJoinLabel}</p>
           <p className="kiosk-map-sheet-title">
             <LocationNameWithBadge
@@ -49,21 +46,23 @@ export function LocationMapSheet({
             />
           </p>
           <p className="kiosk-map-sheet-address">{location.address}</p>
+          <button
+            type="button"
+            className="kiosk-touch-btn kiosk-btn-primary kiosk-map-sheet-cta"
+            onClick={onHelp}
+          >
+            {helpCta}
+          </button>
         </div>
         <div className="kiosk-map-sheet-qr">
-          <img
+          <MapSheetQr
+            target={qrTarget}
+            sizePx={180}
             className="kiosk-map-sheet-qr-img"
-            src={qrImageUrl(qrTarget, 180)}
-            width={180}
-            height={180}
-            alt=""
           />
           <p className="kiosk-map-sheet-qr-hint">{qrHint}</p>
         </div>
       </div>
-      <button type="button" className="kiosk-touch-btn kiosk-btn-primary kiosk-map-sheet-cta" onClick={onHelp}>
-        {helpCta}
-      </button>
     </div>
   );
 }

@@ -201,6 +201,15 @@
   line-height: 1.15;
 }
 
+@media (min-width: 600px) {
+  .kiosk-header-brand-text {
+    display: block;
+    overflow: visible;
+    max-height: none;
+    -webkit-line-clamp: unset;
+  }
+}
+
 .kiosk-lang-group {
   padding: clamp(0.15rem, 0.5cqw, 0.25rem);
 }
@@ -344,9 +353,20 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.35rem, min(1.2cqw, 1cqh), 0.65rem);
+  justify-content: center;
+  align-items: stretch;
   overflow: hidden;
   padding-bottom: clamp(0.15rem, 0.6cqh, 0.35rem);
+}
+
+.kiosk-signup-stack {
+  flex: 0 1 auto;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.35rem, min(1.2cqw, 1cqh), 0.65rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .kiosk-signup-heading {
@@ -361,12 +381,10 @@
 }
 
 .kiosk-signup-fields {
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: clamp(0.3rem, min(1cqw, 0.85cqh), 0.5rem);
-  justify-content: flex-start;
 }
 
 .kiosk-signup-field {
@@ -1235,16 +1253,16 @@
   background: var(--kiosk-mint);
 }
 
-.kiosk-map-sheet-body {
-  display: block;
-  overflow: hidden;
-  padding-right: clamp(0.25rem, 1cqw, 0.5rem);
+.kiosk-map-sheet-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(0.45rem, min(1.6cqw, 1.3cqh), 0.75rem);
+  align-items: start;
+  padding-right: clamp(2rem, 7cqw, 2.5rem);
 }
 
-.kiosk-map-sheet-copy {
-  display: block;
-  margin-right: clamp(6.25rem, 24cqw, 12rem);
-  padding-right: clamp(1.5rem, 5cqw, 2rem);
+.kiosk-map-sheet-main {
+  min-width: 0;
 }
 
 .kiosk-map-sheet-kicker {
@@ -1272,10 +1290,9 @@
 }
 
 .kiosk-map-sheet-qr {
-  float: right;
-  width: clamp(5.75rem, 22cqw, 11.5rem);
-  margin-top: 0;
+  width: clamp(5.5rem, 21cqw, 11.5rem);
   text-align: center;
+  flex-shrink: 0;
 }
 
 .kiosk-map-sheet-qr-img {
@@ -1296,15 +1313,9 @@
   color: var(--kiosk-teal);
 }
 
-.kiosk-map-sheet-body::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .kiosk-map-sheet-cta {
   width: 100%;
-  margin-top: clamp(0.45rem, min(1.4cqw, 1.2cqh), 0.65rem);
+  margin-top: clamp(0.4rem, min(1.2cqw, 1cqh), 0.55rem);
 }
 
 .kiosk-map-list {
@@ -1449,10 +1460,6 @@
 
   .kiosk-header-title {
     font-size: clamp(1.1rem, 2.8cqw, 1.65rem);
-  }
-
-  .kiosk-header-brand-text {
-    max-height: 2.6em;
   }
 
   .kiosk-header-pill-btn {
