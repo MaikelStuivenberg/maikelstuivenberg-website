@@ -685,13 +685,13 @@
 .kiosk-attract-mid {
   position: relative;
   z-index: 2;
-  flex: 1 1 0;
-  min-height: 0;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: clamp(0.25rem, 1cqh, 0.75rem) var(--kiosk-attract-pad-x);
+  padding: clamp(0.35rem, min(1.6cqw, 1.35cqh), 0.85rem) var(--kiosk-attract-pad-x)
+    clamp(0.1rem, 0.45cqh, 0.25rem);
 }
 
 .kiosk-attract-actions {
@@ -706,6 +706,18 @@
   max-width: min(36rem, 100%);
   margin-inline: auto;
   padding: 2.5rem var(--kiosk-attract-pad-x) clamp(0.5rem, 1.5cqh, 1.25rem);
+}
+
+/* Phone / non-stand: hero keeps map growth; mid stays content-sized */
+@media (max-width: 599px), (max-height: 899px) {
+  .kiosk-attract-hero-tap {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .kiosk-attract-mid {
+    flex: 0 0 auto;
+  }
 }
 
 .kiosk-lunch-lockup {
@@ -820,17 +832,6 @@
   font-weight: 400;
   line-height: 1.35;
   color: rgba(7, 35, 41, 0.68);
-}
-
-.kiosk-lunch-flourish {
-  position: absolute;
-  right: clamp(0.25rem, 4cqw, 1.25rem);
-  bottom: clamp(-0.15rem, -0.5cqh, 0.15rem);
-  width: clamp(1.75rem, min(7.5cqw, 5cqh), 2.75rem);
-  height: auto;
-  color: var(--kiosk-red);
-  opacity: 0.88;
-  pointer-events: none;
 }
 
 .kiosk-soul-station-mark {
@@ -1247,11 +1248,6 @@
 
   .kiosk-lunch-fine {
     display: none;
-  }
-
-  .kiosk-lunch-flourish {
-    width: 1.35rem;
-    opacity: 0.75;
   }
 
   .kiosk-attract-cta {

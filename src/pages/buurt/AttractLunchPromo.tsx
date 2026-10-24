@@ -7,31 +7,6 @@ type Props = {
   onActivate: () => void;
 };
 
-function LunchFlourish() {
-  return (
-    <svg
-      className="kiosk-lunch-flourish"
-      viewBox="0 0 48 28"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M8 4c8 10 18 14 32 12"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-      />
-      <path
-        d="M34 8l6 6-8 2"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function AttractLunchPromo({
   tapeLabel,
   headlineLine1,
@@ -59,7 +34,6 @@ export function AttractLunchPromo({
         </span>
       </span>
       <span className="kiosk-lunch-fine">{finePrint}</span>
-      <LunchFlourish />
     </button>
   );
 }
