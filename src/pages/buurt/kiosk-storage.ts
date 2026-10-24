@@ -42,6 +42,10 @@ export function saveOutbox(entries: SignupOutboxEntry[]): void {
   }
 }
 
+export function removeOutboxEntry(localId: string): void {
+  saveOutbox(loadOutbox().filter((e) => e.localId !== localId));
+}
+
 export function outboxToCsv(entries: SignupOutboxEntry[]): string {
   const header = [
     "localId",

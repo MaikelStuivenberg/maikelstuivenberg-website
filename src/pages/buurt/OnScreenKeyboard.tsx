@@ -8,8 +8,20 @@ type Props = {
   onBackspace: () => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  submitPending?: boolean;
+  submitPendingLabel?: string;
+  spaceLabel?: string;
   className?: string;
 };
+
+function KioskSpinner({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn("kiosk-inline-spinner", className)}
+      aria-hidden="true"
+    />
+  );
+}
 
 const ROWS_NUMBERS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const ROWS_Q = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -102,11 +114,17 @@ function BackspaceKey({ onPress }: { onPress: () => void }) {
   );
 }
 
-function SpaceKey({ onPress }: { onPress: () => void }) {
+function SpaceKey({
+  onPress,
+  label,
+}: {
+  onPress: () => void;
+  label: string;
+}) {
   return (
     <button
       type="button"
-      aria-label="Space"
+      aria-label={label}
       onPointerDown={(e) => e.preventDefault()}
       onPointerUp={(e) => {
         e.preventDefault();
@@ -115,6 +133,7 @@ function SpaceKey({ onPress }: { onPress: () => void }) {
       className="kiosk-key kiosk-key--space"
     >
       <span className="kiosk-key-space-bar" aria-hidden="true" />
+      <span>{label}</span>
     </button>
   );
 }
@@ -206,15 +225,63 @@ function NumberRow({ onKey }: { onKey: (k: string) => void }) {
   );
 }
 
+function SubmitKey({
+  onSubmit,
+  submitLabel,
+  submitPending,
+  submitPendingLabel,
+}: {
+  onSubmit: () => void;
+  submitLabel: string;
+  submitPending?: boolean;
+  submitPendingLabel?: string;
+}) {
+  const pending = Boolean(submitPending);
+  const label = pending && submitPendingLabel ? submitPendingLabel : submitLabel;
+
+  return (
+    <button
+      type="button"
+      disabled={pending}
+      aria-busy={pending}
+      onPointerDown={(e) => e.preventDefault()}
+      onPointerUp={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!pending) onSubmit();
+      }}
+      className="kiosk-key kiosk-key--submit flex items-center justify-center gap-2 font-extrabold"
+    >
+      {pending ? (
+        <>
+          <KioskSpinner />
+          <span>{label}</span>
+        </>
+      ) : (
+        <>
+          <SearchIcon />
+          <span>{label}</span>
+        </>
+      )}
+    </button>
+  );
+}
+
 function BottomRow({
   onKey,
   onSubmit,
   submitLabel,
+  submitPending,
+  submitPendingLabel,
+  spaceLabel,
   extraKeys = [],
 }: {
   onKey: (k: string) => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  submitPending?: boolean;
+  submitPendingLabel?: string;
+  spaceLabel: string;
   extraKeys?: string[];
 }) {
   const hasSubmit = Boolean(onSubmit && submitLabel);
@@ -226,24 +293,17 @@ function BottomRow({
         hasSubmit ? "kiosk-key-row--bottom" : "kiosk-key-row--bottom-alt",
       )}
     >
-      <SpaceKey onPress={() => onKey(" ")} />
+      <SpaceKey label={spaceLabel} onPress={() => onKey(" ")} />
       {extraKeys.map((sym) => (
         <CharKey key={sym} label={sym} onPress={() => onKey(sym)} />
       ))}
       {hasSubmit ? (
-        <button
-          type="button"
-          onPointerDown={(e) => e.preventDefault()}
-          onPointerUp={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onSubmit!();
-          }}
-          className="kiosk-key kiosk-key--submit kiosk-btn-primary flex items-center justify-center gap-2 font-extrabold"
-        >
-          <SearchIcon />
-          <span>{submitLabel}</span>
-        </button>
+        <SubmitKey
+          onSubmit={onSubmit!}
+          submitLabel={submitLabel!}
+          submitPending={submitPending}
+          submitPendingLabel={submitPendingLabel}
+        />
       ) : null}
     </div>
   );
@@ -255,12 +315,18 @@ function QwertyBlock({
   onBackspace,
   onSubmit,
   submitLabel,
+  submitPending,
+  submitPendingLabel,
+  spaceLabel,
 }: {
   variant: "location" | "name" | "email";
   onKey: (k: string) => void;
   onBackspace: () => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  submitPending?: boolean;
+  submitPendingLabel?: string;
+  spaceLabel: string;
 }) {
   const isLocation = variant === "location";
   const qRow = isLocation ? ROWS_Q : ROWS_NAME_Q;
@@ -308,6 +374,9 @@ function QwertyBlock({
         onKey={emit}
         onSubmit={variant === "location" ? onSubmit : undefined}
         submitLabel={variant === "location" ? submitLabel : undefined}
+        submitPending={variant === "location" ? submitPending : undefined}
+        submitPendingLabel={variant === "location" ? submitPendingLabel : undefined}
+        spaceLabel={spaceLabel}
         extraKeys={
           variant === "email" ? ["@", "."] : variant === "name" ? ["-", "'"] : ["-"]
         }
@@ -322,6 +391,9 @@ export function OnScreenKeyboard({
   onBackspace,
   onSubmit,
   submitLabel,
+  submitPending,
+  submitPendingLabel,
+  spaceLabel = "space",
   className,
 }: Props) {
   return (
@@ -349,7 +421,7 @@ export function OnScreenKeyboard({
                   e.preventDefault();
                   onSubmit();
                 }}
-                className="kiosk-key kiosk-key--submit kiosk-btn-primary font-extrabold"
+                className="kiosk-key kiosk-key--submit font-extrabold"
               >
                 {submitLabel}
               </button>
@@ -365,6 +437,9 @@ export function OnScreenKeyboard({
           onBackspace={onBackspace}
           onSubmit={onSubmit}
           submitLabel={submitLabel}
+          submitPending={submitPending}
+          submitPendingLabel={submitPendingLabel}
+          spaceLabel={spaceLabel}
         />
       )}
     </div>

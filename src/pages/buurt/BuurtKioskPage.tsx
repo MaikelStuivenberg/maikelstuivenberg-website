@@ -18,7 +18,7 @@ import {
   KIOSK_ADMIN_PIN,
   loadOutbox,
 } from "./kiosk-storage";
-import { flushSignupOutbox, submitSignupWithSync } from "./signup-sync";
+import { flushSignupOutbox, submitSignupOptimistic } from "./signup-sync";
 import type {
   GeoPoint,
   KioskLocation,
@@ -74,6 +74,21 @@ function LanguageToggle({
         </button>
       ))}
     </div>
+  );
+}
+
+function SignupFieldValue({
+  value,
+  focused,
+}: {
+  value: string;
+  focused: boolean;
+}) {
+  return (
+    <span className="kiosk-field-value text-xl">
+      {value || (!focused ? "…" : null)}
+      {focused ? <span className="kiosk-field-caret" aria-hidden="true" /> : null}
+    </span>
   );
 }
 
@@ -149,12 +164,16 @@ export function BuurtKioskPage() {
   const [searchError, setSearchError] = useState<"empty" | "notfound" | null>(
     null,
   );
+  const [searchPending, setSearchPending] = useState(false);
+  const [signupSubmitting, setSignupSubmitting] = useState(false);
   const [origin, setOrigin] = useState<GeoPoint | null>(null);
   const [selected, setSelected] = useState<KioskLocation | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
+  const [signupError, setSignupError] = useState<
+    { field: "name" | "email" | "consent"; message: string } | null
+  >(null);
   const [signupField, setSignupField] = useState<"name" | "email">("name");
   const [adminPin, setAdminPin] = useState("");
   const [adminUnlocked, setAdminUnlocked] = useState(false);
@@ -171,12 +190,14 @@ export function BuurtKioskPage() {
     setMapMode("all");
     setSearchQuery("");
     setSearchError(null);
+    setSearchPending(false);
+    setSignupSubmitting(false);
     setOrigin(null);
     setSelected(null);
     setName("");
     setEmail("");
     setConsent(false);
-    setFormError(null);
+    setSignupError(null);
     setSignupField("name");
     setAdminPin("");
     setAdminUnlocked(false);
@@ -253,6 +274,7 @@ export function BuurtKioskPage() {
   };
 
   const handleSearch = async () => {
+    if (searchPending) return;
     bumpIdle();
     setSearchError(null);
     const query = searchQuery.trim();
@@ -260,43 +282,56 @@ export function BuurtKioskPage() {
       setSearchError("empty");
       return;
     }
-    const point = await geocodeDutch(query);
-    if (!point) {
-      setSearchError("notfound");
-      return;
+    setSearchPending(true);
+    try {
+      const point = await geocodeDutch(query);
+      if (!point) {
+        setSearchError("notfound");
+        return;
+      }
+      setOrigin(point);
+      setMapMode("nearby");
+      setSelected(null);
+      go("map");
+    } finally {
+      setSearchPending(false);
     }
-    setOrigin(point);
-    setMapMode("nearby");
-    setSelected(null);
-    go("map");
   };
 
   const submitSignup = async () => {
+    if (signupSubmitting) return;
     bumpIdle();
     if (!name.trim()) {
-      setFormError(m.signupNeedName);
+      setSignupField("name");
+      setSignupError({ field: "name", message: m.signupNeedName });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setFormError(m.signupNeedEmail);
+      setSignupField("email");
+      setSignupError({ field: "email", message: m.signupNeedEmail });
       return;
     }
     if (!consent) {
-      setFormError(m.signupNeedConsent);
+      setSignupError({ field: "consent", message: m.signupNeedConsent });
       return;
     }
-    setFormError(null);
+    setSignupError(null);
+    setSignupSubmitting(true);
     const postcode = searchQuery.trim().slice(0, 40) || null;
-    await submitSignupWithSync({
-      name: name.trim(),
-      email: email.trim(),
-      consent: true,
-      language: locale,
-      postcode,
-      source: "kiosk",
-    });
-    refreshOutboxCount();
-    go("thanks");
+    try {
+      await submitSignupOptimistic({
+        name: name.trim(),
+        email: email.trim(),
+        consent: true,
+        language: locale,
+        postcode,
+        source: "kiosk",
+      });
+      refreshOutboxCount();
+      go("thanks");
+    } finally {
+      setSignupSubmitting(false);
+    }
   };
 
   const startAdminHold = () => {
@@ -440,6 +475,9 @@ export function BuurtKioskPage() {
                 }}
                 onSubmit={() => void handleSearch()}
                 submitLabel={m.searchGo}
+                submitPending={searchPending}
+                submitPendingLabel={m.searchSending}
+                spaceLabel={m.spaceKeyLabel}
               />
             </div>
           </div>
@@ -561,28 +599,46 @@ export function BuurtKioskPage() {
                   {selected.title}
                 </p>
               )}
-              <button
-                type="button"
-                onClick={() => setSignupField("name")}
-                className={cn(
-                  "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
-                  signupField === "name" && "kiosk-card--active",
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSignupField("name");
+                    if (signupError?.field === "name") setSignupError(null);
+                  }}
+                  className={cn(
+                    "kiosk-card kiosk-field px-4 py-3",
+                    signupField === "name" && "kiosk-field--focused",
+                    signupError?.field === "name" && "kiosk-field--error",
+                  )}
+                >
+                  <span className="block text-sm font-semibold">{m.signupName}</span>
+                  <SignupFieldValue value={name} focused={signupField === "name"} />
+                </button>
+                {signupError?.field === "name" && (
+                  <p className="kiosk-field-error" role="alert">{signupError.message}</p>
                 )}
-              >
-                <span className="block text-sm font-semibold">{m.signupName}</span>
-                {name || "…"}
-              </button>
-              <button
-                type="button"
-                onClick={() => setSignupField("email")}
-                className={cn(
-                  "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
-                  signupField === "email" && "kiosk-card--active",
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSignupField("email");
+                    if (signupError?.field === "email") setSignupError(null);
+                  }}
+                  className={cn(
+                    "kiosk-card kiosk-field px-4 py-3",
+                    signupField === "email" && "kiosk-field--focused",
+                    signupError?.field === "email" && "kiosk-field--error",
+                  )}
+                >
+                  <span className="block text-sm font-semibold">{m.signupEmail}</span>
+                  <SignupFieldValue value={email} focused={signupField === "email"} />
+                </button>
+                {signupError?.field === "email" && (
+                  <p className="kiosk-field-error" role="alert">{signupError.message}</p>
                 )}
-              >
-                <span className="block text-sm font-semibold">{m.signupEmail}</span>
-                {email || "…"}
-              </button>
+              </div>
               <div className="kiosk-card p-4">
                 <p className="font-bold text-[var(--kiosk-red)]">{m.signupLunchTitle}</p>
                 <p className="mt-1 text-sm">{m.signupLunchBody}</p>
@@ -590,15 +646,20 @@ export function BuurtKioskPage() {
                   <input
                     type="checkbox"
                     checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
+                    onChange={(e) => {
+                      setConsent(e.target.checked);
+                      if (signupError?.field === "consent") setSignupError(null);
+                    }}
                     className="mt-1 h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
                   />
                   <span>{m.signupConsent}</span>
                 </label>
+                {signupError?.field === "consent" && (
+                  <p className="kiosk-field-error mt-2" role="alert">
+                    {signupError.message}
+                  </p>
+                )}
               </div>
-              {formError && (
-                <p className="font-medium text-[var(--kiosk-red)]">{formError}</p>
-              )}
               <div className="flex flex-col gap-2 text-sm">
                 <a
                   href={m.linksVolunteerVacancies}
@@ -635,10 +696,22 @@ export function BuurtKioskPage() {
                 </button>
                 <button
                   type="button"
-                  className="kiosk-touch-btn kiosk-btn-primary font-bold"
-                  onClick={submitSignup}
+                  className={cn(
+                    "kiosk-touch-btn kiosk-btn-primary font-bold",
+                    signupSubmitting && "kiosk-touch-btn--pending",
+                  )}
+                  disabled={signupSubmitting}
+                  aria-busy={signupSubmitting}
+                  onClick={() => void submitSignup()}
                 >
-                  {m.signupSubmit}
+                  {signupSubmitting ? (
+                    <>
+                      <span className="kiosk-inline-spinner" aria-hidden="true" />
+                      {m.signupSending}
+                    </>
+                  ) : (
+                    m.signupSubmit
+                  )}
                 </button>
               </div>
             </div>
@@ -646,13 +719,24 @@ export function BuurtKioskPage() {
               <OnScreenKeyboard
                 mode={signupField === "email" ? "email" : "name"}
                 onKey={(k) => {
-                  if (signupField === "name") setName((n) => (n + k).slice(0, 80));
-                  else setEmail((e) => (e + k).slice(0, 120));
+                  if (signupField === "name") {
+                    setName((n) => (n + k).slice(0, 80));
+                    if (signupError?.field === "name") setSignupError(null);
+                  } else {
+                    setEmail((e) => (e + k).slice(0, 120));
+                    if (signupError?.field === "email") setSignupError(null);
+                  }
                 }}
                 onBackspace={() => {
-                  if (signupField === "name") setName((n) => n.slice(0, -1));
-                  else setEmail((e) => e.slice(0, -1));
+                  if (signupField === "name") {
+                    setName((n) => n.slice(0, -1));
+                    if (signupError?.field === "name") setSignupError(null);
+                  } else {
+                    setEmail((e) => e.slice(0, -1));
+                    if (signupError?.field === "email") setSignupError(null);
+                  }
                 }}
+                spaceLabel={m.spaceKeyLabel}
               />
             </div>
           </div>

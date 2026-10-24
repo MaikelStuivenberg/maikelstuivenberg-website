@@ -29,7 +29,7 @@ async function tapKey(ch) {
 
 // Search flow: 3521 + keyboard Zoek
 await page.locator(".kiosk-attract").click();
-await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
+await page.getByRole("button", { name: /Zoek in jouw buurt|Search your neighbourhood/i }).click();
 for (const ch of "3521") {
   await tapKey(ch);
 }
@@ -43,7 +43,7 @@ assert.ok(
   page.url().includes("/buurt"),
   "still on kiosk after search",
 );
-await page.getByRole("heading", { name: /Dichtbij|Near you/i }).waitFor({
+await page.getByRole("heading", { name: /In jouw buurt|In your neighbourhood/i }).waitFor({
   timeout: 8000,
 });
 
@@ -78,6 +78,7 @@ await page.waitForTimeout(1200);
 assert.equal(supabasePost?.email, "test.user-1+x@gmail.com");
 assert.equal(supabasePost?.name, "anne-marie'souza");
 assert.equal(supabasePost?.consent, true);
+assert.ok(supabasePost?.id, "signup uses client id for dedup");
 
 console.log("verify-kiosk-flows: OK");
 await browser.close();
