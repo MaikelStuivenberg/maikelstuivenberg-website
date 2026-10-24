@@ -6,6 +6,8 @@ export const LDH_BRAND = {
   navy: "#072329",
   teal: "#335255",
   mint: "#C8D9D4",
+  /** Campaign / highlight yellow (LDH brand palette) */
+  yellow: "#FFB81C",
   burgundy: "#811D38",
   background: "#f6f3ef",
   white: "#ffffff",

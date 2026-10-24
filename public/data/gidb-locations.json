@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-10-24T10:38:04.999400+00:00",
   "source": "https://www.legerdesheils.nl/locaties",
-  "count": 157,
+  "count": 158,
   "locations": [
     {
       "id": "07adff10cc09",
@@ -2102,6 +2102,19 @@
       ],
       "kind": "scouting",
       "url": "https://www.legerdesheils.nl/locatie/scouting-tesra",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "4a181cd8acc7",
+      "title": "Soul Station",
+      "lat": 52.37654362,
+      "lon": 4.89928455,
+      "address": "Prins Hendrikkade 49, 1012 AC Amsterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/artikel/soul-station-geopend-in-voormalig-hoofdkwartier-leger-des-heils",
       "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
     },
     {

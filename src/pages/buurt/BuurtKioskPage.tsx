@@ -32,6 +32,7 @@ import {
   KioskFullscreenControls,
   useAutoFullscreenOnFirstTap,
 } from "./KioskFullscreenControls";
+import { KioskHomeButton } from "./KioskHomeButton";
 import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
 import {
   persistAutoFullscreen,
@@ -40,6 +41,7 @@ import {
 import type { KioskRotation } from "./kiosk-rotation";
 import "./buurt-kiosk.css";
 import "./buurt-kiosk-legacy-compat.css";
+import { useKioskLockdown } from "./useKioskLockdown";
 
 const IDLE_MS = 75_000;
 const NL_CENTER: [number, number] = [52.15, 5.35];
@@ -180,6 +182,7 @@ export function BuurtKioskPage() {
 }
 
 function BuurtKioskApp() {
+  useKioskLockdown();
   const { rotation, setRotation, isRotated } = useKioskRotation();
   const [autoFullscreen, setAutoFullscreen] = useState(readAutoFullscreenEnabled);
   useAutoFullscreenOnFirstTap(autoFullscreen);
@@ -406,11 +409,22 @@ function BuurtKioskApp() {
         }}
         onActivity={bumpIdle}
         headerTools={
-          <KioskFullscreenControls
-            showEnterOnAttract={screen === "attract"}
-            enterLabel={m.fullscreenEnter}
-            exitLabel={m.fullscreenExit}
-          />
+          <>
+            <KioskFullscreenControls
+              showEnterOnAttract={screen === "attract"}
+              enterLabel={m.fullscreenEnter}
+              exitLabel={m.fullscreenExit}
+            />
+            {screen !== "attract" ? (
+              <KioskHomeButton
+                label={m.navHome}
+                onClick={() => {
+                  bumpIdle();
+                  resetKiosk();
+                }}
+              />
+            ) : null}
+          </>
         }
       >
         {screen === "attract" && (
@@ -419,10 +433,18 @@ function BuurtKioskApp() {
             questionIndex={questionIndex}
             tagline={m.campaignTagline}
             cta={m.attractCta}
+            lunchPromoLabel={m.attractLunchPromo}
             placesCount={locations.length || "…"}
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}
             onStart={() => go("choose")}
+            onLunchPromo={() => {
+              setMapMode("all");
+              setSelected(null);
+              setSearchQuery("");
+              setSearchError(null);
+              go("signup");
+            }}
           />
         )}
 
