@@ -11,6 +11,8 @@ const VIEWPORTS = [
 const OUT_ROOT = process.env.KIOSK_SHOT_OUT ?? "docs/kiosk-screenshots/after";
 
 async function captureFlow(page, outDir) {
+  const onlyAttractChoice = process.env.KIOSK_SHOT_ATTRACT_CHOICE === "1";
+
   async function snap(name) {
     await page.waitForTimeout(600);
     await page.screenshot({ path: `${outDir}/${name}.png`, fullPage: false });
@@ -21,6 +23,8 @@ async function captureFlow(page, outDir) {
 
   await page.locator(".kiosk-attract").click();
   await snap("02-choose");
+
+  if (onlyAttractChoice) return;
 
   await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
   await snap("03-search-keyboard");

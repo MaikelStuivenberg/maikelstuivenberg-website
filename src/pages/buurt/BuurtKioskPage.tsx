@@ -356,7 +356,7 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "choose" && (
-          <div className="kiosk-screen kiosk-screen--center gap-8">
+          <div className="kiosk-screen kiosk-screen--center">
             <h1 className="kiosk-screen-title text-center text-[var(--kiosk-navy)]">
               {m.chooseTitle}
             </h1>
@@ -395,7 +395,7 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "search" && (
-          <div className="kiosk-screen gap-3">
+          <div className="kiosk-screen">
             <h1 className="kiosk-screen-title">{m.searchTitle}</h1>
             <div className="flex shrink-0 gap-2">
               <div
@@ -559,7 +559,7 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "signup" && (
-          <div className="kiosk-screen kiosk-screen--scroll gap-3">
+          <div className="kiosk-screen kiosk-screen--scroll">
             <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
               {m.campaignTagline}
             </h1>

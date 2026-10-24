@@ -15,6 +15,11 @@
   --kiosk-radius-lg: 1.5rem;
   --kiosk-shadow: 0 8px 24px rgba(7, 35, 41, 0.1);
   --kiosk-shadow-soft: 0 4px 16px rgba(7, 35, 41, 0.08);
+  /* Horizontal inset from screen edge (≈24–32px on phones, more on stand) */
+  --kiosk-gutter: clamp(1.5rem, 7vw, 2.75rem);
+  --kiosk-attract-pad-x: clamp(1rem, 5vw, 2.25rem);
+  --kiosk-attract-gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.75rem);
+  --kiosk-attract-gap-lg: clamp(1rem, min(3.2vw, 2.8dvh), 2.25rem);
   /* Fluid unit: width on phones, height on tall kiosk — keeps 1080×1920 ~unchanged */
   --kiosk-u: min(1vw, calc(1dvh * 0.56), calc(1svh * 0.56));
 
@@ -140,7 +145,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-inline: clamp(0.65rem, 2.5vw, 1rem);
+  padding-inline: var(--kiosk-gutter);
   padding-bottom: clamp(0.5rem, 1.5dvh, 1rem);
 }
 
@@ -149,6 +154,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.25rem);
 }
 
 .kiosk-screen--scroll {
@@ -160,6 +166,7 @@
 .kiosk-screen--center {
   justify-content: center;
   overflow-y: auto;
+  gap: clamp(1.5rem, min(4vw, 3.5dvh), 2.5rem);
 }
 
 .kiosk-keyboard-panel {
@@ -396,9 +403,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(0.35rem, min(1.2vw, 1.2dvh), 1.25rem);
-  padding: clamp(0.25rem, 1dvh, 0.5rem) clamp(0.65rem, 3vw, 1.25rem)
-    clamp(0.35rem, 1.2dvh, 1.25rem);
+  gap: var(--kiosk-attract-gap);
+  padding: var(--kiosk-attract-gap-lg) var(--kiosk-attract-pad-x)
+    clamp(0.5rem, 1.5dvh, 1.25rem);
 }
 
 .kiosk-attract-question {
@@ -468,7 +475,10 @@
   align-items: center;
   justify-content: center;
   gap: clamp(0.5rem, 2vw, 1rem);
-  width: min(100%, 36rem);
+  align-self: stretch;
+  width: 100%;
+  max-width: min(36rem, 100%);
+  margin-inline: auto;
   min-height: clamp(2.75rem, min(11vw, 7dvh), 6.5rem);
   padding: clamp(0.5rem, 1.5dvh, 1rem) clamp(0.85rem, 3vw, 2rem);
   border-radius: var(--kiosk-radius-lg);
@@ -548,7 +558,7 @@
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
     grid-template-columns: 1fr;
-    row-gap: 0;
+    row-gap: var(--kiosk-attract-gap-lg);
     align-content: stretch;
   }
 
@@ -577,8 +587,8 @@
     min-height: 0;
     height: auto;
     justify-content: flex-start;
-    gap: clamp(0.75rem, 2vh, 1.5rem);
-    padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3.5rem);
+    gap: clamp(1rem, 2.5vh, 2rem);
+    padding: 0 var(--kiosk-attract-pad-x) clamp(2rem, 5vh, 3.5rem);
   }
 
   .kiosk-attract-question {
@@ -600,7 +610,7 @@
   .kiosk-attract-cta {
     min-height: clamp(4.5rem, 12vh, 6.5rem);
     font-size: clamp(1.75rem, 5vw, 2.75rem);
-    margin-top: clamp(0.25rem, 1.5vh, 1rem);
+    margin-top: var(--kiosk-attract-gap);
   }
 
   .kiosk-attract-cta-icon {
@@ -614,6 +624,14 @@
 
   .kiosk-header-title {
     font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+  }
+}
+
+@media (max-height: 680px) {
+  .buurt-kiosk {
+    --kiosk-attract-gap: clamp(0.5rem, min(2vw, 1.8dvh), 1rem);
+    --kiosk-attract-gap-lg: clamp(0.65rem, min(2.5vw, 2dvh), 1.25rem);
+    --kiosk-gutter: clamp(1.25rem, 6vw, 1.5rem);
   }
 }
 
