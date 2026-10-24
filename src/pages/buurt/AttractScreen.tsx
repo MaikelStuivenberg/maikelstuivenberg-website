@@ -11,7 +11,8 @@ type Props = {
   questionIndex: number;
   tagline: string;
   cta: string;
-  placesCountLabel: string;
+  placesCount: number | string;
+  placesCountTemplate: string;
   locations: KioskLocation[];
   onStart: () => void;
 };
@@ -31,12 +32,31 @@ function TouchFingerIcon() {
   );
 }
 
+function PlacesCountStat({
+  count,
+  template,
+}: {
+  count: number | string;
+  template: string;
+}) {
+  const suffix = template.replace("{count}", "").trimStart();
+  return (
+    <p className="kiosk-attract-count">
+      <span className="kiosk-attract-count-num">{count}</span>
+      {suffix ? (
+        <span className="kiosk-attract-count-label">{suffix}</span>
+      ) : null}
+    </p>
+  );
+}
+
 export function AttractScreen({
   questions,
   questionIndex,
   tagline,
   cta,
-  placesCountLabel,
+  placesCount,
+  placesCountTemplate,
   locations,
   onStart,
 }: Props) {
@@ -49,28 +69,32 @@ export function AttractScreen({
     if (dots.length === 0) return;
     const id = window.setInterval(() => {
       setSpotlight((s) => (s + 1) % dots.length);
-    }, 1400);
+    }, 1600);
     return () => window.clearInterval(id);
   }, [dots.length]);
 
-  const spotlightIds = useMemo(() => {
-    if (dots.length === 0) return new Set<string>();
-    const ids = new Set<string>();
-    for (let offset = -1; offset <= 1; offset += 1) {
-      const idx = (spotlight + offset + dots.length) % dots.length;
-      ids.add(dots[idx].id);
+  const rippleDots = useMemo(() => {
+    if (dots.length === 0) return new Map<string, number>();
+    const map = new Map<string, number>();
+    const count = Math.min(5, dots.length);
+    for (let i = 0; i < count; i += 1) {
+      const idx = (spotlight + i) % dots.length;
+      map.set(dots[idx].id, i);
     }
-    return ids;
+    return map;
   }, [dots, spotlight]);
 
   return (
     <button
       type="button"
-      className="kiosk-attract flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl text-center shadow-inner"
+      className="kiosk-attract kiosk-surface h-full min-h-0 flex-1 overflow-hidden text-center"
       onClick={onStart}
     >
-      <div className="kiosk-attract-gradient" aria-hidden="true" />
-      <div className="kiosk-attract-lines" aria-hidden="true" />
+      <div className="kiosk-attract-ambient" aria-hidden="true">
+        <div className="kiosk-attract-glow kiosk-attract-glow--red" />
+        <div className="kiosk-attract-glow kiosk-attract-glow--teal" />
+        <div className="kiosk-attract-stripes" />
+      </div>
 
       <div className="kiosk-attract-map-panel" aria-hidden="true">
         <svg
@@ -78,20 +102,59 @@ export function AttractScreen({
           viewBox={`0 0 ${NL_VIEW.width} ${NL_VIEW.height}`}
           preserveAspectRatio="xMidYMid meet"
         >
-          <path className="kiosk-attract-map-fill" d={outlinePath} />
+          <defs>
+            <filter
+              id="kiosk-map-soft-shadow"
+              x="-8%"
+              y="-8%"
+              width="116%"
+              height="116%"
+            >
+              <feDropShadow
+                dx="0"
+                dy="6"
+                stdDeviation="10"
+                floodColor="#072329"
+                floodOpacity="0.08"
+              />
+            </filter>
+          </defs>
+          <path
+            className="kiosk-attract-map-fill"
+            filter="url(#kiosk-map-soft-shadow)"
+            d={outlinePath}
+          />
           <path className="kiosk-attract-map-stroke" d={outlinePath} />
           {dots.map((dot) => {
-            const active = spotlightIds.has(dot.id);
+            const rippleIndex = rippleDots.get(dot.id);
+            const rippling = rippleIndex !== undefined;
             return (
-              <circle
-                key={dot.id}
-                cx={dot.x}
-                cy={dot.y}
-                r={active ? 9 : 4.5}
-                className={
-                  active ? "kiosk-attract-dot kiosk-attract-dot--spot" : "kiosk-attract-dot"
-                }
-              />
+              <g key={dot.id}>
+                {rippling ? (
+                  <circle
+                    cx={dot.x}
+                    cy={dot.y}
+                    r={7}
+                    className="kiosk-attract-dot-ring"
+                    style={{ animationDelay: `${rippleIndex * 0.18}s` }}
+                  />
+                ) : null}
+                <circle
+                  cx={dot.x}
+                  cy={dot.y}
+                  r={rippling ? 6.5 : 5.5}
+                  className={
+                    rippling
+                      ? "kiosk-attract-dot kiosk-attract-dot--ripple"
+                      : "kiosk-attract-dot"
+                  }
+                  style={
+                    rippling
+                      ? { animationDelay: `${rippleIndex * 0.18}s` }
+                      : undefined
+                  }
+                />
+              </g>
             );
           })}
         </svg>
@@ -101,8 +164,13 @@ export function AttractScreen({
         <p key={questionIndex} className="kiosk-attract-question">
           {question}
         </p>
-        <p className="kiosk-attract-tagline">{tagline}</p>
-        <p className="kiosk-attract-count">{placesCountLabel}</p>
+        <p className="kiosk-attract-tagline">
+          <span className="kiosk-attract-tagline-text">{tagline}</span>
+        </p>
+        <PlacesCountStat
+          count={placesCount}
+          template={placesCountTemplate}
+        />
         <div className="kiosk-attract-cta">
           <TouchFingerIcon />
           <span>{cta}</span>
