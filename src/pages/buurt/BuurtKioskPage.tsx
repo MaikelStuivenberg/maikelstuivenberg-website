@@ -9,7 +9,7 @@ import {
 import { PageMeta } from "@/components/PageMeta";
 import { cn } from "@/lib/utils";
 import { KioskMap } from "./KioskMap";
-import { OnScreenKeyboard } from "./OnScreenKeyboard";
+import { OnScreenKeyboard, SearchIcon } from "./OnScreenKeyboard";
 import { geocodeDutch, nearestLocations } from "./geo";
 import { t, type Locale } from "./i18n";
 import {
@@ -64,7 +64,7 @@ function LanguageToggle({
           type="button"
           onClick={() => onChange(code)}
           className={cn(
-            "min-h-12 min-w-[4.5rem] rounded-full px-4 text-lg font-bold uppercase tracking-wide transition-colors",
+            "kiosk-lang-btn rounded-full px-5 font-bold uppercase tracking-wide transition-colors",
             locale === code
               ? "bg-[var(--kiosk-red)] text-white"
               : "text-[var(--kiosk-navy)]",
@@ -81,11 +81,13 @@ function KioskShell({
   locale,
   onLocaleChange,
   onActivity,
+  headerTagline,
   children,
 }: {
   locale: Locale;
   onLocaleChange: (l: Locale) => void;
   onActivity: () => void;
+  headerTagline?: string;
   children: ReactNode;
 }) {
   return (
@@ -94,22 +96,27 @@ function KioskShell({
       onPointerDown={onActivity}
       onTouchStart={onActivity}
     >
-      <header className="flex items-center justify-between gap-3 px-4 py-3">
-        <div className="flex min-w-0 items-center gap-3">
+      <header className="flex items-center justify-between gap-4 px-5 py-4">
+        <div className="flex min-w-0 items-center gap-4">
           <img
             src={LDH_LOGO_PATH}
             alt="Leger des Heils"
-            className="h-14 w-auto shrink-0"
-            width={52}
-            height={56}
+            className="kiosk-header-logo shrink-0"
+            width={120}
+            height={128}
           />
           <div className="min-w-0 leading-tight">
-            <p className="truncate text-sm font-bold text-[var(--kiosk-red)]">
+            <p className="kiosk-header-title truncate font-bold text-[var(--kiosk-red)]">
               {t(locale).programme}
             </p>
-            <p className="truncate text-xs text-[var(--kiosk-teal)]">
+            <p className="kiosk-header-sub truncate text-[var(--kiosk-teal)]">
               {t(locale).programmeSub}
             </p>
+            {headerTagline ? (
+              <p className="kiosk-header-tagline mt-1 font-extrabold leading-snug text-[var(--kiosk-red)]">
+                {headerTagline}
+              </p>
+            ) : null}
           </div>
         </div>
         <LanguageToggle locale={locale} onChange={onLocaleChange} />
@@ -127,7 +134,9 @@ export function BuurtKioskPage() {
   const [loadError, setLoadError] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchError, setSearchError] = useState(false);
+  const [searchError, setSearchError] = useState<"empty" | "notfound" | null>(
+    null,
+  );
   const [origin, setOrigin] = useState<GeoPoint | null>(null);
   const [selected, setSelected] = useState<KioskLocation | null>(null);
   const [name, setName] = useState("");
@@ -149,7 +158,7 @@ export function BuurtKioskPage() {
     setScreen("attract");
     setMapMode("all");
     setSearchQuery("");
-    setSearchError(false);
+    setSearchError(null);
     setOrigin(null);
     setSelected(null);
     setName("");
@@ -233,10 +242,15 @@ export function BuurtKioskPage() {
 
   const handleSearch = async () => {
     bumpIdle();
-    setSearchError(false);
-    const point = await geocodeDutch(searchQuery);
+    setSearchError(null);
+    const query = searchQuery.trim();
+    if (!query) {
+      setSearchError("empty");
+      return;
+    }
+    const point = await geocodeDutch(query);
     if (!point) {
-      setSearchError(true);
+      setSearchError("notfound");
       return;
     }
     setOrigin(point);
@@ -315,42 +329,51 @@ export function BuurtKioskPage() {
           setLocale(l);
         }}
         onActivity={bumpIdle}
+        headerTagline={screen === "attract" ? m.campaignTagline : undefined}
       >
         {screen === "attract" && (
           <AttractScreen
             questions={[...m.attractQuestions]}
             questionIndex={questionIndex}
+            tagline={m.campaignTagline}
             cta={m.attractCta}
+            placesCountLabel={m.attractPlacesCount.replace(
+              "{count}",
+              String(locations.length || "…"),
+            )}
+            locations={locations}
             onStart={() => go("choose")}
           />
         )}
 
         {screen === "choose" && (
-          <div className="flex flex-1 flex-col justify-center gap-6">
-            <h1 className="text-center text-3xl font-extrabold text-[var(--kiosk-navy)]">
+          <div className="flex flex-1 flex-col justify-center gap-8">
+            <h1 className="kiosk-screen-title text-center text-[var(--kiosk-navy)]">
               {m.chooseTitle}
             </h1>
             <button
               type="button"
-              className="rounded-2xl bg-[var(--kiosk-red)] px-6 py-8 text-left text-white shadow-lg active:scale-[0.98]"
+              className="kiosk-choice-btn rounded-2xl bg-[var(--kiosk-red)] text-left text-white shadow-lg active:scale-[0.98]"
               onClick={() => {
                 setMapMode("all");
                 setSelected(null);
                 go("map");
               }}
             >
-              <span className="block text-2xl font-bold">{m.chooseAll}</span>
-              <span className="mt-2 block text-lg opacity-90">{m.chooseAllHint}</span>
+              <span className="kiosk-choice-title block">{m.chooseAll}</span>
+              <span className="kiosk-choice-hint mt-2 block opacity-90">
+                {m.chooseAllHint}
+              </span>
             </button>
             <button
               type="button"
-              className="rounded-2xl border-2 border-[var(--kiosk-teal)] bg-white px-6 py-8 text-left shadow-lg active:scale-[0.98]"
+              className="kiosk-choice-btn rounded-2xl border-2 border-[var(--kiosk-teal)] bg-white text-left shadow-lg active:scale-[0.98]"
               onClick={() => go("search")}
             >
-              <span className="block text-2xl font-bold text-[var(--kiosk-navy)]">
+              <span className="kiosk-choice-title block text-[var(--kiosk-navy)]">
                 {m.chooseNear}
               </span>
-              <span className="mt-2 block text-lg text-[var(--kiosk-teal)]">
+              <span className="kiosk-choice-hint mt-2 block text-[var(--kiosk-teal)]">
                 {m.chooseNearHint}
               </span>
             </button>
@@ -364,57 +387,74 @@ export function BuurtKioskPage() {
 
         {screen === "search" && (
           <div className="flex min-h-0 flex-1 flex-col gap-4">
-            <h1 className="text-2xl font-bold">{m.searchTitle}</h1>
-            <div
-              className="rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-4 py-4 text-2xl font-semibold"
-              role="textbox"
-              aria-label={m.searchPlaceholder}
-            >
-              {searchQuery || (
-                <span className="text-[var(--kiosk-teal)] opacity-60">
-                  {m.searchPlaceholder}
-                </span>
-              )}
+            <h1 className="kiosk-screen-title">{m.searchTitle}</h1>
+            <div className="flex gap-3">
+              <div
+                className="kiosk-input-display min-w-0 flex-1 rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-5 py-4"
+                role="textbox"
+                aria-label={m.searchPlaceholder}
+              >
+                {searchQuery || (
+                  <span className="text-[var(--kiosk-teal)] opacity-60">
+                    {m.searchPlaceholder}
+                  </span>
+                )}
+              </div>
+              <button
+                type="button"
+                className="kiosk-touch-btn flex min-w-[7.5rem] shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--kiosk-red)] px-4 text-white"
+                onPointerDown={(e) => e.preventDefault()}
+                onPointerUp={(e) => {
+                  e.preventDefault();
+                  void handleSearch();
+                }}
+              >
+                <SearchIcon />
+                {m.searchGo}
+              </button>
             </div>
-            {searchError && (
-              <p className="text-lg font-medium text-[var(--kiosk-red)]">
+            {searchError === "empty" && (
+              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-teal)]">
+                {m.searchEmptyHint}
+              </p>
+            )}
+            {searchError === "notfound" && (
+              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-red)]">
                 {m.searchError}
               </p>
             )}
             <OnScreenKeyboard
               mode="location"
-              onKey={(k) => setSearchQuery((q) => q + k)}
-              onBackspace={() => setSearchQuery((q) => q.slice(0, -1))}
-              onEnter={handleSearch}
+              onKey={(k) => {
+                setSearchError(null);
+                setSearchQuery((q) => q + k);
+              }}
+              onBackspace={() => {
+                setSearchError(null);
+                setSearchQuery((q) => q.slice(0, -1));
+              }}
+              onSubmit={() => void handleSearch()}
+              submitLabel={m.searchGo}
             />
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="min-h-14 rounded-xl bg-[var(--kiosk-navy)] text-lg font-semibold text-white"
-                onClick={() => go("choose")}
-              >
-                {m.searchBack}
-              </button>
-              <button
-                type="button"
-                className="min-h-14 rounded-xl bg-[var(--kiosk-red)] text-lg font-bold text-white"
-                onClick={handleSearch}
-              >
-                {m.searchGo}
-              </button>
-            </div>
+            <button
+              type="button"
+              className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-navy)] text-white"
+              onClick={() => go("choose")}
+            >
+              {m.searchBack}
+            </button>
           </div>
         )}
 
         {screen === "map" && (
           <div className="flex min-h-0 flex-1 flex-col gap-3">
             <div className="flex items-center justify-between gap-2">
-              <h1 className="text-xl font-bold">
+              <h1 className="kiosk-screen-title text-[var(--kiosk-navy)]">
                 {mapMode === "all" ? m.mapAllTitle : m.mapNearTitle}
               </h1>
               <button
                 type="button"
-                className="shrink-0 rounded-lg bg-[var(--kiosk-navy)] px-4 py-2 text-sm font-semibold text-white"
+                className="kiosk-touch-btn shrink-0 rounded-xl bg-[var(--kiosk-navy)] px-5 text-white"
                 onClick={() => go("choose")}
               >
                 {m.mapBack}
@@ -456,8 +496,10 @@ export function BuurtKioskPage() {
                           : "border-transparent bg-white",
                       )}
                     >
-                      <p className="font-bold leading-snug">{loc.title}</p>
-                      <p className="text-sm text-[var(--kiosk-teal)]">
+                      <p className="kiosk-screen-body font-bold leading-snug">
+                        {loc.title}
+                      </p>
+                      <p className="text-base text-[var(--kiosk-teal)] md:text-lg">
                         {kindLabel(loc.kind, locale)}
                         {dist != null &&
                           ` · ${dist.toFixed(1)} ${m.mapDistance}`}
@@ -469,7 +511,8 @@ export function BuurtKioskPage() {
             </div>
             {selected && (
               <div className="rounded-2xl bg-white p-4 shadow-md">
-                <p className="text-sm font-bold uppercase tracking-wide text-[var(--kiosk-red)]">
+                <p className="kiosk-campaign-tagline">{m.campaignTagline}</p>
+                <p className="mt-2 text-sm font-bold uppercase tracking-wide text-[var(--kiosk-teal)]">
                   {m.placeJoinHere}
                 </p>
                 <p className="mt-1 text-lg font-bold">{selected.title}</p>
@@ -498,7 +541,7 @@ export function BuurtKioskPage() {
             )}
             <button
               type="button"
-              className="min-h-16 rounded-2xl bg-[var(--kiosk-red)] text-xl font-bold text-white shadow-lg"
+              className="kiosk-touch-btn min-h-[4.75rem] rounded-2xl bg-[var(--kiosk-red)] text-white shadow-lg"
               onClick={() => go("signup")}
             >
               {m.mapHelp}
@@ -508,8 +551,13 @@ export function BuurtKioskPage() {
 
         {screen === "signup" && (
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto">
-            <h1 className="text-2xl font-bold">{m.signupTitle}</h1>
-            <p className="text-base leading-snug">{m.signupIntro}</p>
+            <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
+              {m.campaignTagline}
+            </h1>
+            <p className="text-xl font-bold text-[var(--kiosk-navy)]">
+              {m.signupTitle}
+            </p>
+            <p className="kiosk-screen-body">{m.signupIntro}</p>
             {selected && (
               <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
                 {selected.title}
@@ -558,7 +606,7 @@ export function BuurtKioskPage() {
               <p className="font-medium text-[var(--kiosk-red)]">{formError}</p>
             )}
             <OnScreenKeyboard
-              mode={signupField === "email" ? "email" : "text"}
+              mode={signupField === "email" ? "email" : "name"}
               onKey={(k) => {
                 if (signupField === "name") setName((n) => n + k);
                 else setEmail((e) => e + k);
@@ -642,7 +690,8 @@ export function BuurtKioskPage() {
                   mode="pin"
                   onKey={(k) => setAdminPin((p) => (p.length < 8 ? p + k : p))}
                   onBackspace={() => setAdminPin((p) => p.slice(0, -1))}
-                  onEnter={tryAdminPin}
+                  onSubmit={tryAdminPin}
+                  submitLabel="OK"
                 />
                 {adminPin && adminPin !== KIOSK_ADMIN_PIN && (
                   <p className="text-[var(--kiosk-red)]">{m.adminWrongPin}</p>

@@ -3,14 +3,17 @@ export const nl = {
   langOther: "EN",
   programme: "Geloven in de Buurt",
   programmeSub: "Leger des Heils",
+  campaignTagline: "Breng Jezus in jouw buurt",
 
   attractQuestions: [
+    "Breng Jezus in jouw buurt.",
     "Je hoeft niet ver te gaan. Begin in je eigen buurt.",
     "Wat doe jij na vandaag?",
     "Missie begint om de hoek.",
     "Geloven in de Buurt: de eerste stap in je eigen straat.",
   ],
   attractCta: "Tik om te starten",
+  attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",
   chooseAll: "Laat alle plekken zien",
@@ -20,9 +23,10 @@ export const nl = {
 
   searchTitle: "Waar ben je?",
   searchPlaceholder: "Postcode of plaats",
-  searchGo: "Zoek plekken",
+  searchGo: "Zoek",
   searchBack: "Terug",
-  searchError: "We vinden die plek niet. Probeer een postcode of stad.",
+  searchEmptyHint: "Typ een postcode of plaats en tik op Zoek.",
+  searchError: "Niet gevonden. Probeer een postcode of plaats.",
 
   mapAllTitle: "Plekken in Nederland",
   mapNearTitle: "Dichtbij jou",
@@ -42,7 +46,7 @@ export const nl = {
 
   signupTitle: "Hier kun je meedoen",
   signupIntro:
-    "Laat je naam en e-mail achter. Vanaf 18 jaar kun je in actie komen in je buurt. Jonger? Kom gerust eens langs op de stand.",
+    "Laat je naam en e-mail achter. Zo houden we contact over vrijwilligerswerk bij jou in de buurt.",
   signupName: "Je naam",
   signupEmail: "Je e-mail",
   signupLunchTitle: "Win een gratis lunch",

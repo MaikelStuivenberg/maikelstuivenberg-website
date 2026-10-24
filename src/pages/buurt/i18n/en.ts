@@ -5,14 +5,17 @@ export const en: Messages = {
   langOther: "NL",
   programme: "Geloven in de Buurt",
   programmeSub: "The Salvation Army Netherlands",
+  campaignTagline: "Bring Jesus to your neighbourhood",
 
   attractQuestions: [
+    "Bring Jesus to your neighbourhood.",
     "You don't have to go far. Start in your own neighbourhood.",
     "What will you do after today?",
     "Mission starts around the corner.",
     "Geloven in de Buurt: your first step starts on your own street.",
   ],
   attractCta: "Tap to start",
+  attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
   chooseAll: "Show all places",
@@ -22,9 +25,10 @@ export const en: Messages = {
 
   searchTitle: "Where are you?",
   searchPlaceholder: "Postcode or town",
-  searchGo: "Find places",
+  searchGo: "Search",
   searchBack: "Back",
-  searchError: "We could not find that place. Try a postcode or city.",
+  searchEmptyHint: "Enter a postcode or town, then tap Search.",
+  searchError: "Not found. Try a postcode or place name.",
 
   mapAllTitle: "Places in the Netherlands",
   mapNearTitle: "Near you",
@@ -44,7 +48,7 @@ export const en: Messages = {
 
   signupTitle: "Join in here",
   signupIntro:
-    "Leave your name and email. From age 18 you can take action in your neighbourhood. Younger? Feel free to visit our stand.",
+    "Leave your name and email. We will follow up about volunteering near you.",
   signupName: "Your name",
   signupEmail: "Your email",
   signupLunchTitle: "Win a free lunch",
