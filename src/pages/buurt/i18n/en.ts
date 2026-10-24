@@ -7,10 +7,10 @@ export const en: Messages = {
   programmeSub: "The Salvation Army Netherlands",
 
   attractQuestions: [
-    "How many Salvation Army places are near you?",
-    "Know a community room or corps in your neighbourhood?",
-    "Want to help somewhere that really matters locally?",
-    "What if your area has a place where you are welcome?",
+    "What will you do after today? Find a place near you.",
+    "Ready for your next step? Discover a spot in your area.",
+    "Your city, your neighbourhood. Where can you join in?",
+    "After today, what's next? Find a Salvation Army place nearby.",
   ],
   attractCta: "Tap to start",
 

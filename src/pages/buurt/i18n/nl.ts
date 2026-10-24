@@ -5,12 +5,12 @@ export const nl = {
   programmeSub: "Leger des Heils",
 
   attractQuestions: [
-    "Hoeveel plekken van het Leger des Heils zitten bij jou in de buurt?",
-    "Ken jij een buurthuiskamer of korps in de buurt?",
-    "Wil je ergens helpen waar het echt leeft?",
-    "Wat als jouw buurt een plek heeft waar je welkom bent?",
+    "Wat doe jij na vandaag? Ontdek een plek bij jou in de buurt.",
+    "Klaar voor je volgende stap? Zoek een plek bij jou in de buurt.",
+    "Jouw stad, jouw buurt. Waar kun jij meedoen?",
+    "Na vandaag verder. Vind een Leger des Heils-plek in de buurt.",
   ],
-  attractCta: "Raak aan om te beginnen",
+  attractCta: "Tik om te starten",
 
   chooseTitle: "Waar wil je kijken?",
   chooseAll: "Laat alle plekken zien",

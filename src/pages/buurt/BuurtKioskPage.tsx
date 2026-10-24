@@ -26,6 +26,7 @@ import type {
   MapMode,
   Screen,
 } from "./types";
+import { AttractScreen } from "./AttractScreen";
 import { LDH_LOGO_PATH } from "./brand";
 import "./buurt-kiosk.css";
 
@@ -316,21 +317,12 @@ export function BuurtKioskPage() {
         onActivity={bumpIdle}
       >
         {screen === "attract" && (
-          <button
-            type="button"
-            className="flex flex-1 flex-col items-center justify-center gap-8 rounded-3xl bg-gradient-to-b from-[var(--kiosk-red-light)] to-white px-6 text-center shadow-inner"
-            onClick={() => go("choose")}
-          >
-            <p
-              key={questionIndex}
-              className="kiosk-attract-text max-w-xl text-4xl font-extrabold leading-tight text-[var(--kiosk-navy)] md:text-5xl"
-            >
-              {m.attractQuestions[questionIndex]}
-            </p>
-            <p className="kiosk-tap-hint rounded-2xl bg-[var(--kiosk-red)] px-8 py-5 text-2xl font-bold text-white shadow-lg">
-              {m.attractCta}
-            </p>
-          </button>
+          <AttractScreen
+            questions={[...m.attractQuestions]}
+            questionIndex={questionIndex}
+            cta={m.attractCta}
+            onStart={() => go("choose")}
+          />
         )}
 
         {screen === "choose" && (
