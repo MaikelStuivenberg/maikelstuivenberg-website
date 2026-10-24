@@ -10,8 +10,13 @@ type Bounds = {
   maxLat: number;
 };
 
+type OutlinePolygon = {
+  outer: [number, number][];
+  holes: [number, number][][];
+};
+
 const bounds = outlineData.bounds as Bounds;
-const ring = outlineData.ring as [number, number][];
+const polygons = outlineData.polygons as OutlinePolygon[];
 
 export function projectNl(
   lat: number,
@@ -31,9 +36,10 @@ export function projectNl(
   return { x, y };
 }
 
-export function netherlandsOutlinePath(
-  width = NL_VIEW.width,
-  height = NL_VIEW.height,
+function ringToPath(
+  ring: [number, number][],
+  width: number,
+  height: number,
 ): string {
   return ring
     .map(([lon, lat], index) => {
@@ -42,6 +48,20 @@ export function netherlandsOutlinePath(
     })
     .join(" ")
     .concat(" Z");
+}
+
+export function netherlandsOutlinePath(
+  width = NL_VIEW.width,
+  height = NL_VIEW.height,
+): string {
+  const parts: string[] = [];
+  for (const poly of polygons) {
+    parts.push(ringToPath(poly.outer, width, height));
+    for (const hole of poly.holes) {
+      parts.push(ringToPath(hole, width, height));
+    }
+  }
+  return parts.join(" ");
 }
 
 export function projectLocations(
