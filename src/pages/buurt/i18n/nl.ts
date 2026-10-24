@@ -13,6 +13,7 @@ export const nl = {
     "Geloven in de Buurt: de eerste stap in je eigen straat.",
   ],
   attractCta: "Tik om te starten",
+  attractLunchPromo: "Win 1 van de 3 gratis lunches",
   attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",

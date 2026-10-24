@@ -8,6 +8,7 @@
   --kiosk-navy: #072329;
   --kiosk-teal: #335255;
   --kiosk-mint: #c8d9d4;
+  --kiosk-yellow: #ffb81c;
   --kiosk-bg: #f6f3ef;
   --kiosk-space-1: 0.5rem;
   --kiosk-space-2: 1rem;
@@ -649,7 +650,25 @@
   animation: kiosk-dot-ring 1.6s ease-out infinite;
 }
 
-.kiosk-attract-copy {
+.kiosk-attract-hero-tap {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.kiosk-attract-hero-copy {
   position: relative;
   z-index: 2;
   flex: 0 0 auto;
@@ -658,9 +677,81 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--kiosk-attract-gap);
-  padding: var(--kiosk-attract-gap-lg) var(--kiosk-attract-pad-x)
+  gap: clamp(0.35rem, min(1.8cqw, 1.4cqh), var(--kiosk-attract-gap));
+  padding: clamp(0.35rem, 1cqh, 0.75rem) var(--kiosk-attract-pad-x) 0;
+}
+
+.kiosk-attract-actions {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(0.4rem, min(1.5cqw, 1.2cqh), 0.65rem);
+  width: 100%;
+  max-width: min(36rem, 100%);
+  margin-inline: auto;
+  padding: clamp(0.35rem, 1cqh, 0.65rem) var(--kiosk-attract-pad-x)
     clamp(0.5rem, 1.5cqh, 1.25rem);
+}
+
+.kiosk-attract-lunch-promo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.4rem, 1.8cqw, 0.65rem);
+  width: 100%;
+  min-height: clamp(2.35rem, min(9.5cqw, 6cqh), 3.25rem);
+  padding: clamp(0.35rem, 1.2cqh, 0.55rem) clamp(0.75rem, 3cqw, 1.25rem);
+  border: 2px solid rgba(7, 35, 41, 0.12);
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    var(--kiosk-yellow) 0%,
+    #ffd56a 48%,
+    var(--kiosk-yellow) 100%
+  );
+  background-size: 200% 100%;
+  color: var(--kiosk-navy);
+  font-size: clamp(0.78rem, min(3.4cqw, 2.35cqh), 1.35rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 14px rgba(7, 35, 41, 0.1);
+  touch-action: manipulation;
+  animation: kiosk-lunch-promo-shimmer 5.5s ease-in-out infinite;
+}
+
+.kiosk-attract-lunch-promo-icon {
+  width: clamp(1.15rem, min(4.8cqw, 3.2cqh), 1.65rem);
+  height: clamp(1.15rem, min(4.8cqw, 3.2cqh), 1.65rem);
+  flex-shrink: 0;
+}
+
+.kiosk-attract-lunch-promo-label {
+  text-align: center;
+}
+
+@keyframes kiosk-lunch-promo-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 4px 14px rgba(7, 35, 41, 0.1);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 5px 18px rgba(255, 184, 28, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kiosk-attract-lunch-promo {
+    animation: none;
+    background: var(--kiosk-yellow);
+  }
 }
 
 .kiosk-attract-question {
@@ -837,13 +928,26 @@
     margin-inline: auto;
   }
 
-  .kiosk-attract-copy {
-    flex: none;
-    min-height: 0;
-    height: auto;
-    justify-content: flex-start;
-    gap: clamp(1rem, 2.5cqh, 2rem);
-    padding: 0 var(--kiosk-attract-pad-x) clamp(2rem, 5cqh, 3.5rem);
+  .kiosk-attract-hero-copy {
+    gap: clamp(0.75rem, 2cqh, 1.25rem);
+    padding-inline: var(--kiosk-attract-pad-x);
+  }
+
+  .kiosk-attract-actions {
+    max-width: min(42rem, 92%);
+    gap: clamp(0.65rem, 1.8cqh, 1rem);
+    padding: clamp(0.5rem, 1.5cqh, 1rem) var(--kiosk-attract-pad-x)
+      clamp(2rem, 5cqh, 3.5rem);
+  }
+
+  .kiosk-attract-lunch-promo {
+    min-height: clamp(3rem, 8cqh, 4rem);
+    font-size: clamp(1.05rem, 2.8cqw, 1.45rem);
+  }
+
+  .kiosk-attract-lunch-promo-icon {
+    width: clamp(1.35rem, 3.5cqw, 1.85rem);
+    height: clamp(1.35rem, 3.5cqw, 1.85rem);
   }
 
   .kiosk-attract-question {
@@ -940,8 +1044,25 @@
     font-size: clamp(0.85rem, min(3.8cqh, 4.5cqw), 1.35rem);
   }
 
-  .kiosk-attract-copy {
-    gap: 0.25rem;
+  .kiosk-attract-hero-copy {
+    gap: 0.2rem;
+  }
+
+  .kiosk-attract-actions {
+    gap: 0.3rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .kiosk-attract-lunch-promo {
+    min-height: 2.15rem;
+    font-size: clamp(0.72rem, 3.2cqw, 0.88rem);
+    padding-block: 0.3rem;
+  }
+
+  .kiosk-attract-cta {
+    min-height: 2.5rem;
+    font-size: clamp(0.88rem, 3.8cqw, 1rem);
+    padding-block: 0.35rem;
   }
 
   .kiosk-shell-header {
