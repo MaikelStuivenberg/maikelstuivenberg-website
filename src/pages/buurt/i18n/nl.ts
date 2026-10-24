@@ -14,7 +14,9 @@ export const nl = {
   ],
   attractCta: "Tik om te starten",
   attractLunchPromo: "🎁 Win 1 van de 3 gratis lunches",
-  attractLunchPromoSub: "bij Soul Station, onze nieuwe plek in Amsterdam",
+  attractLunchPromoSubBefore: "bij ",
+  attractLunchPromoSubAfter: " in Amsterdam",
+  soulStationName: "Soul Station",
   attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",
@@ -68,7 +70,7 @@ export const nl = {
   thanksTitle: "Top, bedankt!",
   thanksBody:
     "Je maakt kans op een lunch bij Soul Station in Amsterdam.",
-  locationNewBadge: "Nieuw",
+  locationNewBadge: "NIEUW",
   thanksDone: "Klaar",
 
   adminTitle: "Export inschrijvingen",

@@ -16,7 +16,9 @@ export const en: Messages = {
   ],
   attractCta: "Tap to start",
   attractLunchPromo: "🎁 Win 1 of 3 free lunches",
-  attractLunchPromoSub: "at Soul Station, our new spot in Amsterdam",
+  attractLunchPromoSubBefore: "at ",
+  attractLunchPromoSubAfter: " in Amsterdam",
+  soulStationName: "Soul Station",
   attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
@@ -69,7 +71,7 @@ export const en: Messages = {
 
   thanksTitle: "Thanks!",
   thanksBody: "You’re in the draw for a lunch at Soul Station in Amsterdam.",
-  locationNewBadge: "New",
+  locationNewBadge: "NEW",
   thanksDone: "Done",
 
   adminTitle: "Export sign-ups",

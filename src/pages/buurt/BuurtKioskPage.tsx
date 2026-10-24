@@ -424,12 +424,22 @@ function BuurtKioskApp() {
             questionIndex={questionIndex}
             tagline={m.campaignTagline}
             cta={m.attractCta}
-            lunchPromoLabel={m.attractLunchPromo}
-            lunchPromoSubLabel={m.attractLunchPromoSub}
+            lunchPromoLine1={m.attractLunchPromo}
+            lunchPromoLine2Before={m.attractLunchPromoSubBefore}
+            soulStationName={m.soulStationName}
+            lunchPromoLine2After={m.attractLunchPromoSubAfter}
+            lunchPromoNewLabel={m.locationNewBadge}
             placesCount={locations.length || "…"}
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}
             onStart={() => go("choose")}
+            onLunchPromo={() => {
+              setMapMode("all");
+              setSelected(null);
+              setSearchQuery("");
+              setSearchError(null);
+              go("signup");
+            }}
           />
         )}
 

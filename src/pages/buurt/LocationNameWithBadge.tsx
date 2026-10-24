@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { NewSticker } from "./NewSticker";
 import { isSoulStation } from "./soul-station";
 
 type Props = {
@@ -18,12 +19,13 @@ export function LocationNameWithBadge({
 }: Props) {
   const showNew = isSoulStation(locationId);
   return (
-    <span className={cn("inline-flex flex-wrap items-center gap-x-2 gap-y-0.5", className)}>
-      <span>{title}</span>
+    <span className={cn("inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5", className)}>
+      <span className={showNew ? "kiosk-soul-station-mark" : undefined}>{title}</span>
       {showNew ? (
-        <span className={cn("kiosk-location-new-badge", badgeClassName)}>
-          {newLabel}
-        </span>
+        <NewSticker
+          label={newLabel}
+          className={cn("kiosk-location-new-sticker", badgeClassName)}
+        />
       ) : null}
     </span>
   );

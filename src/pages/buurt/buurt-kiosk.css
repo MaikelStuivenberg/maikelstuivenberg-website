@@ -9,6 +9,7 @@
   --kiosk-teal: #335255;
   --kiosk-mint: #c8d9d4;
   --kiosk-yellow: #ffb81c;
+  --kiosk-yellow-sticker: #ffd100;
   --kiosk-bg: #f6f3ef;
   --kiosk-space-1: 0.5rem;
   --kiosk-space-2: 1rem;
@@ -697,53 +698,133 @@
     clamp(0.5rem, 1.5cqh, 1.25rem);
 }
 
-.kiosk-attract-lunch-promo {
+.kiosk-attract-lunch-promo-tap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.1rem, 0.45cqh, 0.2rem);
+  gap: clamp(0.12rem, 0.5cqh, 0.22rem);
+  width: 100%;
   margin: 0;
   padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   text-align: center;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.kiosk-attract-lunch-promo-tap:active {
+  opacity: 0.92;
 }
 
 .kiosk-attract-lunch-promo-line {
-  font-size: clamp(0.82rem, min(3.6cqw, 2.5cqh), 1.05rem);
-  font-weight: 700;
+  display: block;
+  font-size: clamp(0.88rem, min(3.9cqw, 2.65cqh), 1.12rem);
+  font-weight: 800;
   line-height: 1.2;
   color: var(--kiosk-navy);
-  padding: 0 0.12em;
-  background: linear-gradient(
-    to top,
-    rgba(255, 184, 28, 0.55) 0%,
-    rgba(255, 184, 28, 0.55) 38%,
-    transparent 38%
-  );
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
 }
 
 .kiosk-attract-lunch-promo-sub {
-  font-size: clamp(0.72rem, min(3cqw, 2.1cqh), 0.92rem);
+  display: block;
+  font-size: clamp(0.72rem, min(3cqw, 2.1cqh), 0.95rem);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.35;
   color: var(--kiosk-teal);
-  max-width: 22rem;
+  max-width: min(22rem, 96%);
 }
 
-.kiosk-location-new-badge {
+.kiosk-attract-lunch-promo-soul-wrap {
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  padding-right: clamp(1.6rem, 7cqw, 2.1rem);
+}
+
+.kiosk-attract-lunch-promo-sticker {
+  position: absolute;
+  left: calc(100% - 0.35rem);
+  top: -0.42em;
+  margin-left: 0;
+}
+
+.kiosk-soul-station-mark {
+  position: relative;
+  z-index: 0;
+  font-weight: 800;
+  color: var(--kiosk-navy);
+}
+
+.kiosk-soul-station-mark::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.06em;
+  right: -0.1em;
+  bottom: 0.05em;
+  height: 0.45em;
+  background: rgba(255, 209, 0, 0.78);
+  transform: skewX(-10deg);
+  border-radius: 1px;
+}
+
+.kiosk-new-sticker {
   display: inline-block;
   flex-shrink: 0;
-  font-size: 0.62em;
+  padding: 0.14em 0.42em 0.12em;
+  font-size: clamp(0.52rem, min(2.2cqw, 1.55cqh), 0.68rem);
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
+  line-height: 1;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  vertical-align: middle;
-  padding: 0.12em 0.5em;
-  border-radius: 999px;
-  background: var(--kiosk-yellow);
   color: var(--kiosk-navy);
+  background: var(--kiosk-yellow-sticker);
+  transform: rotate(-6deg);
+  box-shadow: 0 2px 6px rgba(7, 35, 41, 0.22);
+  animation:
+    kiosk-sticker-enter 0.55s ease-out both,
+    kiosk-sticker-wobble 5s ease-in-out 0.6s infinite;
+}
+
+.kiosk-location-new-sticker {
+  font-size: clamp(0.48rem, 2.1cqw, 0.62rem);
+  vertical-align: middle;
+  margin-left: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kiosk-new-sticker {
+    animation: none;
+  }
+}
+
+@keyframes kiosk-sticker-enter {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-6deg) scale(1);
+  }
+}
+
+@keyframes kiosk-sticker-wobble {
+  0%,
+  86%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  90% {
+    transform: rotate(-8deg) scale(1.05);
+  }
+  94% {
+    transform: rotate(-4deg) scale(1.02);
+  }
 }
 
 .kiosk-attract-dot-feature-ring {
@@ -944,10 +1025,16 @@
       clamp(2rem, 5cqh, 3.5rem);
   }
 
-  .kiosk-attract-lunch-promo {
+  .kiosk-attract-lunch-promo-line {
     font-size: clamp(1.05rem, min(4.25cqw, 3.2cqh), 2.35rem);
     font-weight: 600;
     color: var(--kiosk-red);
+  }
+
+  .kiosk-attract-lunch-promo-sub {
+    font-size: clamp(0.95rem, min(3.4cqw, 2.5cqh), 1.65rem);
+    color: var(--kiosk-teal);
+    max-width: 36rem;
   }
 
   .kiosk-attract-question {
@@ -1053,8 +1140,12 @@
     padding-bottom: 0.35rem;
   }
 
-  .kiosk-attract-lunch-promo {
+  .kiosk-attract-lunch-promo-line {
     font-size: clamp(0.72rem, 3.2cqw, 0.88rem);
+  }
+
+  .kiosk-attract-lunch-promo-sub {
+    font-size: clamp(0.65rem, 2.85cqw, 0.78rem);
   }
 
   .kiosk-attract-cta {

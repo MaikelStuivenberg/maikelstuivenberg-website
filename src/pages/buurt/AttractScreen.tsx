@@ -5,6 +5,7 @@ import {
   NL_VIEW,
   projectLocations,
 } from "./nl-map";
+import { AttractLunchPromo } from "./AttractLunchPromo";
 import { isSoulStation } from "./soul-station";
 
 type Props = {
@@ -12,12 +13,16 @@ type Props = {
   questionIndex: number;
   tagline: string;
   cta: string;
-  lunchPromoLabel: string;
-  lunchPromoSubLabel: string;
+  lunchPromoLine1: string;
+  lunchPromoLine2Before: string;
+  soulStationName: string;
+  lunchPromoLine2After: string;
+  lunchPromoNewLabel: string;
   placesCount: number | string;
   placesCountTemplate: string;
   locations: KioskLocation[];
   onStart: () => void;
+  onLunchPromo: () => void;
 };
 
 function TouchFingerIcon() {
@@ -58,12 +63,16 @@ export function AttractScreen({
   questionIndex,
   tagline,
   cta,
-  lunchPromoLabel,
-  lunchPromoSubLabel,
+  lunchPromoLine1,
+  lunchPromoLine2Before,
+  soulStationName,
+  lunchPromoLine2After,
+  lunchPromoNewLabel,
   placesCount,
   placesCountTemplate,
   locations,
   onStart,
+  onLunchPromo,
 }: Props) {
   const question = questions[questionIndex];
   const outlinePath = useMemo(() => netherlandsOutlinePath(), []);
@@ -196,10 +205,14 @@ export function AttractScreen({
       </button>
 
       <div className="kiosk-attract-actions">
-        <p className="kiosk-attract-lunch-promo">
-          <span className="kiosk-attract-lunch-promo-line">{lunchPromoLabel}</span>
-          <span className="kiosk-attract-lunch-promo-sub">{lunchPromoSubLabel}</span>
-        </p>
+        <AttractLunchPromo
+          line1={lunchPromoLine1}
+          line2Before={lunchPromoLine2Before}
+          soulStationName={soulStationName}
+          line2After={lunchPromoLine2After}
+          newLabel={lunchPromoNewLabel}
+          onActivate={onLunchPromo}
+        />
         <button type="button" className="kiosk-attract-cta" onClick={onStart}>
           <TouchFingerIcon />
           <span>{cta}</span>
