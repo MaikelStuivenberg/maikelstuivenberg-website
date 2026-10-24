@@ -5,13 +5,19 @@ import {
   NL_VIEW,
   projectLocations,
 } from "./nl-map";
+import { AttractLunchPromo } from "./AttractLunchPromo";
+import { isSoulStation } from "./soul-station";
 
 type Props = {
   questions: string[];
   questionIndex: number;
   tagline: string;
   cta: string;
-  lunchPromoLabel: string;
+  lunchTapeLabel: string;
+  lunchHeadline1: string;
+  lunchHeadline2Prefix: string;
+  soulStationName: string;
+  lunchFinePrint: string;
   placesCount: number | string;
   placesCountTemplate: string;
   locations: KioskLocation[];
@@ -29,43 +35,6 @@ function TouchFingerIcon() {
     >
       <path
         d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"
-      />
-    </svg>
-  );
-}
-
-function LunchGiftIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9Z"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 10V21M4 10c0-2 2-3 4-3s4 1 4 3M20 10c0-2-2-3-4-3s-4 1-4 3"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8 7V5.5A1.5 1.5 0 0 1 12 5.5 1.5 1.5 0 0 1 16 5.5V7"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-      <path
-        d="M9 14h6"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
       />
     </svg>
   );
@@ -94,7 +63,11 @@ export function AttractScreen({
   questionIndex,
   tagline,
   cta,
-  lunchPromoLabel,
+  lunchTapeLabel,
+  lunchHeadline1,
+  lunchHeadline2Prefix,
+  soulStationName,
+  lunchFinePrint,
   placesCount,
   placesCountTemplate,
   locations,
@@ -174,8 +147,17 @@ export function AttractScreen({
             {dots.map((dot) => {
               const rippleIndex = rippleDots.get(dot.id);
               const rippling = rippleIndex !== undefined;
+              const featured = isSoulStation(dot.id);
               return (
                 <g key={dot.id}>
+                  {featured ? (
+                    <circle
+                      cx={dot.x}
+                      cy={dot.y}
+                      r={10}
+                      className="kiosk-attract-dot-feature-ring"
+                    />
+                  ) : null}
                   {rippling ? (
                     <circle
                       cx={dot.x}
@@ -192,7 +174,9 @@ export function AttractScreen({
                     className={
                       rippling
                         ? "kiosk-attract-dot kiosk-attract-dot--ripple"
-                        : "kiosk-attract-dot"
+                        : featured
+                          ? "kiosk-attract-dot kiosk-attract-dot--featured"
+                          : "kiosk-attract-dot"
                     }
                     style={
                       rippling
@@ -220,20 +204,18 @@ export function AttractScreen({
         </div>
       </button>
 
+      <div className="kiosk-attract-mid">
+        <AttractLunchPromo
+          tapeLabel={lunchTapeLabel}
+          headlineLine1={lunchHeadline1}
+          headlineLine2Prefix={lunchHeadline2Prefix}
+          soulStationName={soulStationName}
+          finePrint={lunchFinePrint}
+          onActivate={onLunchPromo}
+        />
+      </div>
+
       <div className="kiosk-attract-actions">
-        <button
-          type="button"
-          className="kiosk-attract-lunch-promo"
-          onClick={(e) => {
-            e.stopPropagation();
-            onLunchPromo();
-          }}
-        >
-          <LunchGiftIcon className="kiosk-attract-lunch-promo-icon" />
-          <span className="kiosk-attract-lunch-promo-label">
-            {lunchPromoLabel}
-          </span>
-        </button>
         <button type="button" className="kiosk-attract-cta" onClick={onStart}>
           <TouchFingerIcon />
           <span>{cta}</span>

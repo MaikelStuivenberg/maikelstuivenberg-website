@@ -2,7 +2,6 @@ export const KIOSK_AUTO_FULLSCREEN_KEY = "gidb-kiosk-auto-fullscreen";
 
 type FullscreenDoc = Document & {
   webkitFullscreenElement?: Element | null;
-  webkitExitFullscreen?: () => Promise<void>;
 };
 
 type FullscreenElement = HTMLElement & {
@@ -27,17 +26,6 @@ export async function enterFullscreen(): Promise<void> {
   }
   if (el.webkitRequestFullscreen) {
     await el.webkitRequestFullscreen();
-  }
-}
-
-export async function exitFullscreen(): Promise<void> {
-  const doc = document as FullscreenDoc;
-  if (doc.exitFullscreen) {
-    await doc.exitFullscreen();
-    return;
-  }
-  if (doc.webkitExitFullscreen) {
-    await doc.webkitExitFullscreen();
   }
 }
 

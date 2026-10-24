@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -8,6 +8,7 @@ import {
 } from "react-leaflet";
 import type { KioskLocation } from "./types";
 import { LDH_BRAND } from "./brand";
+import { isSoulStation } from "./soul-station";
 
 type Props = {
   locations: KioskLocation[];
@@ -102,27 +103,45 @@ export function KioskMap({
         {softwareRotated ? <MapZoomButtons /> : null}
         {markers.map((loc) => {
           const selected = loc.id === selectedId;
+          const featured = isSoulStation(loc.id);
+          const pinRadius = selected ? 14 : featured ? 12 : 10;
           return (
-            <CircleMarker
-              key={loc.id}
-              center={[loc.lat, loc.lon]}
-              radius={selected ? 14 : 10}
-              pathOptions={{
-                color: LDH_BRAND.navy,
-                weight: 2,
-                fillColor: selected ? LDH_BRAND.red : LDH_BRAND.redDark,
-                fillOpacity: 0.9,
-              }}
-              eventHandlers={{
-                click: () => onSelect?.(loc),
-              }}
-            >
-              <Popup>
-                <strong>{loc.title}</strong>
-                <br />
-                {loc.address}
-              </Popup>
-            </CircleMarker>
+            <Fragment key={loc.id}>
+              {featured ? (
+                <CircleMarker
+                  center={[loc.lat, loc.lon]}
+                  radius={selected ? 18 : 16}
+                  pathOptions={{
+                    color: LDH_BRAND.yellow,
+                    weight: 3,
+                    fillColor: LDH_BRAND.yellow,
+                    fillOpacity: 0.22,
+                  }}
+                  eventHandlers={{
+                    click: () => onSelect?.(loc),
+                  }}
+                />
+              ) : null}
+              <CircleMarker
+                center={[loc.lat, loc.lon]}
+                radius={pinRadius}
+                pathOptions={{
+                  color: featured ? LDH_BRAND.yellow : LDH_BRAND.navy,
+                  weight: featured ? 2.5 : 2,
+                  fillColor: selected ? LDH_BRAND.red : LDH_BRAND.redDark,
+                  fillOpacity: 0.9,
+                }}
+                eventHandlers={{
+                  click: () => onSelect?.(loc),
+                }}
+              >
+                <Popup>
+                  <strong>{loc.title}</strong>
+                  <br />
+                  {loc.address}
+                </Popup>
+              </CircleMarker>
+            </Fragment>
           );
         })}
       </MapContainer>

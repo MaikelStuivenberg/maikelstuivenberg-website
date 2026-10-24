@@ -15,7 +15,11 @@ export const en: Messages = {
     "Geloven in de Buurt: your first step starts on your own street.",
   ],
   attractCta: "Tap to start",
-  attractLunchPromo: "Win 1 of 3 free lunches",
+  attractLunchTape: "New in Amsterdam",
+  attractLunchHeadline1: "Win a free lunch",
+  attractLunchHeadline2Prefix: "at ",
+  soulStationName: "Soul Station",
+  attractLunchFinePrint: "3 winners · everyone can enter",
   attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
@@ -54,8 +58,9 @@ export const en: Messages = {
     "Leave your name and email. We will follow up about volunteering near you.",
   signupName: "Your name",
   signupEmail: "Your email",
-  signupLunchTitle: "Win a free lunch",
-  signupLunchBody: "We will draw 3 winners after today. Everyone can enter.",
+  signupLunchTitle: "Win a free lunch at Soul Station",
+  signupLunchBody:
+    "Our new spot in Amsterdam, close to Centraal. We’ll draw 3 winners after today. Everyone can enter.",
   signupConsent:
     "I agree that The Salvation Army may use my details for the lunch draw and a short volunteer follow-up email. They will be deleted afterwards.",
   signupSubmit: "Send",
@@ -66,8 +71,8 @@ export const en: Messages = {
   signupNeedName: "Enter your name.",
 
   thanksTitle: "Thanks!",
-  thanksBody:
-    "We received your details. Good luck in the lunch draw and hopefully see you soon at The Salvation Army.",
+  thanksBody: "You’re in the draw for a lunch at Soul Station in Amsterdam.",
+  locationNewBadge: "New",
   thanksDone: "Done",
 
   adminTitle: "Export sign-ups",
@@ -85,8 +90,6 @@ export const en: Messages = {
   adminAutoFullscreenHint:
     "The first tap on the screen enters full screen (handy on Android kiosks).",
   navHome: "Home",
-  fullscreenEnter: "Full screen",
-  fullscreenExit: "Exit full screen",
   adminOutboxHint:
     "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",

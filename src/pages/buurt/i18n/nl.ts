@@ -13,7 +13,11 @@ export const nl = {
     "Geloven in de Buurt: de eerste stap in je eigen straat.",
   ],
   attractCta: "Tik om te starten",
-  attractLunchPromo: "Win 1 van de 3 gratis lunches",
+  attractLunchTape: "Nieuw in Amsterdam",
+  attractLunchHeadline1: "Win een gratis lunch",
+  attractLunchHeadline2Prefix: "bij ",
+  soulStationName: "Soul Station",
+  attractLunchFinePrint: "3 winnaars · iedereen mag meedoen",
   attractPlacesCount: "{count} plekken in heel Nederland",
 
   chooseTitle: "Waar zet jij de eerste stap?",
@@ -52,9 +56,9 @@ export const nl = {
     "Laat je naam en e-mail achter. Zo houden we contact over vrijwilligerswerk bij jou in de buurt.",
   signupName: "Je naam",
   signupEmail: "Je e-mail",
-  signupLunchTitle: "Win een gratis lunch",
+  signupLunchTitle: "Win een gratis lunch bij Soul Station",
   signupLunchBody:
-    "We trekken na vandaag 3 winnaars. Iedereen mag meedoen.",
+    "Onze nieuwe plek in Amsterdam, vlak bij Centraal. We trekken na vandaag 3 winnaars. Iedereen mag meedoen.",
   signupConsent:
     "Ik geef toestemming dat het Leger des Heils mijn gegevens gebruikt voor de lunchloting en eventueel een korte vrijwilligersmail. Daarna worden ze verwijderd.",
   signupSubmit: "Versturen",
@@ -66,7 +70,8 @@ export const nl = {
 
   thanksTitle: "Top, bedankt!",
   thanksBody:
-    "We hebben je gegevens ontvangen. Veel succes met de lunchloting en hopelijk tot snel bij het Leger des Heils.",
+    "Je maakt kans op een lunch bij Soul Station in Amsterdam.",
+  locationNewBadge: "Nieuw",
   thanksDone: "Klaar",
 
   adminTitle: "Export inschrijvingen",
@@ -84,8 +89,6 @@ export const nl = {
   adminAutoFullscreenHint:
     "Eerste tik op het scherm opent volledig scherm (handig op Android-kiosks).",
   navHome: "Naar start",
-  fullscreenEnter: "Volledig scherm",
-  fullscreenExit: "Volledig scherm sluiten",
   adminOutboxHint:
     "Als wifi hapert blijven inschrijvingen hier tot ze naar de server zijn gestuurd.",
   loadError: "Locaties laden mislukt. Vernieuw de pagina.",
