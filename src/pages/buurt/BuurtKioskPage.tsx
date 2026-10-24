@@ -469,7 +469,10 @@ export function BuurtKioskPage() {
             </div>
             {selected && (
               <div className="rounded-2xl bg-white p-4 shadow-md">
-                <p className="text-lg font-bold">{selected.title}</p>
+                <p className="text-sm font-bold uppercase tracking-wide text-[var(--kiosk-red)]">
+                  {m.placeJoinHere}
+                </p>
+                <p className="mt-1 text-lg font-bold">{selected.title}</p>
                 <p className="mt-1 text-sm">{selected.address}</p>
                 <div className="mt-3 flex flex-col gap-2">
                   {selected.url && (
