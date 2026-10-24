@@ -39,6 +39,7 @@ import {
 } from "./kiosk-fullscreen";
 import type { KioskRotation } from "./kiosk-rotation";
 import "./buurt-kiosk.css";
+import "./buurt-kiosk-legacy-compat.css";
 
 const IDLE_MS = 75_000;
 const NL_CENTER: [number, number] = [52.15, 5.35];
@@ -800,6 +801,12 @@ function BuurtKioskApp() {
         {screen === "admin" && (
           <div className="flex flex-1 flex-col gap-4">
             <h1 className="text-2xl font-bold">{m.adminTitle}</h1>
+            <p className="kiosk-admin-ua break-all text-xs leading-snug text-[var(--kiosk-teal)]">
+              <span className="font-semibold text-[var(--kiosk-navy)]">
+                {m.adminUserAgent}
+              </span>{" "}
+              {navigator.userAgent}
+            </p>
             {!adminUnlocked ? (
               <>
                 <p className="text-sm">{m.adminPin}</p>
