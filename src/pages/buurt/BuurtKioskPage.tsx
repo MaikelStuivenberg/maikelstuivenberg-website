@@ -9,7 +9,7 @@ import {
 import { PageMeta } from "@/components/PageMeta";
 import { cn } from "@/lib/utils";
 import { KioskMap } from "./KioskMap";
-import { OnScreenKeyboard } from "./OnScreenKeyboard";
+import { OnScreenKeyboard, SearchIcon } from "./OnScreenKeyboard";
 import { geocodeDutch, nearestLocations } from "./geo";
 import { t, type Locale } from "./i18n";
 import {
@@ -127,7 +127,9 @@ export function BuurtKioskPage() {
   const [loadError, setLoadError] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchError, setSearchError] = useState(false);
+  const [searchError, setSearchError] = useState<"empty" | "notfound" | null>(
+    null,
+  );
   const [origin, setOrigin] = useState<GeoPoint | null>(null);
   const [selected, setSelected] = useState<KioskLocation | null>(null);
   const [name, setName] = useState("");
@@ -149,7 +151,7 @@ export function BuurtKioskPage() {
     setScreen("attract");
     setMapMode("all");
     setSearchQuery("");
-    setSearchError(false);
+    setSearchError(null);
     setOrigin(null);
     setSelected(null);
     setName("");
@@ -233,10 +235,15 @@ export function BuurtKioskPage() {
 
   const handleSearch = async () => {
     bumpIdle();
-    setSearchError(false);
-    const point = await geocodeDutch(searchQuery);
+    setSearchError(null);
+    const query = searchQuery.trim();
+    if (!query) {
+      setSearchError("empty");
+      return;
+    }
+    const point = await geocodeDutch(query);
     if (!point) {
-      setSearchError(true);
+      setSearchError("notfound");
       return;
     }
     setOrigin(point);
@@ -372,44 +379,61 @@ export function BuurtKioskPage() {
         {screen === "search" && (
           <div className="flex min-h-0 flex-1 flex-col gap-4">
             <h1 className="kiosk-screen-title">{m.searchTitle}</h1>
-            <div
-              className="kiosk-input-display rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-5 py-4"
-              role="textbox"
-              aria-label={m.searchPlaceholder}
-            >
-              {searchQuery || (
-                <span className="text-[var(--kiosk-teal)] opacity-60">
-                  {m.searchPlaceholder}
-                </span>
-              )}
+            <div className="flex gap-3">
+              <div
+                className="kiosk-input-display min-w-0 flex-1 rounded-xl border-2 border-[var(--kiosk-mint)] bg-white px-5 py-4"
+                role="textbox"
+                aria-label={m.searchPlaceholder}
+              >
+                {searchQuery || (
+                  <span className="text-[var(--kiosk-teal)] opacity-60">
+                    {m.searchPlaceholder}
+                  </span>
+                )}
+              </div>
+              <button
+                type="button"
+                className="kiosk-touch-btn flex min-w-[7.5rem] shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--kiosk-red)] px-4 text-white"
+                onPointerDown={(e) => e.preventDefault()}
+                onPointerUp={(e) => {
+                  e.preventDefault();
+                  void handleSearch();
+                }}
+              >
+                <SearchIcon />
+                {m.searchGo}
+              </button>
             </div>
-            {searchError && (
-              <p className="text-lg font-medium text-[var(--kiosk-red)]">
+            {searchError === "empty" && (
+              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-teal)]">
+                {m.searchEmptyHint}
+              </p>
+            )}
+            {searchError === "notfound" && (
+              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-red)]">
                 {m.searchError}
               </p>
             )}
             <OnScreenKeyboard
               mode="location"
-              onKey={(k) => setSearchQuery((q) => q + k)}
-              onBackspace={() => setSearchQuery((q) => q.slice(0, -1))}
-              onEnter={handleSearch}
+              onKey={(k) => {
+                setSearchError(null);
+                setSearchQuery((q) => q + k);
+              }}
+              onBackspace={() => {
+                setSearchError(null);
+                setSearchQuery((q) => q.slice(0, -1));
+              }}
+              onSubmit={() => void handleSearch()}
+              submitLabel={m.searchGo}
             />
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-navy)] text-white"
-                onClick={() => go("choose")}
-              >
-                {m.searchBack}
-              </button>
-              <button
-                type="button"
-                className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-red)] text-white"
-                onClick={handleSearch}
-              >
-                {m.searchGo}
-              </button>
-            </div>
+            <button
+              type="button"
+              className="kiosk-touch-btn rounded-xl bg-[var(--kiosk-navy)] text-white"
+              onClick={() => go("choose")}
+            >
+              {m.searchBack}
+            </button>
           </div>
         )}
 
@@ -567,7 +591,7 @@ export function BuurtKioskPage() {
               <p className="font-medium text-[var(--kiosk-red)]">{formError}</p>
             )}
             <OnScreenKeyboard
-              mode={signupField === "email" ? "email" : "text"}
+              mode={signupField === "email" ? "email" : "name"}
               onKey={(k) => {
                 if (signupField === "name") setName((n) => n + k);
                 else setEmail((e) => e + k);
@@ -651,7 +675,8 @@ export function BuurtKioskPage() {
                   mode="pin"
                   onKey={(k) => setAdminPin((p) => (p.length < 8 ? p + k : p))}
                   onBackspace={() => setAdminPin((p) => p.slice(0, -1))}
-                  onEnter={tryAdminPin}
+                  onSubmit={tryAdminPin}
+                  submitLabel="OK"
                 />
                 {adminPin && adminPin !== KIOSK_ADMIN_PIN && (
                   <p className="text-[var(--kiosk-red)]">{m.adminWrongPin}</p>

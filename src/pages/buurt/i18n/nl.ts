@@ -21,9 +21,10 @@ export const nl = {
 
   searchTitle: "Waar ben je?",
   searchPlaceholder: "Postcode of plaats",
-  searchGo: "Zoek plekken",
+  searchGo: "Zoek",
   searchBack: "Terug",
-  searchError: "We vinden die plek niet. Probeer een postcode of stad.",
+  searchEmptyHint: "Typ een postcode of plaats en tik op Zoek.",
+  searchError: "Niet gevonden. Probeer een postcode of plaats.",
 
   mapAllTitle: "Plekken in Nederland",
   mapNearTitle: "Dichtbij jou",
@@ -43,7 +44,7 @@ export const nl = {
 
   signupTitle: "Hier kun je meedoen",
   signupIntro:
-    "Laat je naam en e-mail achter. Vanaf 18 jaar kun je in actie komen in je buurt. Jonger? Kom gerust eens langs op de stand.",
+    "Laat je naam en e-mail achter. Zo houden we contact over vrijwilligerswerk bij jou in de buurt.",
   signupName: "Je naam",
   signupEmail: "Je e-mail",
   signupLunchTitle: "Win een gratis lunch",
