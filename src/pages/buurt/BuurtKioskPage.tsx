@@ -473,7 +473,7 @@ function BuurtKioskApp() {
             lunchHeadline2Prefix={m.attractLunchHeadline2Prefix}
             soulStationName={m.soulStationName}
             lunchFinePrint={m.attractLunchFinePrint}
-            placesCount={locations.length || "…"}
+            placesCount={locations.length > 0 ? locations.length : "…"}
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}
             onStart={() => go("choose")}

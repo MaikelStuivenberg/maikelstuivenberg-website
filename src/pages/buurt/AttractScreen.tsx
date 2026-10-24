@@ -51,9 +51,16 @@ function MapPlacesCounter({
   cycleKey: number;
 }) {
   const numeric =
-    typeof count === "number" && Number.isFinite(count) ? count : null;
-  const animated = useCountUp(numeric ?? 0, cycleKey);
-  const display = numeric === null ? count : animated;
+    typeof count === "number" && Number.isFinite(count) && count > 0
+      ? count
+      : null;
+  const animated = useCountUp(numeric, cycleKey);
+  const display =
+    numeric === null
+      ? typeof count === "string"
+        ? count
+        : "…"
+      : (animated ?? numeric);
   const suffix = template.replace("{count}", "").trimStart();
 
   return (
@@ -217,9 +224,8 @@ export function AttractScreen({
           />
         </div>
 
-        <div className="kiosk-attract-mid">
-          <div className="kiosk-attract-mid-inner">
-            <div className="kiosk-attract-mid-cell">
+        <div className="kiosk-attract-lunch-wrap">
+          <div className="kiosk-attract-lunch-card">
             <AttractLunchPromo
               tapeLabel={lunchTapeLabel}
               headlineLine1={lunchHeadline1}
@@ -228,7 +234,6 @@ export function AttractScreen({
               finePrint={lunchFinePrint}
               onActivate={onLunchPromo}
             />
-            </div>
           </div>
         </div>
       </div>
