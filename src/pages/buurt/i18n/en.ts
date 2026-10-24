@@ -76,6 +76,9 @@ export const en: Messages = {
   adminOutboxCount: "not sent yet (outbox)",
   adminClose: "Close",
   adminOutboxEmpty: "Everything is synced. No outbox on this screen.",
+  adminRotationTitle: "Screen rotation",
+  adminRotationHint:
+    "For a landscape panel mounted portrait. Also via ?rotate=90 or ?rotate=270 in the URL.",
   adminOutboxHint:
     "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",

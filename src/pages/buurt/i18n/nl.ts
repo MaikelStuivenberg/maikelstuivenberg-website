@@ -75,6 +75,9 @@ export const nl = {
   adminOutboxCount: "nog niet verzonden (wachtrij)",
   adminClose: "Sluiten",
   adminOutboxEmpty: "Alles is verzonden. Geen wachtrij op dit scherm.",
+  adminRotationTitle: "Schermrotatie",
+  adminRotationHint:
+    "Voor een liggend scherm dat rechtop hangt. Ook via ?rotate=90 of ?rotate=270 in de URL.",
   adminOutboxHint:
     "Als wifi hapert blijven inschrijvingen hier tot ze naar de server zijn gestuurd.",
   loadError: "Locaties laden mislukt. Vernieuw de pagina.",

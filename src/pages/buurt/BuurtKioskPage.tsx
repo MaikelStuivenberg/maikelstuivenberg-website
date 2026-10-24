@@ -28,6 +28,8 @@ import type {
 } from "./types";
 import { AttractScreen } from "./AttractScreen";
 import { LDH_LOGO_PATH } from "./brand";
+import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
+import type { KioskRotation } from "./kiosk-rotation";
 import "./buurt-kiosk.css";
 
 const IDLE_MS = 75_000;
@@ -154,6 +156,15 @@ function KioskShell({
 }
 
 export function BuurtKioskPage() {
+  return (
+    <KioskRotateRoot>
+      <BuurtKioskApp />
+    </KioskRotateRoot>
+  );
+}
+
+function BuurtKioskApp() {
+  const { rotation, setRotation, isRotated } = useKioskRotation();
   const [locale, setLocale] = useState<Locale>("nl");
   const [screen, setScreen] = useState<Screen>("attract");
   const [mapMode, setMapMode] = useState<MapMode>("all");
@@ -508,6 +519,7 @@ export function BuurtKioskPage() {
                   bumpIdle();
                 }}
                 fitBounds={mapMode === "all"}
+                softwareRotated={isRotated}
               />
             </div>
             {mapMode === "nearby" && nearbyList.length === 0 && (
@@ -783,6 +795,29 @@ export function BuurtKioskPage() {
               </>
             ) : (
               <>
+                <div className="kiosk-card p-4">
+                  <p className="font-bold text-[var(--kiosk-navy)]">
+                    {m.adminRotationTitle}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--kiosk-teal)]">
+                    {m.adminRotationHint}
+                  </p>
+                  <div className="kiosk-admin-rotate mt-3">
+                    {([0, 90, 270] as const).map((deg) => (
+                      <button
+                        key={deg}
+                        type="button"
+                        className={cn(
+                          "kiosk-admin-rotate-btn",
+                          rotation === deg && "kiosk-admin-rotate-btn--active",
+                        )}
+                        onClick={() => setRotation(deg as KioskRotation)}
+                      >
+                        {deg}°
+                      </button>
+                    ))}
+                  </div>
+                </div>
                 <p className="text-lg font-semibold">
                   {outboxCount} {m.adminOutboxCount}
                 </p>
