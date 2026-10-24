@@ -20,12 +20,14 @@ for (const vp of viewports) {
     const attract = document.querySelector(".kiosk-attract");
     const map = document.querySelector(".kiosk-attract-map-panel");
     const cta = document.querySelector(".kiosk-attract-cta");
+    const question = document.querySelector(".kiosk-attract-question");
     const main = document.querySelector(".kiosk-main");
-    if (!attract || !map || !cta || !main) return null;
+    if (!attract || !map || !cta || !main || !question) return null;
     const mainR = main.getBoundingClientRect();
     const attractR = attract.getBoundingClientRect();
     const mapR = map.getBoundingClientRect();
     const ctaR = cta.getBoundingClientRect();
+    const questionR = question.getBoundingClientRect();
     return {
       mainHeight: mainR.height,
       attractHeight: attractR.height,
@@ -33,6 +35,7 @@ for (const vp of viewports) {
       mapRatio: mapR.height / attractR.height,
       ctaInsetFromAttractBottom: attractR.bottom - ctaR.bottom,
       attractBottomGap: mainR.bottom - attractR.bottom,
+      mapToQuestionGap: questionR.top - mapR.bottom,
     };
   });
   await page.close();
@@ -54,6 +57,12 @@ for (const vp of viewports) {
   }
   if (vp.w >= 1080 && metrics.mapRatio < 0.45) {
     console.error(`${vp.name}: map too small (${(metrics.mapRatio * 100).toFixed(1)}% of attract)`);
+    failed = true;
+  }
+  if (vp.w >= 1080 && metrics.mapToQuestionGap > 32) {
+    console.error(
+      `${vp.name}: gap between map and question (${metrics.mapToQuestionGap.toFixed(1)}px)`,
+    );
     failed = true;
   }
 }

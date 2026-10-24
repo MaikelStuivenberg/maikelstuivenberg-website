@@ -546,25 +546,39 @@
 @media (min-width: 600px) and (min-height: 900px) {
   .kiosk-attract {
     display: grid;
-    grid-template-rows: minmax(0, 52%) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
     grid-template-columns: 1fr;
+    row-gap: 0;
+    align-content: stretch;
   }
 
   .kiosk-attract-map-panel {
     flex: none;
     max-height: none;
     min-height: 0;
+    height: auto;
+    padding: 0.25rem 5% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kiosk-attract-map-svg {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
     height: 100%;
-    padding: 0.5rem 1.25rem 0;
+    max-width: 90%;
+    margin-inline: auto;
   }
 
   .kiosk-attract-copy {
     flex: none;
     min-height: 0;
-    height: 100%;
-    justify-content: flex-end;
+    height: auto;
+    justify-content: flex-start;
     gap: clamp(0.75rem, 2vh, 1.5rem);
-    padding: clamp(0.5rem, 1.5vh, 1rem) 1.5rem clamp(2rem, 5vh, 3.5rem);
+    padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3.5rem);
   }
 
   .kiosk-attract-question {
