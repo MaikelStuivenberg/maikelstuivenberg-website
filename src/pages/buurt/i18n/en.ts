@@ -16,6 +16,7 @@ export const en: Messages = {
   ],
   attractCta: "Tap to start",
   attractLunchPromo: "🎁 Win 1 of 3 free lunches",
+  attractLunchPromoSub: "at Soul Station, our new spot in Amsterdam",
   attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
@@ -54,8 +55,9 @@ export const en: Messages = {
     "Leave your name and email. We will follow up about volunteering near you.",
   signupName: "Your name",
   signupEmail: "Your email",
-  signupLunchTitle: "Win a free lunch",
-  signupLunchBody: "We will draw 3 winners after today. Everyone can enter.",
+  signupLunchTitle: "Win a free lunch at Soul Station",
+  signupLunchBody:
+    "Our new spot in Amsterdam, close to Centraal. We’ll draw 3 winners after today. Everyone can enter.",
   signupConsent:
     "I agree that The Salvation Army may use my details for the lunch draw and a short volunteer follow-up email. They will be deleted afterwards.",
   signupSubmit: "Send",
@@ -66,8 +68,8 @@ export const en: Messages = {
   signupNeedName: "Enter your name.",
 
   thanksTitle: "Thanks!",
-  thanksBody:
-    "We received your details. Good luck in the lunch draw and hopefully see you soon at The Salvation Army.",
+  thanksBody: "You’re in the draw for a lunch at Soul Station in Amsterdam.",
+  locationNewBadge: "New",
   thanksDone: "Done",
 
   adminTitle: "Export sign-ups",

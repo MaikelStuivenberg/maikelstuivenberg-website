@@ -698,22 +698,64 @@
 }
 
 .kiosk-attract-lunch-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.1rem, 0.45cqh, 0.2rem);
   margin: 0;
-  padding: 0 0.15em;
+  padding: 0;
   text-align: center;
+}
+
+.kiosk-attract-lunch-promo-line {
   font-size: clamp(0.82rem, min(3.6cqw, 2.5cqh), 1.05rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--kiosk-navy);
+  padding: 0 0.12em;
   background: linear-gradient(
     to top,
     rgba(255, 184, 28, 0.55) 0%,
     rgba(255, 184, 28, 0.55) 38%,
     transparent 38%
   );
-  background-size: 100% 100%;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+.kiosk-attract-lunch-promo-sub {
+  font-size: clamp(0.72rem, min(3cqw, 2.1cqh), 0.92rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--kiosk-teal);
+  max-width: 22rem;
+}
+
+.kiosk-location-new-badge {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 0.62em;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  padding: 0.12em 0.5em;
+  border-radius: 999px;
+  background: var(--kiosk-yellow);
+  color: var(--kiosk-navy);
+}
+
+.kiosk-attract-dot-feature-ring {
+  fill: none;
+  stroke: var(--kiosk-yellow);
+  stroke-width: 2.5;
+  opacity: 0.92;
+}
+
+.kiosk-attract-dot--featured {
+  stroke: var(--kiosk-yellow);
+  stroke-width: 1.75;
 }
 
 .kiosk-attract-question {

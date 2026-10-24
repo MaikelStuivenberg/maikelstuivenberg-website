@@ -5,6 +5,7 @@ import {
   NL_VIEW,
   projectLocations,
 } from "./nl-map";
+import { isSoulStation } from "./soul-station";
 
 type Props = {
   questions: string[];
@@ -12,6 +13,7 @@ type Props = {
   tagline: string;
   cta: string;
   lunchPromoLabel: string;
+  lunchPromoSubLabel: string;
   placesCount: number | string;
   placesCountTemplate: string;
   locations: KioskLocation[];
@@ -57,6 +59,7 @@ export function AttractScreen({
   tagline,
   cta,
   lunchPromoLabel,
+  lunchPromoSubLabel,
   placesCount,
   placesCountTemplate,
   locations,
@@ -135,8 +138,17 @@ export function AttractScreen({
             {dots.map((dot) => {
               const rippleIndex = rippleDots.get(dot.id);
               const rippling = rippleIndex !== undefined;
+              const featured = isSoulStation(dot.id);
               return (
                 <g key={dot.id}>
+                  {featured ? (
+                    <circle
+                      cx={dot.x}
+                      cy={dot.y}
+                      r={10}
+                      className="kiosk-attract-dot-feature-ring"
+                    />
+                  ) : null}
                   {rippling ? (
                     <circle
                       cx={dot.x}
@@ -153,7 +165,9 @@ export function AttractScreen({
                     className={
                       rippling
                         ? "kiosk-attract-dot kiosk-attract-dot--ripple"
-                        : "kiosk-attract-dot"
+                        : featured
+                          ? "kiosk-attract-dot kiosk-attract-dot--featured"
+                          : "kiosk-attract-dot"
                     }
                     style={
                       rippling
@@ -182,7 +196,10 @@ export function AttractScreen({
       </button>
 
       <div className="kiosk-attract-actions">
-        <p className="kiosk-attract-lunch-promo">{lunchPromoLabel}</p>
+        <p className="kiosk-attract-lunch-promo">
+          <span className="kiosk-attract-lunch-promo-line">{lunchPromoLabel}</span>
+          <span className="kiosk-attract-lunch-promo-sub">{lunchPromoSubLabel}</span>
+        </p>
         <button type="button" className="kiosk-attract-cta" onClick={onStart}>
           <TouchFingerIcon />
           <span>{cta}</span>

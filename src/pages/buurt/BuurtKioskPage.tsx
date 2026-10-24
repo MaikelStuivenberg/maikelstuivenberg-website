@@ -27,6 +27,7 @@ import type {
   Screen,
 } from "./types";
 import { AttractScreen } from "./AttractScreen";
+import { LocationNameWithBadge } from "./LocationNameWithBadge";
 import { LDH_LOGO_PATH } from "./brand";
 import { KioskHomeButton } from "./KioskHomeButton";
 import { useKioskAutoFullscreen } from "./useKioskAutoFullscreen";
@@ -424,6 +425,7 @@ function BuurtKioskApp() {
             tagline={m.campaignTagline}
             cta={m.attractCta}
             lunchPromoLabel={m.attractLunchPromo}
+            lunchPromoSubLabel={m.attractLunchPromoSub}
             placesCount={locations.length || "…"}
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}
@@ -574,7 +576,11 @@ function BuurtKioskApp() {
                       )}
                     >
                       <p className="kiosk-screen-body font-bold leading-snug">
-                        {loc.title}
+                        <LocationNameWithBadge
+                          locationId={loc.id}
+                          title={loc.title}
+                          newLabel={m.locationNewBadge}
+                        />
                       </p>
                       <p className="text-base text-[var(--kiosk-teal)] md:text-lg">
                         {kindLabel(loc.kind, locale)}
@@ -592,7 +598,13 @@ function BuurtKioskApp() {
                 <p className="mt-2 text-sm font-bold uppercase tracking-wide text-[var(--kiosk-teal)]">
                   {m.placeJoinHere}
                 </p>
-                <p className="mt-1 text-lg font-bold">{selected.title}</p>
+                <p className="mt-1 text-lg font-bold">
+                  <LocationNameWithBadge
+                    locationId={selected.id}
+                    title={selected.title}
+                    newLabel={m.locationNewBadge}
+                  />
+                </p>
                 <p className="mt-1 text-sm">{selected.address}</p>
                 <div className="mt-3 flex flex-col gap-2">
                   {selected.url && (
@@ -638,7 +650,11 @@ function BuurtKioskApp() {
               <p className="kiosk-screen-body">{m.signupIntro}</p>
               {selected && (
                 <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
-                  {selected.title}
+                  <LocationNameWithBadge
+                    locationId={selected.id}
+                    title={selected.title}
+                    newLabel={m.locationNewBadge}
+                  />
                 </p>
               )}
               <div>
