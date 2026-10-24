@@ -87,7 +87,7 @@ export function AttractScreen({
   return (
     <button
       type="button"
-      className="kiosk-attract kiosk-surface flex min-h-0 flex-1 flex-col overflow-hidden text-center"
+      className="kiosk-attract kiosk-surface h-full min-h-0 flex-1 overflow-hidden text-center"
       onClick={onStart}
     >
       <div className="kiosk-attract-ambient" aria-hidden="true">

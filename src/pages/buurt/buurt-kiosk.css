@@ -284,8 +284,11 @@
 .kiosk-attract {
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
   background: var(--kiosk-bg);
   min-height: 0;
+  height: 100%;
   box-shadow: inset 0 0 0 1px rgba(200, 217, 212, 0.35);
 }
 
@@ -537,6 +540,67 @@
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
   animation: kiosk-check-draw 0.55s ease-out 0.2s forwards;
+}
+
+/* Event stand / tall portrait kiosk (1080×1920) — fill height, vw-led type */
+@media (min-width: 600px) and (min-height: 900px) {
+  .kiosk-attract {
+    display: grid;
+    grid-template-rows: minmax(0, 52%) minmax(0, 1fr);
+    grid-template-columns: 1fr;
+  }
+
+  .kiosk-attract-map-panel {
+    flex: none;
+    max-height: none;
+    min-height: 0;
+    height: 100%;
+    padding: 0.5rem 1.25rem 0;
+  }
+
+  .kiosk-attract-copy {
+    flex: none;
+    min-height: 0;
+    height: 100%;
+    justify-content: flex-end;
+    gap: clamp(0.75rem, 2vh, 1.5rem);
+    padding: clamp(0.5rem, 1.5vh, 1rem) 1.5rem clamp(2rem, 5vh, 3.5rem);
+  }
+
+  .kiosk-attract-question {
+    font-size: clamp(2.35rem, 5.75vw, 4.1rem);
+  }
+
+  .kiosk-attract-tagline-text {
+    font-size: clamp(1.65rem, 4.25vw, 2.65rem);
+  }
+
+  .kiosk-attract-count {
+    font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+  }
+
+  .kiosk-attract-count-num {
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+  }
+
+  .kiosk-attract-cta {
+    min-height: clamp(4.5rem, 12vh, 6.5rem);
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    margin-top: clamp(0.25rem, 1.5vh, 1rem);
+  }
+
+  .kiosk-attract-cta-icon {
+    width: clamp(2.5rem, 7vw, 3.75rem);
+    height: clamp(2.5rem, 7vw, 3.75rem);
+  }
+
+  .kiosk-header-logo {
+    height: clamp(4.5rem, 11vw, 6.5rem);
+  }
+
+  .kiosk-header-title {
+    font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+  }
 }
 
 @media (orientation: landscape) and (max-height: 520px) {
