@@ -9,7 +9,7 @@ import {
 import { PageMeta } from "@/components/PageMeta";
 import { cn } from "@/lib/utils";
 import { KioskMap } from "./KioskMap";
-import { OnScreenKeyboard, SearchIcon } from "./OnScreenKeyboard";
+import { OnScreenKeyboard } from "./OnScreenKeyboard";
 import { geocodeDutch, nearestLocations } from "./geo";
 import { t, type Locale } from "./i18n";
 import {
@@ -356,7 +356,7 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "choose" && (
-          <div className="kiosk-screen kiosk-screen--center gap-8">
+          <div className="kiosk-screen kiosk-screen--center">
             <h1 className="kiosk-screen-title text-center text-[var(--kiosk-navy)]">
               {m.chooseTitle}
             </h1>
@@ -395,11 +395,11 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "search" && (
-          <div className="kiosk-screen gap-3">
-            <h1 className="kiosk-screen-title">{m.searchTitle}</h1>
-            <div className="flex shrink-0 gap-2">
+          <div className="kiosk-screen kiosk-screen--search">
+            <div className="kiosk-search-hero">
+              <h1 className="kiosk-screen-title text-center">{m.searchTitle}</h1>
               <div
-                className="kiosk-input-display kiosk-card min-w-0 flex-1 px-4 py-3"
+                className="kiosk-input-display kiosk-card w-full px-4 py-3"
                 role="textbox"
                 aria-label={m.searchPlaceholder}
               >
@@ -409,35 +409,30 @@ export function BuurtKioskPage() {
                   </span>
                 )}
               </div>
+              {searchError === "empty" && (
+                <p className="kiosk-screen-body text-center font-semibold text-[var(--kiosk-teal)]">
+                  {m.searchEmptyHint}
+                </p>
+              )}
+              {searchError === "notfound" && (
+                <p className="kiosk-screen-body text-center font-semibold text-[var(--kiosk-red)]">
+                  {m.searchError}
+                </p>
+              )}
               <button
                 type="button"
-                className="kiosk-touch-btn kiosk-btn-primary kiosk-search-go-btn flex shrink-0 items-center justify-center gap-2 px-3"
-                onPointerDown={(e) => e.preventDefault()}
-                onPointerUp={(e) => {
-                  e.preventDefault();
-                  void handleSearch();
-                }}
+                className="kiosk-touch-btn kiosk-btn-secondary shrink-0"
+                onClick={() => go("choose")}
               >
-                <SearchIcon />
-                {m.searchGo}
+                {m.searchBack}
               </button>
             </div>
-            {searchError === "empty" && (
-              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-teal)]">
-                {m.searchEmptyHint}
-              </p>
-            )}
-            {searchError === "notfound" && (
-              <p className="kiosk-screen-body font-semibold text-[var(--kiosk-red)]">
-                {m.searchError}
-              </p>
-            )}
-            <div className="kiosk-keyboard-panel min-h-0 flex-1">
+            <div className="kiosk-keyboard-dock">
               <OnScreenKeyboard
                 mode="location"
                 onKey={(k) => {
                   setSearchError(null);
-                  setSearchQuery((q) => q + k);
+                  setSearchQuery((q) => (q + k).slice(0, 40));
                 }}
                 onBackspace={() => {
                   setSearchError(null);
@@ -447,13 +442,6 @@ export function BuurtKioskPage() {
                 submitLabel={m.searchGo}
               />
             </div>
-            <button
-              type="button"
-              className="kiosk-touch-btn kiosk-btn-secondary shrink-0"
-              onClick={() => go("choose")}
-            >
-              {m.searchBack}
-            </button>
           </div>
         )}
 
@@ -559,109 +547,113 @@ export function BuurtKioskPage() {
         )}
 
         {screen === "signup" && (
-          <div className="kiosk-screen kiosk-screen--scroll gap-3">
-            <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
-              {m.campaignTagline}
-            </h1>
-            <p className="kiosk-signup-subtitle font-bold text-[var(--kiosk-navy)]">
-              {m.signupTitle}
-            </p>
-            <p className="kiosk-screen-body">{m.signupIntro}</p>
-            {selected && (
-              <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
-                {selected.title}
+          <div className="kiosk-screen kiosk-screen--signup">
+            <div className="kiosk-signup-scroll kiosk-screen--scroll">
+              <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
+                {m.campaignTagline}
+              </h1>
+              <p className="kiosk-signup-subtitle font-bold text-[var(--kiosk-navy)]">
+                {m.signupTitle}
               </p>
-            )}
-            <button
-              type="button"
-              onClick={() => setSignupField("name")}
-              className={cn(
-                "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
-                signupField === "name" && "kiosk-card--active",
+              <p className="kiosk-screen-body">{m.signupIntro}</p>
+              {selected && (
+                <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
+                  {selected.title}
+                </p>
               )}
-            >
-              <span className="block text-sm font-semibold">{m.signupName}</span>
-              {name || "…"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setSignupField("email")}
-              className={cn(
-                "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
-                signupField === "email" && "kiosk-card--active",
-              )}
-            >
-              <span className="block text-sm font-semibold">{m.signupEmail}</span>
-              {email || "…"}
-            </button>
-            <div className="kiosk-card p-4">
-              <p className="font-bold text-[var(--kiosk-red)]">{m.signupLunchTitle}</p>
-              <p className="mt-1 text-sm">{m.signupLunchBody}</p>
-              <label className="mt-3 flex items-start gap-3 text-sm leading-snug">
-                <input
-                  type="checkbox"
-                  checked={consent}
-                  onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-1 h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
-                />
-                <span>{m.signupConsent}</span>
-              </label>
-            </div>
-            {formError && (
-              <p className="font-medium text-[var(--kiosk-red)]">{formError}</p>
-            )}
-            <OnScreenKeyboard
-              mode={signupField === "email" ? "email" : "name"}
-              onKey={(k) => {
-                if (signupField === "name") setName((n) => n + k);
-                else setEmail((e) => e + k);
-              }}
-              onBackspace={() => {
-                if (signupField === "name") setName((n) => n.slice(0, -1));
-                else setEmail((e) => e.slice(0, -1));
-              }}
-            />
-            <div className="flex flex-col gap-2 text-sm">
-              <a
-                href={m.linksVolunteerVacancies}
-                className="font-semibold text-[var(--kiosk-red)] underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {m.volunteerLink}
-              </a>
-              <a
-                href={m.linksBuurtwerk}
-                className="font-semibold text-[var(--kiosk-red)] underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {m.volunteerBuurtLink}
-              </a>
-              <a
-                href={m.linksVolunteerForm}
-                className="font-semibold text-[var(--kiosk-red)] underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {m.volunteerGeneralLink}
-              </a>
-            </div>
-            <div className="grid grid-cols-2 gap-3 pb-2">
               <button
                 type="button"
-                className="kiosk-touch-btn kiosk-btn-secondary font-semibold"
-                onClick={() => go("map")}
+                onClick={() => setSignupField("name")}
+                className={cn(
+                  "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
+                  signupField === "name" && "kiosk-card--active",
+                )}
               >
-                {m.signupSkip}
+                <span className="block text-sm font-semibold">{m.signupName}</span>
+                {name || "…"}
               </button>
               <button
                 type="button"
-                className="kiosk-touch-btn kiosk-btn-primary font-bold"
-                onClick={submitSignup}
+                onClick={() => setSignupField("email")}
+                className={cn(
+                  "kiosk-card kiosk-field px-4 py-3 text-left text-xl",
+                  signupField === "email" && "kiosk-card--active",
+                )}
               >
-                {m.signupSubmit}
+                <span className="block text-sm font-semibold">{m.signupEmail}</span>
+                {email || "…"}
               </button>
+              <div className="kiosk-card p-4">
+                <p className="font-bold text-[var(--kiosk-red)]">{m.signupLunchTitle}</p>
+                <p className="mt-1 text-sm">{m.signupLunchBody}</p>
+                <label className="mt-3 flex items-start gap-3 text-sm leading-snug">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
+                  />
+                  <span>{m.signupConsent}</span>
+                </label>
+              </div>
+              {formError && (
+                <p className="font-medium text-[var(--kiosk-red)]">{formError}</p>
+              )}
+              <div className="flex flex-col gap-2 text-sm">
+                <a
+                  href={m.linksVolunteerVacancies}
+                  className="font-semibold text-[var(--kiosk-red)] underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {m.volunteerLink}
+                </a>
+                <a
+                  href={m.linksBuurtwerk}
+                  className="font-semibold text-[var(--kiosk-red)] underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {m.volunteerBuurtLink}
+                </a>
+                <a
+                  href={m.linksVolunteerForm}
+                  className="font-semibold text-[var(--kiosk-red)] underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {m.volunteerGeneralLink}
+                </a>
+              </div>
+              <div className="grid grid-cols-2 gap-3 pb-2">
+                <button
+                  type="button"
+                  className="kiosk-touch-btn kiosk-btn-secondary font-semibold"
+                  onClick={() => go("map")}
+                >
+                  {m.signupSkip}
+                </button>
+                <button
+                  type="button"
+                  className="kiosk-touch-btn kiosk-btn-primary font-bold"
+                  onClick={submitSignup}
+                >
+                  {m.signupSubmit}
+                </button>
+              </div>
+            </div>
+            <div className="kiosk-keyboard-dock">
+              <OnScreenKeyboard
+                mode={signupField === "email" ? "email" : "name"}
+                onKey={(k) => {
+                  if (signupField === "name") setName((n) => (n + k).slice(0, 80));
+                  else setEmail((e) => (e + k).slice(0, 120));
+                }}
+                onBackspace={() => {
+                  if (signupField === "name") setName((n) => n.slice(0, -1));
+                  else setEmail((e) => e.slice(0, -1));
+                }}
+              />
             </div>
           </div>
         )}

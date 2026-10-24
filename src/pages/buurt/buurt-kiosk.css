@@ -15,6 +15,11 @@
   --kiosk-radius-lg: 1.5rem;
   --kiosk-shadow: 0 8px 24px rgba(7, 35, 41, 0.1);
   --kiosk-shadow-soft: 0 4px 16px rgba(7, 35, 41, 0.08);
+  /* Horizontal inset from screen edge (≈24–32px on phones, more on stand) */
+  --kiosk-gutter: clamp(1.5rem, 7vw, 2.75rem);
+  --kiosk-attract-pad-x: clamp(1rem, 5vw, 2.25rem);
+  --kiosk-attract-gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.75rem);
+  --kiosk-attract-gap-lg: clamp(1rem, min(3.2vw, 2.8dvh), 2.25rem);
   /* Fluid unit: width on phones, height on tall kiosk — keeps 1080×1920 ~unchanged */
   --kiosk-u: min(1vw, calc(1dvh * 0.56), calc(1svh * 0.56));
 
@@ -140,7 +145,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-inline: clamp(0.65rem, 2.5vw, 1rem);
+  padding-inline: var(--kiosk-gutter);
   padding-bottom: clamp(0.5rem, 1.5dvh, 1rem);
 }
 
@@ -149,6 +154,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.25rem);
 }
 
 .kiosk-screen--scroll {
@@ -160,13 +166,53 @@
 .kiosk-screen--center {
   justify-content: center;
   overflow-y: auto;
+  gap: clamp(1.5rem, min(4vw, 3.5dvh), 2.5rem);
 }
 
-.kiosk-keyboard-panel {
+.kiosk-screen--search,
+.kiosk-screen--signup {
   flex: 1;
   min-height: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.kiosk-search-hero {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.25rem);
+  padding-bottom: clamp(0.5rem, 1.5dvh, 1rem);
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+.kiosk-signup-scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, min(2.5vw, 2.2dvh), 1.25rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.kiosk-keyboard-dock {
+  flex-shrink: 0;
+  margin-inline: calc(-1 * var(--kiosk-gutter));
+  padding: clamp(0.35rem, 1.2dvh, 0.75rem) var(--kiosk-gutter)
+    clamp(0.5rem, 1.5dvh, 1rem);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 248, 247, 0) 0%,
+    rgba(245, 248, 247, 0.92) 12%,
+    var(--kiosk-bg) 28%
+  );
+  border-top: 1px solid rgba(200, 217, 212, 0.45);
+  box-shadow: 0 -6px 24px rgba(7, 35, 41, 0.06);
 }
 
 /* Shared screen typography / targets */
@@ -216,68 +262,167 @@
 
 /* On-screen keyboard */
 .kiosk-keyboard {
-  gap: clamp(0.2rem, min(0.8vw, 0.5dvh), 0.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.25rem, min(0.65vw, 0.45dvh), 0.55rem);
 }
 
 .kiosk-key-row {
-  gap: clamp(0.15rem, min(0.55vw, 0.35dvh), 0.5rem);
+  display: flex;
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-row--letters {
+  justify-content: center;
+}
+
+.kiosk-key-row--stagger-1 {
+  padding-inline: clamp(0.35rem, 2.2vw, 1.25rem);
+}
+
+.kiosk-key-row--stagger-2 {
+  padding-inline: clamp(0.75rem, 4.5vw, 2.5rem);
+}
+
+.kiosk-key-row--letters .kiosk-key {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: clamp(2.25rem, 9.5vw, 4.5rem);
+}
+
+.kiosk-key-row--bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 1fr) minmax(0, 2.2fr);
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-row--bottom-alt {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) repeat(2, minmax(0, 1fr));
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-row--bottom-alt .kiosk-key--space {
+  grid-column: 1;
+}
+
+.kiosk-key-row--symbols {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-row--pin {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-row--pin-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-snippets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.2rem, min(0.55vw, 0.4dvh), 0.45rem);
+}
+
+.kiosk-key-spacer {
+  min-height: clamp(2.5rem, min(10.5vw, 5.2dvh), 3.75rem);
 }
 
 .kiosk-key {
   min-height: clamp(2.5rem, min(10.5vw, 5.2dvh), 3.75rem);
-  font-size: clamp(0.7rem, min(3.2vw, 2.3dvh), 1.5rem);
-  border-radius: var(--kiosk-radius);
+  font-size: clamp(0.75rem, min(3.2vw, 2.3dvh), 1.5rem);
+  border-radius: clamp(0.45rem, 1.2vw, 0.65rem);
   background: #fff;
   border: 1px solid rgba(200, 217, 212, 0.9);
   box-shadow: var(--kiosk-shadow-soft);
-  transition: transform 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease;
+  transition: transform 0.08s ease, background-color 0.08s ease, box-shadow 0.08s ease;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .kiosk-key:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
   background: var(--kiosk-mint);
-  box-shadow: inset 0 2px 6px rgba(7, 35, 41, 0.08);
+  box-shadow: inset 0 2px 6px rgba(7, 35, 41, 0.1);
 }
 
-.kiosk-key--dark {
-  background: var(--kiosk-navy);
-  color: #fff;
-  border-color: var(--kiosk-navy);
+.kiosk-key--backspace {
+  flex: 1.35 1 0;
+  max-width: clamp(3rem, 14vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(200, 217, 212, 0.35);
 }
 
-.kiosk-key--dark:active {
-  background: #0a2f38;
+.kiosk-key-backspace-icon {
+  width: clamp(1.25rem, min(5.5vw, 3.5dvh), 2rem);
+  height: clamp(1.25rem, min(5.5vw, 3.5dvh), 2rem);
 }
 
-.kiosk-key--small {
-  min-height: clamp(2.5rem, min(9vw, 4.5dvh), 3rem);
-  font-size: clamp(0.65rem, min(2.6vw, 2dvh), 1.125rem);
+.kiosk-key--space {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.kiosk-key-space-bar {
+  display: block;
+  width: 55%;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(7, 35, 41, 0.35);
 }
 
 .kiosk-key-snippet {
   flex: 1 1 auto;
   min-width: 0;
-  min-height: clamp(2.5rem, min(9vw, 4.5dvh), 3rem);
-  font-size: clamp(0.6rem, min(2.4vw, 1.8dvh), 1.125rem);
-  padding-inline: clamp(0.15rem, 1vw, 0.5rem);
+  min-height: clamp(2.35rem, min(8.5vw, 4.5dvh), 3.25rem);
+  font-size: clamp(0.6rem, min(2.4vw, 1.8dvh), 1.05rem);
+  padding-inline: clamp(0.25rem, 1.2vw, 0.65rem);
   background: rgba(200, 217, 212, 0.35);
 }
 
-.kiosk-key-backspace,
-.kiosk-key-submit {
-  min-height: clamp(2.5rem, min(11vw, 5.5dvh), 3.75rem);
-  font-size: clamp(0.95rem, min(3vw, 2.3dvh), 1.25rem);
-}
-
-.kiosk-key-submit {
-  min-height: clamp(2.75rem, min(12vw, 6.5dvh), 4.25rem);
-  font-size: clamp(1rem, min(4vw, 2.8dvh), 1.5rem);
+.kiosk-key--submit {
+  min-height: clamp(2.75rem, min(11.5vw, 5.8dvh), 4.25rem);
+  font-size: clamp(0.9rem, min(3.5vw, 2.5dvh), 1.45rem);
   gap: clamp(0.35rem, 1.5vw, 0.75rem);
+  border: none;
+  color: #fff;
 }
 
 .kiosk-key-submit-icon {
-  width: clamp(1.5rem, min(6vw, 4dvh), 2rem);
-  height: clamp(1.5rem, min(6vw, 4dvh), 2rem);
+  width: clamp(1.25rem, min(5.5vw, 3.5dvh), 1.85rem);
+  height: clamp(1.25rem, min(5.5vw, 3.5dvh), 1.85rem);
+}
+
+@media (min-width: 600px) and (min-height: 900px) {
+  .kiosk-key {
+    min-height: clamp(3.25rem, 5.5vh, 5rem);
+    font-size: clamp(1.35rem, 2.8vw, 2rem);
+    max-width: none;
+  }
+
+  .kiosk-key-row--bottom {
+    grid-template-columns: minmax(0, 4.5fr) minmax(0, 1fr) minmax(0, 2.5fr);
+  }
+
+  .kiosk-key--submit {
+    min-height: clamp(4rem, 7vh, 5.5rem);
+    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  }
+
+  .kiosk-key-snippet {
+    min-height: clamp(3rem, 5vh, 4rem);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+  }
 }
 
 /* Attract */
@@ -396,9 +541,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(0.35rem, min(1.2vw, 1.2dvh), 1.25rem);
-  padding: clamp(0.25rem, 1dvh, 0.5rem) clamp(0.65rem, 3vw, 1.25rem)
-    clamp(0.35rem, 1.2dvh, 1.25rem);
+  gap: var(--kiosk-attract-gap);
+  padding: var(--kiosk-attract-gap-lg) var(--kiosk-attract-pad-x)
+    clamp(0.5rem, 1.5dvh, 1.25rem);
 }
 
 .kiosk-attract-question {
@@ -468,7 +613,10 @@
   align-items: center;
   justify-content: center;
   gap: clamp(0.5rem, 2vw, 1rem);
-  width: min(100%, 36rem);
+  align-self: stretch;
+  width: 100%;
+  max-width: min(36rem, 100%);
+  margin-inline: auto;
   min-height: clamp(2.75rem, min(11vw, 7dvh), 6.5rem);
   padding: clamp(0.5rem, 1.5dvh, 1rem) clamp(0.85rem, 3vw, 2rem);
   border-radius: var(--kiosk-radius-lg);
@@ -548,7 +696,7 @@
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
     grid-template-columns: 1fr;
-    row-gap: 0;
+    row-gap: var(--kiosk-attract-gap-lg);
     align-content: stretch;
   }
 
@@ -577,8 +725,8 @@
     min-height: 0;
     height: auto;
     justify-content: flex-start;
-    gap: clamp(0.75rem, 2vh, 1.5rem);
-    padding: 0.5rem 1.5rem clamp(2rem, 5vh, 3.5rem);
+    gap: clamp(1rem, 2.5vh, 2rem);
+    padding: 0 var(--kiosk-attract-pad-x) clamp(2rem, 5vh, 3.5rem);
   }
 
   .kiosk-attract-question {
@@ -600,7 +748,7 @@
   .kiosk-attract-cta {
     min-height: clamp(4.5rem, 12vh, 6.5rem);
     font-size: clamp(1.75rem, 5vw, 2.75rem);
-    margin-top: clamp(0.25rem, 1.5vh, 1rem);
+    margin-top: var(--kiosk-attract-gap);
   }
 
   .kiosk-attract-cta-icon {
@@ -614,6 +762,14 @@
 
   .kiosk-header-title {
     font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+  }
+}
+
+@media (max-height: 680px) {
+  .buurt-kiosk {
+    --kiosk-attract-gap: clamp(0.5rem, min(2vw, 1.8dvh), 1rem);
+    --kiosk-attract-gap-lg: clamp(0.65rem, min(2.5vw, 2dvh), 1.25rem);
+    --kiosk-gutter: clamp(1.25rem, 6vw, 1.5rem);
   }
 }
 

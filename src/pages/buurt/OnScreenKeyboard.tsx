@@ -11,24 +11,14 @@ type Props = {
   className?: string;
 };
 
-const ROWS_LOCATION = [
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-  ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-  ["Z", "X", "C", "V", "B", "N", "M", "-", " "],
-];
+const ROWS_NUMBERS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const ROWS_Q = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+const ROWS_A = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+const ROWS_Z = ["Z", "X", "C", "V", "B", "N", "M"];
 
-const ROWS_NAME = [
-  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-  ["a", "s", "d", "f", "g", "h", "j", "k", "l", "'"],
-  ["z", "x", "c", "v", "b", "n", "m", "-", " "],
-];
-
-const ROWS_EMAIL_LETTERS = [
-  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-  ["z", "x", "c", "v", "b", "n", "m"],
-];
+const ROWS_NAME_Q = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
+const ROWS_NAME_A = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+const ROWS_NAME_Z = ["z", "x", "c", "v", "b", "n", "m"];
 
 const ROWS_EMAIL_SYMBOLS = ["@", ".", "-", "_", "+"];
 
@@ -47,25 +37,39 @@ const ROWS_PIN = [
   ["", "0", ""],
 ];
 
-function KeyButton({
+function BackspaceIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M9 6H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5-4V6z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13 10l4 4m0-4-4 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CharKey({
   label,
-  wide,
-  small,
   onPress,
+  className,
 }: {
   label: string;
-  wide?: boolean;
-  small?: boolean;
   onPress: () => void;
+  className?: string;
 }) {
-  if (!label) {
-    return (
-      <div
-        className={cn(wide ? "col-span-2" : "", "min-h-[2.5rem]")}
-        aria-hidden="true"
-      />
-    );
-  }
   return (
     <button
       type="button"
@@ -74,18 +78,48 @@ function KeyButton({
         e.preventDefault();
         onPress();
       }}
-      className={cn(
-        "kiosk-key font-semibold text-[var(--kiosk-navy)]",
-        small ? "kiosk-key--small" : "",
-        wide && "col-span-2",
-      )}
+      className={cn("kiosk-key font-semibold text-[var(--kiosk-navy)]", className)}
     >
       {label}
     </button>
   );
 }
 
-function SnippetButton({
+function BackspaceKey({ onPress }: { onPress: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-label="Wis laatste teken"
+      onPointerDown={(e) => e.preventDefault()}
+      onPointerUp={(e) => {
+        e.preventDefault();
+        onPress();
+      }}
+      className="kiosk-key kiosk-key--backspace font-semibold text-[var(--kiosk-navy)]"
+    >
+      <BackspaceIcon className="kiosk-key-backspace-icon" />
+    </button>
+  );
+}
+
+function SpaceKey({ onPress }: { onPress: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-label="Space"
+      onPointerDown={(e) => e.preventDefault()}
+      onPointerUp={(e) => {
+        e.preventDefault();
+        onPress();
+      }}
+      className="kiosk-key kiosk-key--space"
+    >
+      <span className="kiosk-key-space-bar" aria-hidden="true" />
+    </button>
+  );
+}
+
+function SnippetKey({
   label,
   onPress,
 }: {
@@ -126,26 +160,158 @@ export function SearchIcon({ className }: { className?: string }) {
   );
 }
 
-function LetterRows({
-  rows,
+function LetterRow({
+  keys,
+  stagger,
   onKey,
+  trailingBackspace,
+  onBackspace,
+  lowercase,
 }: {
-  rows: string[][];
-  onKey: (key: string) => void;
+  keys: string[];
+  stagger: 0 | 1 | 2 | 3;
+  onKey: (k: string) => void;
+  trailingBackspace?: boolean;
+  onBackspace?: () => void;
+  lowercase?: boolean;
 }) {
   return (
+    <div
+      className={cn(
+        "kiosk-key-row kiosk-key-row--letters",
+        stagger > 0 && `kiosk-key-row--stagger-${stagger}`,
+      )}
+    >
+      {keys.map((key) => (
+        <CharKey
+          key={key}
+          label={lowercase ? key : key}
+          onPress={() => onKey(key)}
+        />
+      ))}
+      {trailingBackspace && onBackspace ? (
+        <BackspaceKey onPress={onBackspace} />
+      ) : null}
+    </div>
+  );
+}
+
+function NumberRow({ onKey }: { onKey: (k: string) => void }) {
+  return (
+    <div className="kiosk-key-row kiosk-key-row--letters">
+      {ROWS_NUMBERS.map((d) => (
+        <CharKey key={d} label={d} onPress={() => onKey(d)} />
+      ))}
+    </div>
+  );
+}
+
+function BottomRow({
+  onKey,
+  onSubmit,
+  submitLabel,
+  extraKeys = [],
+}: {
+  onKey: (k: string) => void;
+  onSubmit?: () => void;
+  submitLabel?: string;
+  extraKeys?: string[];
+}) {
+  const hasSubmit = Boolean(onSubmit && submitLabel);
+
+  return (
+    <div
+      className={cn(
+        "kiosk-key-row",
+        hasSubmit ? "kiosk-key-row--bottom" : "kiosk-key-row--bottom-alt",
+      )}
+    >
+      <SpaceKey onPress={() => onKey(" ")} />
+      {extraKeys.map((sym) => (
+        <CharKey key={sym} label={sym} onPress={() => onKey(sym)} />
+      ))}
+      {hasSubmit ? (
+        <button
+          type="button"
+          onPointerDown={(e) => e.preventDefault()}
+          onPointerUp={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onSubmit!();
+          }}
+          className="kiosk-key kiosk-key--submit kiosk-btn-primary flex items-center justify-center gap-2 font-extrabold"
+        >
+          <SearchIcon />
+          <span>{submitLabel}</span>
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+function QwertyBlock({
+  variant,
+  onKey,
+  onBackspace,
+  onSubmit,
+  submitLabel,
+}: {
+  variant: "location" | "name" | "email";
+  onKey: (k: string) => void;
+  onBackspace: () => void;
+  onSubmit?: () => void;
+  submitLabel?: string;
+}) {
+  const isLocation = variant === "location";
+  const qRow = isLocation ? ROWS_Q : ROWS_NAME_Q;
+  const aRow = isLocation ? ROWS_A : ROWS_NAME_A;
+  const zRow = isLocation ? ROWS_Z : ROWS_NAME_Z;
+  const lower = !isLocation;
+
+  const emit = (k: string) => {
+    if (isLocation) onKey(k === " " ? " " : k);
+    else onKey(k);
+  };
+
+  return (
     <>
-      {rows.map((row, i) => (
-        <div key={i} className="kiosk-key-row grid grid-cols-10">
-          {row.map((key) => (
-            <KeyButton
-              key={`${i}-${key}`}
-              label={key}
-              onPress={() => onKey(key === " " ? " " : key)}
+      {variant === "email" && (
+        <div className="kiosk-key-snippets">
+          {EMAIL_SNIPPETS.map((snippet) => (
+            <SnippetKey
+              key={snippet}
+              label={snippet}
+              onPress={() => onKey(snippet)}
             />
           ))}
         </div>
-      ))}
+      )}
+      <NumberRow onKey={emit} />
+      <LetterRow keys={qRow} stagger={0} onKey={emit} lowercase={lower} />
+      <LetterRow keys={aRow} stagger={1} onKey={emit} lowercase={lower} />
+      <LetterRow
+        keys={zRow}
+        stagger={2}
+        onKey={emit}
+        trailingBackspace
+        onBackspace={onBackspace}
+        lowercase={lower}
+      />
+      {variant === "email" && (
+        <div className="kiosk-key-row kiosk-key-row--symbols">
+          {ROWS_EMAIL_SYMBOLS.map((sym) => (
+            <CharKey key={sym} label={sym} onPress={() => onKey(sym)} />
+          ))}
+        </div>
+      )}
+      <BottomRow
+        onKey={emit}
+        onSubmit={variant === "location" ? onSubmit : undefined}
+        submitLabel={variant === "location" ? submitLabel : undefined}
+        extraKeys={
+          variant === "email" ? ["@", "."] : variant === "name" ? ["-", "'"] : ["-"]
+        }
+      />
     </>
   );
 }
@@ -158,85 +324,49 @@ export function OnScreenKeyboard({
   submitLabel,
   className,
 }: Props) {
-  const showSubmit = Boolean(onSubmit && submitLabel);
-
   return (
-    <div className={cn("kiosk-keyboard flex flex-col", className)}>
-      {mode === "email" && (
+    <div className={cn("kiosk-keyboard", className)}>
+      {mode === "pin" && (
         <>
-          <div className="flex flex-wrap gap-2">
-            {EMAIL_SNIPPETS.map((snippet) => (
-              <SnippetButton
-                key={snippet}
-                label={snippet}
-                onPress={() => onKey(snippet)}
-              />
-            ))}
-          </div>
-          <div className="kiosk-key-row grid grid-cols-10">
-            {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map((d) => (
-              <KeyButton key={d} label={d} onPress={() => onKey(d)} />
-            ))}
-          </div>
-          <LetterRows rows={ROWS_EMAIL_LETTERS} onKey={onKey} />
-          <div className="kiosk-key-row grid grid-cols-5">
-            {ROWS_EMAIL_SYMBOLS.map((sym) => (
-              <KeyButton key={sym} label={sym} onPress={() => onKey(sym)} />
-            ))}
+          {ROWS_PIN.map((row, i) => (
+            <div key={i} className="kiosk-key-row kiosk-key-row--pin">
+              {row.map((key) =>
+                key ? (
+                  <CharKey key={key} label={key} onPress={() => onKey(key)} />
+                ) : (
+                  <div key={`sp-${i}`} className="kiosk-key-spacer" aria-hidden />
+                ),
+              )}
+            </div>
+          ))}
+          <div className="kiosk-key-row kiosk-key-row--pin-actions">
+            <BackspaceKey onPress={onBackspace} />
+            {onSubmit && submitLabel ? (
+              <button
+                type="button"
+                onPointerDown={(e) => e.preventDefault()}
+                onPointerUp={(e) => {
+                  e.preventDefault();
+                  onSubmit();
+                }}
+                className="kiosk-key kiosk-key--submit kiosk-btn-primary font-extrabold"
+              >
+                {submitLabel}
+              </button>
+            ) : null}
           </div>
         </>
       )}
 
-      {mode === "name" && <LetterRows rows={ROWS_NAME} onKey={onKey} />}
-
-      {mode === "location" && (
-        <LetterRows rows={ROWS_LOCATION} onKey={onKey} />
+      {(mode === "location" || mode === "name" || mode === "email") && (
+        <QwertyBlock
+          variant={mode}
+          onKey={onKey}
+          onBackspace={onBackspace}
+          onSubmit={onSubmit}
+          submitLabel={submitLabel}
+        />
       )}
-
-      {mode === "pin" &&
-        ROWS_PIN.map((row, i) => (
-          <div
-            key={i}
-            className="kiosk-key-row grid grid-cols-3"
-            style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
-          >
-            {row.map((key) => (
-              <KeyButton
-                key={`${i}-${key || "empty"}`}
-                label={key}
-                onPress={() => key && onKey(key)}
-              />
-            ))}
-          </div>
-        ))}
-
-      <button
-        type="button"
-        onPointerDown={(e) => e.preventDefault()}
-        onPointerUp={(e) => {
-          e.preventDefault();
-          onBackspace();
-        }}
-        className="kiosk-key-backspace kiosk-key kiosk-key--dark font-semibold"
-      >
-        ⌫
-      </button>
-
-      {showSubmit ? (
-        <button
-          type="button"
-          onPointerDown={(e) => e.preventDefault()}
-          onPointerUp={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onSubmit!();
-          }}
-          className="kiosk-key-submit kiosk-btn-primary flex w-full items-center justify-center font-extrabold"
-        >
-          <SearchIcon />
-          <span>{submitLabel}</span>
-        </button>
-      ) : null}
     </div>
   );
 }

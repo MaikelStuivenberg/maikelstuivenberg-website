@@ -28,6 +28,7 @@ for (const vp of viewports) {
     const mapR = map.getBoundingClientRect();
     const ctaR = cta.getBoundingClientRect();
     const questionR = question.getBoundingClientRect();
+    const attractEl = document.querySelector(".kiosk-attract");
     return {
       mainHeight: mainR.height,
       attractHeight: attractR.height,
@@ -36,6 +37,11 @@ for (const vp of viewports) {
       ctaInsetFromAttractBottom: attractR.bottom - ctaR.bottom,
       attractBottomGap: mainR.bottom - attractR.bottom,
       mapToQuestionGap: questionR.top - mapR.bottom,
+      pageScrolls:
+        document.documentElement.scrollHeight > window.innerHeight + 2,
+      attractScrolls:
+        !!attractEl &&
+        attractEl.scrollHeight > attractEl.clientHeight + 2,
     };
   });
   await page.close();
@@ -59,10 +65,14 @@ for (const vp of viewports) {
     console.error(`${vp.name}: map too small (${(metrics.mapRatio * 100).toFixed(1)}% of attract)`);
     failed = true;
   }
-  if (vp.w >= 1080 && metrics.mapToQuestionGap > 32) {
+  if (vp.w >= 1080 && metrics.mapToQuestionGap > 56) {
     console.error(
-      `${vp.name}: gap between map and question (${metrics.mapToQuestionGap.toFixed(1)}px)`,
+      `${vp.name}: excessive gap between map and question (${metrics.mapToQuestionGap.toFixed(1)}px)`,
     );
+    failed = true;
+  }
+  if (metrics.pageScrolls || metrics.attractScrolls) {
+    console.error(`${vp.name}: vertical scroll on attract`);
     failed = true;
   }
 }

@@ -121,6 +121,7 @@ export function AttractScreen({
           </defs>
           <path
             className="kiosk-attract-map-fill"
+            fillRule="evenodd"
             filter="url(#kiosk-map-soft-shadow)"
             d={outlinePath}
           />
