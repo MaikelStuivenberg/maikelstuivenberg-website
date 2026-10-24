@@ -1,3 +1,4 @@
+import { randomUuid } from "@/lib/random-uuid";
 import type { Locale } from "./i18n";
 import {
   loadOutbox,
@@ -83,7 +84,7 @@ export function enqueueSignupOutbox(
   payload: SignupPayload,
 ): SignupOutboxEntry {
   const entry: SignupOutboxEntry = {
-    localId: crypto.randomUUID(),
+    localId: randomUuid(),
     queuedAt: new Date().toISOString(),
     ...payload,
   };

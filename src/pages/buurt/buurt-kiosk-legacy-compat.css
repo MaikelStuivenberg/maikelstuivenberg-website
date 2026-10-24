@@ -1,0 +1,36 @@
+/**
+ * Fallbacks for embedded browsers without flex gap, dvh, etc.
+ * Modern browsers keep using gap/clamp from buurt-kiosk.css.
+ */
+
+@supports not (gap: 0.25rem) {
+  .buurt-kiosk .kiosk-key-row > * {
+    margin: 0.12rem;
+  }
+
+  .buurt-kiosk .kiosk-header-inner > * {
+    margin: 0.2rem;
+  }
+
+  .buurt-kiosk .kiosk-header-nav {
+    margin: -0.15rem;
+  }
+
+  .buurt-kiosk .kiosk-header-nav > * {
+    margin: 0.15rem;
+  }
+
+  .buurt-kiosk .kiosk-lang-group > * {
+    margin: 0.12rem;
+  }
+
+  .buurt-kiosk .kiosk-admin-rotate > * {
+    margin: 0.25rem;
+  }
+}
+
+@supports not (height: 1dvh) {
+  .buurt-kiosk {
+    min-height: 100vh;
+  }
+}

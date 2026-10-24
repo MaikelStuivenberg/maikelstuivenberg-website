@@ -70,6 +70,7 @@ export const en: Messages = {
   thanksDone: "Done",
 
   adminTitle: "Export sign-ups",
+  adminUserAgent: "Browser:",
   adminPin: "PIN",
   adminWrongPin: "Wrong PIN",
   adminExport: "Download CSV",

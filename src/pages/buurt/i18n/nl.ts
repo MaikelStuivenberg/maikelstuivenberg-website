@@ -69,6 +69,7 @@ export const nl = {
   thanksDone: "Klaar",
 
   adminTitle: "Export inschrijvingen",
+  adminUserAgent: "Browser:",
   adminPin: "PIN",
   adminWrongPin: "Verkeerde PIN",
   adminExport: "Download CSV",

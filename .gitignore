@@ -8,6 +8,7 @@
 
 # Node
 /node_modules
+/chromium
 npm-debug.log
 yarn-error.log
 
