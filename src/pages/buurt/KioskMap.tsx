@@ -104,9 +104,24 @@ export function KioskMap({
         {markers.map((loc) => {
           const selected = loc.id === selectedId;
           const featured = isSoulStation(loc.id);
-          const pinRadius = selected ? 14 : featured ? 12 : 10;
+          const pinRadius = selected ? 15 : featured ? 12 : 10;
           return (
             <Fragment key={loc.id}>
+              {selected ? (
+                <CircleMarker
+                  center={[loc.lat, loc.lon]}
+                  radius={featured ? 22 : 20}
+                  pathOptions={{
+                    color: "#ffffff",
+                    weight: 4,
+                    fillColor: LDH_BRAND.red,
+                    fillOpacity: 0.15,
+                  }}
+                  eventHandlers={{
+                    click: () => onSelect?.(loc),
+                  }}
+                />
+              ) : null}
               {featured ? (
                 <CircleMarker
                   center={[loc.lat, loc.lon]}

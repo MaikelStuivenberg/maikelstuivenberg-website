@@ -26,7 +26,9 @@ async function flow(page, outDir, prefix) {
   await snap("map");
 
   await page.getByRole("button", { name: /Terug|Back/i }).first().click();
-  await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
+  await page
+    .getByRole("button", { name: /Zoek in jouw buurt|Search your neighbourhood/i })
+    .click();
   await snap("search");
 }
 

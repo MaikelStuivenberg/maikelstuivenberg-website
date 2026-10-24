@@ -89,6 +89,9 @@ export const nl = {
   adminAutoFullscreenHint:
     "Eerste tik op het scherm opent volledig scherm (handig op Android-kiosks).",
   navHome: "Naar start",
+  navBack: "Terug",
+  mapSheetQrHint: "Scan voor meer info op je telefoon",
+  mapSheetClose: "Sluiten",
   adminOutboxHint:
     "Als wifi hapert blijven inschrijvingen hier tot ze naar de server zijn gestuurd.",
   loadError: "Locaties laden mislukt. Vernieuw de pagina.",

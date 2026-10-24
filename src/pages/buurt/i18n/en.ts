@@ -90,6 +90,9 @@ export const en: Messages = {
   adminAutoFullscreenHint:
     "The first tap on the screen enters full screen (handy on Android kiosks).",
   navHome: "Home",
+  navBack: "Back",
+  mapSheetQrHint: "Scan for more info on your phone",
+  mapSheetClose: "Close",
   adminOutboxHint:
     "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",
