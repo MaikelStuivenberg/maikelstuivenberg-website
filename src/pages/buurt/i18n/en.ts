@@ -5,8 +5,10 @@ export const en: Messages = {
   langOther: "NL",
   programme: "Geloven in de Buurt",
   programmeSub: "The Salvation Army Netherlands",
+  campaignTagline: "Bring Jesus to your neighbourhood",
 
   attractQuestions: [
+    "Bring Jesus to your neighbourhood.",
     "You don't have to go far. Start in your own neighbourhood.",
     "What will you do after today?",
     "Mission starts around the corner.",

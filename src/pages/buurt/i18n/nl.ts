@@ -3,8 +3,10 @@ export const nl = {
   langOther: "EN",
   programme: "Geloven in de Buurt",
   programmeSub: "Leger des Heils",
+  campaignTagline: "Breng Jezus in jouw buurt",
 
   attractQuestions: [
+    "Breng Jezus in jouw buurt.",
     "Je hoeft niet ver te gaan. Begin in je eigen buurt.",
     "Wat doe jij na vandaag?",
     "Missie begint om de hoek.",

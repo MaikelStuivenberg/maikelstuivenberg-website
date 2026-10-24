@@ -42,6 +42,14 @@
   font-size: clamp(0.95rem, 2.2vw, 1.15rem);
 }
 
+.kiosk-header-tagline {
+  font-size: clamp(0.95rem, 2.6vw, 1.25rem);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .kiosk-lang-btn {
   min-height: 3.75rem;
   min-width: 5.5rem;
@@ -185,10 +193,28 @@
   animation: kiosk-question-in 0.55s ease-out both;
 }
 
+.kiosk-attract-tagline {
+  width: 100%;
+  max-width: 96vw;
+  font-size: clamp(1.65rem, 5.5vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--kiosk-red);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
 .kiosk-attract-count {
   font-size: clamp(1.1rem, 3.2vw, 1.55rem);
   font-weight: 600;
   color: var(--kiosk-teal);
+}
+
+.kiosk-campaign-tagline {
+  font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--kiosk-red);
 }
 
 .kiosk-attract-cta {

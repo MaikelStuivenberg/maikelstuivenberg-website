@@ -9,6 +9,7 @@ import {
 type Props = {
   questions: string[];
   questionIndex: number;
+  tagline: string;
   cta: string;
   placesCountLabel: string;
   locations: KioskLocation[];
@@ -33,6 +34,7 @@ function TouchFingerIcon() {
 export function AttractScreen({
   questions,
   questionIndex,
+  tagline,
   cta,
   placesCountLabel,
   locations,
@@ -99,6 +101,7 @@ export function AttractScreen({
         <p key={questionIndex} className="kiosk-attract-question">
           {question}
         </p>
+        <p className="kiosk-attract-tagline">{tagline}</p>
         <p className="kiosk-attract-count">{placesCountLabel}</p>
         <div className="kiosk-attract-cta">
           <TouchFingerIcon />

@@ -81,11 +81,13 @@ function KioskShell({
   locale,
   onLocaleChange,
   onActivity,
+  headerTagline,
   children,
 }: {
   locale: Locale;
   onLocaleChange: (l: Locale) => void;
   onActivity: () => void;
+  headerTagline?: string;
   children: ReactNode;
 }) {
   return (
@@ -110,6 +112,11 @@ function KioskShell({
             <p className="kiosk-header-sub truncate text-[var(--kiosk-teal)]">
               {t(locale).programmeSub}
             </p>
+            {headerTagline ? (
+              <p className="kiosk-header-tagline mt-1 font-extrabold leading-snug text-[var(--kiosk-red)]">
+                {headerTagline}
+              </p>
+            ) : null}
           </div>
         </div>
         <LanguageToggle locale={locale} onChange={onLocaleChange} />
@@ -322,11 +329,13 @@ export function BuurtKioskPage() {
           setLocale(l);
         }}
         onActivity={bumpIdle}
+        headerTagline={screen === "attract" ? m.campaignTagline : undefined}
       >
         {screen === "attract" && (
           <AttractScreen
             questions={[...m.attractQuestions]}
             questionIndex={questionIndex}
+            tagline={m.campaignTagline}
             cta={m.attractCta}
             placesCountLabel={m.attractPlacesCount.replace(
               "{count}",
@@ -502,7 +511,8 @@ export function BuurtKioskPage() {
             </div>
             {selected && (
               <div className="rounded-2xl bg-white p-4 shadow-md">
-                <p className="text-sm font-bold uppercase tracking-wide text-[var(--kiosk-red)]">
+                <p className="kiosk-campaign-tagline">{m.campaignTagline}</p>
+                <p className="mt-2 text-sm font-bold uppercase tracking-wide text-[var(--kiosk-teal)]">
                   {m.placeJoinHere}
                 </p>
                 <p className="mt-1 text-lg font-bold">{selected.title}</p>
@@ -541,7 +551,12 @@ export function BuurtKioskPage() {
 
         {screen === "signup" && (
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto">
-            <h1 className="kiosk-screen-title">{m.signupTitle}</h1>
+            <h1 className="kiosk-screen-title text-[var(--kiosk-red)]">
+              {m.campaignTagline}
+            </h1>
+            <p className="text-xl font-bold text-[var(--kiosk-navy)]">
+              {m.signupTitle}
+            </p>
             <p className="kiosk-screen-body">{m.signupIntro}</p>
             {selected && (
               <p className="rounded-lg bg-[var(--kiosk-mint)]/40 px-3 py-2 text-sm font-medium">
