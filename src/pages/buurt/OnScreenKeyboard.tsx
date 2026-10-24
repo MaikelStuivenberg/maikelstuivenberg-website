@@ -8,6 +8,7 @@ type Props = {
   onBackspace: () => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  spaceLabel?: string;
   className?: string;
 };
 
@@ -102,11 +103,17 @@ function BackspaceKey({ onPress }: { onPress: () => void }) {
   );
 }
 
-function SpaceKey({ onPress }: { onPress: () => void }) {
+function SpaceKey({
+  onPress,
+  label,
+}: {
+  onPress: () => void;
+  label: string;
+}) {
   return (
     <button
       type="button"
-      aria-label="Space"
+      aria-label={label}
       onPointerDown={(e) => e.preventDefault()}
       onPointerUp={(e) => {
         e.preventDefault();
@@ -115,6 +122,7 @@ function SpaceKey({ onPress }: { onPress: () => void }) {
       className="kiosk-key kiosk-key--space"
     >
       <span className="kiosk-key-space-bar" aria-hidden="true" />
+      <span>{label}</span>
     </button>
   );
 }
@@ -210,11 +218,13 @@ function BottomRow({
   onKey,
   onSubmit,
   submitLabel,
+  spaceLabel,
   extraKeys = [],
 }: {
   onKey: (k: string) => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  spaceLabel: string;
   extraKeys?: string[];
 }) {
   const hasSubmit = Boolean(onSubmit && submitLabel);
@@ -226,7 +236,7 @@ function BottomRow({
         hasSubmit ? "kiosk-key-row--bottom" : "kiosk-key-row--bottom-alt",
       )}
     >
-      <SpaceKey onPress={() => onKey(" ")} />
+      <SpaceKey label={spaceLabel} onPress={() => onKey(" ")} />
       {extraKeys.map((sym) => (
         <CharKey key={sym} label={sym} onPress={() => onKey(sym)} />
       ))}
@@ -239,7 +249,7 @@ function BottomRow({
             e.stopPropagation();
             onSubmit!();
           }}
-          className="kiosk-key kiosk-key--submit kiosk-btn-primary flex items-center justify-center gap-2 font-extrabold"
+          className="kiosk-key kiosk-key--submit flex items-center justify-center gap-2 font-extrabold"
         >
           <SearchIcon />
           <span>{submitLabel}</span>
@@ -255,12 +265,14 @@ function QwertyBlock({
   onBackspace,
   onSubmit,
   submitLabel,
+  spaceLabel,
 }: {
   variant: "location" | "name" | "email";
   onKey: (k: string) => void;
   onBackspace: () => void;
   onSubmit?: () => void;
   submitLabel?: string;
+  spaceLabel: string;
 }) {
   const isLocation = variant === "location";
   const qRow = isLocation ? ROWS_Q : ROWS_NAME_Q;
@@ -308,6 +320,7 @@ function QwertyBlock({
         onKey={emit}
         onSubmit={variant === "location" ? onSubmit : undefined}
         submitLabel={variant === "location" ? submitLabel : undefined}
+        spaceLabel={spaceLabel}
         extraKeys={
           variant === "email" ? ["@", "."] : variant === "name" ? ["-", "'"] : ["-"]
         }
@@ -322,6 +335,7 @@ export function OnScreenKeyboard({
   onBackspace,
   onSubmit,
   submitLabel,
+  spaceLabel = "space",
   className,
 }: Props) {
   return (
@@ -349,7 +363,7 @@ export function OnScreenKeyboard({
                   e.preventDefault();
                   onSubmit();
                 }}
-                className="kiosk-key kiosk-key--submit kiosk-btn-primary font-extrabold"
+                className="kiosk-key kiosk-key--submit font-extrabold"
               >
                 {submitLabel}
               </button>
@@ -365,6 +379,7 @@ export function OnScreenKeyboard({
           onBackspace={onBackspace}
           onSubmit={onSubmit}
           submitLabel={submitLabel}
+          spaceLabel={spaceLabel}
         />
       )}
     </div>

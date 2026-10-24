@@ -67,6 +67,59 @@
   box-shadow: var(--kiosk-shadow);
 }
 
+.kiosk-field {
+  width: 100%;
+  text-align: left;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.kiosk-field--focused {
+  background: #fff;
+  border-color: var(--kiosk-navy);
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(0, 96, 148, 0.22);
+}
+
+.kiosk-field--error {
+  border-color: var(--kiosk-red);
+  border-width: 3px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.kiosk-field-value {
+  display: block;
+  min-height: 1.35em;
+  word-break: break-word;
+}
+
+.kiosk-field-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--kiosk-navy);
+  animation: kiosk-field-caret-blink 1s step-end infinite;
+}
+
+@keyframes kiosk-field-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.kiosk-field-error {
+  margin-top: 0.35rem;
+  font-size: clamp(0.8rem, min(2.6vw, 1.9dvh), 0.95rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--kiosk-red);
+}
+
 .kiosk-list-item {
   border-width: 2px;
 }
@@ -204,7 +257,7 @@
   flex-shrink: 0;
   margin-inline: calc(-1 * var(--kiosk-gutter));
   padding: clamp(0.35rem, 1.2dvh, 0.75rem) var(--kiosk-gutter)
-    clamp(0.5rem, 1.5dvh, 1rem);
+    max(clamp(0.5rem, 1.5dvh, 1rem), env(safe-area-inset-bottom, 0px));
   background: linear-gradient(
     180deg,
     rgba(245, 248, 247, 0) 0%,
@@ -368,9 +421,15 @@
 
 .kiosk-key--space {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.15rem;
   min-width: 0;
+  color: var(--kiosk-teal);
+  font-size: clamp(0.55rem, min(2.2vw, 1.6dvh), 0.8rem);
+  font-weight: 600;
+  text-transform: lowercase;
 }
 
 .kiosk-key-space-bar {
@@ -390,11 +449,18 @@
   background: rgba(200, 217, 212, 0.35);
 }
 
-.kiosk-key--submit {
+.buurt-kiosk button.kiosk-key.kiosk-key--submit {
   min-height: clamp(2.75rem, min(11.5vw, 5.8dvh), 4.25rem);
   font-size: clamp(0.9rem, min(3.5vw, 2.5dvh), 1.45rem);
   gap: clamp(0.35rem, 1.5vw, 0.75rem);
   border: none;
+  background: var(--kiosk-red);
+  color: #fff;
+  box-shadow: var(--kiosk-shadow-soft);
+}
+
+.buurt-kiosk button.kiosk-key.kiosk-key--submit:active {
+  background: var(--kiosk-red-dark);
   color: #fff;
 }
 
@@ -414,7 +480,7 @@
     grid-template-columns: minmax(0, 4.5fr) minmax(0, 1fr) minmax(0, 2.5fr);
   }
 
-  .kiosk-key--submit {
+  .buurt-kiosk button.kiosk-key.kiosk-key--submit {
     min-height: clamp(4rem, 7vh, 5.5rem);
     font-size: clamp(1.5rem, 3.2vw, 2.25rem);
   }
@@ -762,6 +828,43 @@
 
   .kiosk-header-title {
     font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+  }
+}
+
+@media (max-height: 700px) {
+  .kiosk-key {
+    min-height: clamp(2.1rem, min(8.5vw, 4.6dvh), 2.85rem);
+    font-size: clamp(0.65rem, min(2.8vw, 2dvh), 1.05rem);
+  }
+
+  .buurt-kiosk button.kiosk-key.kiosk-key--submit {
+    min-height: clamp(2.25rem, min(9.5vw, 5dvh), 3rem);
+    font-size: clamp(0.8rem, min(3.2vw, 2.2dvh), 1.1rem);
+  }
+
+  .kiosk-keyboard {
+    gap: clamp(0.15rem, min(0.45vw, 0.35dvh), 0.35rem);
+  }
+
+  .kiosk-search-hero {
+    justify-content: flex-start;
+    padding-top: 0.15rem;
+    gap: clamp(0.4rem, min(1.8vw, 1.6dvh), 0.65rem);
+  }
+
+  .kiosk-search-hero .kiosk-screen-title {
+    font-size: clamp(1.1rem, min(4.8vw, 3.6dvh), 1.45rem);
+  }
+
+  .kiosk-input-display {
+    min-height: clamp(2.25rem, min(9vw, 4.8dvh), 2.65rem);
+    font-size: clamp(0.95rem, min(3.8vw, 2.6dvh), 1.25rem);
+    padding-block: 0.5rem;
+  }
+
+  .kiosk-search-hero .kiosk-touch-btn {
+    min-height: clamp(2.25rem, min(9vw, 4.8dvh), 2.65rem);
+    font-size: clamp(0.85rem, min(3vw, 2.2dvh), 1rem);
   }
 }
 
