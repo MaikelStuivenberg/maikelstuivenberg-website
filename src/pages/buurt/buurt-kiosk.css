@@ -1,0 +1,59 @@
+@import "leaflet/dist/leaflet.css";
+
+.buurt-kiosk {
+  --kiosk-red: #e7231a;
+  --kiosk-red-dark: #cb1e15;
+  --kiosk-red-light: #f9d8d6;
+  --kiosk-navy: #072329;
+  --kiosk-teal: #335255;
+  --kiosk-mint: #c8d9d4;
+  --kiosk-bg: #f6f3ef;
+  --kiosk-yellow: #c8d9d4;
+
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--kiosk-bg);
+  color: var(--kiosk-navy);
+  font-family: "Onest", system-ui, sans-serif;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.buurt-kiosk * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.buurt-kiosk .leaflet-container {
+  font-family: inherit;
+  border-radius: 1rem;
+}
+
+@keyframes kiosk-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes kiosk-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kiosk-attract-text {
+  animation: kiosk-fade-in 0.5s ease-out;
+}
+
+.kiosk-tap-hint {
+  animation: kiosk-pulse 2s ease-in-out infinite;
+}

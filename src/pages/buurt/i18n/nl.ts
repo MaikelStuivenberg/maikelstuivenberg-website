@@ -1,0 +1,82 @@
+export const nl = {
+  langLabel: "NL",
+  langOther: "EN",
+  programme: "Geloven in de Buurt",
+  programmeSub: "Leger des Heils",
+
+  attractQuestions: [
+    "Hoeveel plekken van het Leger des Heils zitten bij jou in de buurt?",
+    "Ken jij een buurthuiskamer of korps in de buurt?",
+    "Wil je ergens helpen waar het echt leeft?",
+    "Wat als jouw buurt een plek heeft waar je welkom bent?",
+  ],
+  attractCta: "Raak aan om te beginnen",
+
+  chooseTitle: "Waar wil je kijken?",
+  chooseAll: "Laat alle plekken zien",
+  chooseAllHint: "Kaart van heel Nederland",
+  chooseNear: "Zoek bij mij in de buurt",
+  chooseNearHint: "Postcode of plaatsnaam",
+
+  searchTitle: "Waar ben je?",
+  searchPlaceholder: "Postcode of plaats",
+  searchGo: "Zoek plekken",
+  searchBack: "Terug",
+  searchError: "We vinden die plek niet. Probeer een postcode of stad.",
+
+  mapAllTitle: "Plekken in Nederland",
+  mapNearTitle: "Dichtbij jou",
+  mapBack: "Terug",
+  mapHelp: "Wil je helpen?",
+  mapDistance: "km",
+  mapNoResults: "Geen plekken gevonden in de buurt.",
+  kindKorps: "Korps",
+  kindBuurt: "Buurthuiskamer",
+  kindScouting: "Scouting",
+  kindJeugd: "Jeugd",
+  kindGidb: "Geloven in de Buurt",
+  volunteerLink: "Bekijk vrijwilligersvacatures",
+  volunteerBuurtLink: "Meer over buurtwerk",
+  volunteerGeneralLink: "Meld je aan als vrijwilliger",
+
+  signupTitle: "Zin om mee te doen?",
+  signupIntro:
+    "Laat je naam en e-mail achter. Vanaf 18 jaar kun je als vrijwilliger aan de slag. Jonger? Kom gerust eens langs op de stand.",
+  signupName: "Je naam",
+  signupEmail: "Je e-mail",
+  signupLunchTitle: "Win een gratis lunch",
+  signupLunchBody:
+    "We trekken na vandaag 3 winnaars. Iedereen mag meedoen.",
+  signupConsent:
+    "Ik geef toestemming dat het Leger des Heils mijn gegevens gebruikt voor de lunchloting en eventueel een korte vrijwilligersmail. Daarna worden ze verwijderd.",
+  signupSubmit: "Versturen",
+  signupSkip: "Terug naar de kaart",
+  signupNeedConsent: "Vink het vakje aan om mee te doen met de lunch.",
+  signupNeedEmail: "Vul een geldig e-mailadres in.",
+  signupNeedName: "Vul je naam in.",
+
+  thanksTitle: "Top, bedankt!",
+  thanksBody:
+    "We hebben je gegevens ontvangen. Veel succes met de lunchloting en hopelijk tot snel bij het Leger des Heils.",
+  thanksDone: "Klaar",
+
+  adminTitle: "Export inschrijvingen",
+  adminPin: "PIN",
+  adminWrongPin: "Verkeerde PIN",
+  adminExport: "Download CSV",
+  adminCount: "inschrijvingen",
+  adminClose: "Sluiten",
+  adminEmpty: "Nog geen inschrijvingen op dit scherm.",
+  loadError: "Locaties laden mislukt. Vernieuw de pagina.",
+
+  linksVolunteerVacancies: "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk",
+  linksBuurtwerk: "https://www.legerdesheils.nl/vacatures/buurtwerk",
+  linksVolunteerForm: "https://www.legerdesheils.nl/vrijwilligerswerk",
+  linksGidb: "https://gidb.legerdesheils.nl",
+};
+
+export type Messages = {
+  [K in keyof typeof nl]: (typeof nl)[K] extends readonly string[]
+    ? string[]
+    : string;
+};

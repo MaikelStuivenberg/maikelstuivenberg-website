@@ -1,0 +1,2149 @@
+{
+  "generatedAt": "2026-10-24T10:38:04.999400+00:00",
+  "source": "https://www.legerdesheils.nl/locaties",
+  "count": 157,
+  "locations": [
+    {
+      "id": "07adff10cc09",
+      "title": "'t Klankbord, Almere",
+      "lat": 52.3685,
+      "lon": 5.18935,
+      "address": "Pianoweg 117 , 1312 JD Almere",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsalmere",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "c20639cca7c2",
+      "title": "Avonturenclub De Mix",
+      "lat": 52.9671,
+      "lon": 5.79463,
+      "address": "Brugstraat 1 , 8501 EV Joure",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/avonturenclub-de-mix",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ac8f60618305",
+      "title": "Avonturenclub De Stadsnomads",
+      "lat": 52.102,
+      "lon": 5.10169,
+      "address": "Acaciastraat 42 , 3551BH Utrecht",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/avonturenclub-de-stadsnomads",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "35929def14d4",
+      "title": "Avonturenclub Tiona",
+      "lat": 52.02,
+      "lon": 5.66213,
+      "address": "Reehorsterweg 88 , 6717 LG Ede",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/avonturenclub-tiona",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "910013c48e98",
+      "title": "BB Kids Avonturenclub",
+      "lat": 52.5114,
+      "lon": 5.44659,
+      "address": "Jol 27-43 , 8243 GV Lelystad",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/bb-kids-avonturenclub",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "4752ed32fc18",
+      "title": "Bij Bosshardt 'Het Trefpunt' Bussum",
+      "lat": 52.2758,
+      "lon": 5.16305,
+      "address": "Wilhelminaplantsoen 14 , 1404 JB Bussum",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerbussum",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "d6c686058fb9",
+      "title": "Bij Bosshardt Almere Buiten",
+      "lat": 52.3974,
+      "lon": 5.28065,
+      "address": "Moskoustraat 18 , 1334 EL Almere",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameralmere",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "cf6732bad1bd",
+      "title": "Bij Bosshardt Ede",
+      "lat": 52.0202,
+      "lon": 5.66213,
+      "address": "Reehorsterweg 88 , 6717 LG Ede",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerede",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "2c590bee79ad",
+      "title": "Bij Bosshardt Emmeloord",
+      "lat": 52.711,
+      "lon": 5.74022,
+      "address": "Europalaan 94 , 8303 GL Emmeloord",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameremmeloord",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "6fb00500af80",
+      "title": "Bij Bosshardt Kruiskamp",
+      "lat": 52.1627,
+      "lon": 5.39994,
+      "address": "Neptunusplein 66 K, 3814 BR Amersfoort",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameramersfoort",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "302a660f656e",
+      "title": "Bij Bosshardt Nieuwegein",
+      "lat": 52.0295,
+      "lon": 5.0847,
+      "address": "Sluyterslaan 533 , 3431 BL Nieuwegein",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamernieuwegein",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "36205d23b4cd",
+      "title": "Bij Bosshardt Ridderkerk",
+      "lat": 51.8672,
+      "lon": 4.59681,
+      "address": "Burg. van de Wayfortstraat 32 , 2981 AZ Ridderkerk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerridderkerk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a0a825ddbb4e",
+      "title": "Bij Bosshardt Roosendaal",
+      "lat": 51.52,
+      "lon": 4.47345,
+      "address": "Lindenburg 87 A, 4707 CR Roosendaal",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerroosendaal",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "92040bae651a",
+      "title": "Bij Bosshardt Schiedam",
+      "lat": 51.906,
+      "lon": 4.40444,
+      "address": "Groenelaan 49 , 3114 CB Schiedam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/bij-bosshardt-schiedam",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0555794b2646",
+      "title": "Bij Bosshardt Urk",
+      "lat": 52.6615,
+      "lon": 5.59663,
+      "address": "Wijk 2-6 , 8321 EP Urk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerurk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "2c9253c84ea2",
+      "title": "Bij Bosshardt Utrecht Kanaleneiland",
+      "lat": 52.069,
+      "lon": 5.09588,
+      "address": "Marco Pololaan 10 , 3526 GJ Utrecht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerutrecht-2",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "109d0e7c6a46",
+      "title": "Bij Bosshardt Zwijndrecht",
+      "lat": 51.8228,
+      "lon": 4.63841,
+      "address": "Burgemeester Jansenlaan 151 , 3331 HG Zwijndrecht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerzwijndrecht",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b04cbfe9e79c",
+      "title": "Bij Bosshardt+ Hoogeveen",
+      "lat": 52.7208,
+      "lon": 6.4759,
+      "address": "Schutstraat 40 , 7901 EE Hoogeveen",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerhoogeveen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "310f88d4c61f",
+      "title": "Bij de Buren Veendam",
+      "lat": 53.1002,
+      "lon": 6.87097,
+      "address": "Boven Westerdiep 155 A, 9641 LD Veendam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerveendam",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "cccb7621f13a",
+      "title": "Buurthuiskamer 't Klankbord, Almere",
+      "lat": 52.3685,
+      "lon": 5.18935,
+      "address": "Pianoweg 117 , 1312 JD Almere",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameralmere-2",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "40ded93b4129",
+      "title": "Buurthuiskamer De Klaproos Driebergen",
+      "lat": 52.0527,
+      "lon": 5.27066,
+      "address": "Klaproos 2 , 3972 PX Driebergen-Rijsenburg",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-driebergen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "95acc8186b96",
+      "title": "Buurthuiskamer Doetinchem",
+      "lat": 51.9668,
+      "lon": 6.29132,
+      "address": "Dr. Huber Noodtplaats 3 , 7001 DT Doetinchem",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-doetinchem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "1b9243dee578",
+      "title": "Buurthuiskamer Dok15",
+      "lat": 51.1466,
+      "lon": 5.88623,
+      "address": "Havenstraat 15 , 6051 CR Maasbracht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-dok15",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a9803d38575f",
+      "title": "Buurthuiskamer en tuin Hatert",
+      "lat": 51.8029,
+      "lon": 5.824,
+      "address": "Loevesteinstraat 3 , 6535 KV Nijmegen",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-en-tuin-hatert",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "e7b6d0698f74",
+      "title": "Buurthuiskamer Groningen",
+      "lat": 53.2218,
+      "lon": 6.5812,
+      "address": "Dirk Huizingastraat 15-17 , 9713 GL Groningen",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamergroningen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "369735834f76",
+      "title": "Buurthuiskamer Janshuis",
+      "lat": 52.3676,
+      "lon": 5.21378,
+      "address": "Deventerpad 23 , 1324 EH Almere",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-janshuis",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "5f32571049ad",
+      "title": "Buurthuiskamer Lelystad: 'de Jol'",
+      "lat": 52.5103,
+      "lon": 5.44637,
+      "address": "Jol 37 15, 8243 HP Lelystad",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerlelystad",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "00f8894644ae",
+      "title": "Buurthuiskamer Lombok",
+      "lat": 52.091,
+      "lon": 5.0936,
+      "address": "Johannes Camphuysstraat 101 , 3531 SE Utrecht",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-lombok",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "9a40e48578ff",
+      "title": "Buurthuiskamer Nijkerk",
+      "lat": 52.2231,
+      "lon": 5.48663,
+      "address": "Oosterstraat 2 a, 3861 BJ Nijkerk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-nijkerk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "002f120ea2f6",
+      "title": "Buurthuiskamer Perron 3",
+      "lat": 51.4698,
+      "lon": 5.70141,
+      "address": "Overloop 48 A, 5704 EL Helmond",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/tweedehands-kledingwinkel-perron-3-helmond",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "85dcb6cea925",
+      "title": "Buurthuiskamer Soesterkwartier Amersfoort",
+      "lat": 52.1591,
+      "lon": 5.37422,
+      "address": "Puntenburgerlaan 100-1 , 3812 CG Amersfoort",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameramersfoort-2",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "3bbf9e77fa9d",
+      "title": "Buurthuiskamer Utrecht Overvecht",
+      "lat": 52.1144,
+      "lon": 5.12237,
+      "address": "Moldaudreef 1 , 3562 AA Utrecht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerutrecht-4",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "2921a05102cf",
+      "title": "Buurthuiskamer Zwolle",
+      "lat": 52.524,
+      "lon": 6.10889,
+      "address": "Geert Grootestraat 9-11 , 8022 CG Zwolle",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerzwolle",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "6686d7a57fa7",
+      "title": "Buurtsteunpunt Beverwaard",
+      "lat": 51.8973,
+      "lon": 4.57361,
+      "address": "Neercanneplaats 63 , 3077 EP Rotterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerbeverwaard",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "186938f63b1c",
+      "title": "Buurtsteunpunt Zevenkamp",
+      "lat": 51.966,
+      "lon": 4.57081,
+      "address": "Kooikerweg 10 , 3069 WP Rotterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurtsteunpunt-zevenkamp",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a1fd36f9722a",
+      "title": "Dienstencentrum Zierikzee",
+      "lat": 51.65,
+      "lon": 3.91752,
+      "address": "Poststraat 37 , 4301 AA Zierikzee",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerzierikzee",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7f2a33644082",
+      "title": "Geloven in de Buurt - Korps Gorinchem",
+      "lat": 51.8373,
+      "lon": 4.97092,
+      "address": "Nicolaas Pieckstraat 43-45 , 4205 BR Gorinchem",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps",
+        "default"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsgorinchem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "c71935811a87",
+      "title": "Geloven in de Buurt Bij Bosshardt Zuilen",
+      "lat": 52.1116,
+      "lon": 5.09083,
+      "address": "Prinses Margrietstraat 22 , 3554 GE Utrecht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerutrecht-3",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f3f76bd3e930",
+      "title": "Geloven in de Buurt Dienstencentrum Hoogezand",
+      "lat": 53.1544,
+      "lon": 6.74387,
+      "address": "Talmastraat 43-45 , 9602 GZ Hoogezand",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerhoogezand",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "799f02c3948f",
+      "title": "Geloven in de Buurt Harlingen",
+      "lat": 53.1751,
+      "lon": 5.423,
+      "address": "William Boothstraat 27-29 , 8861 TL Harlingen",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/harlingen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "94ddadaeb24e",
+      "title": "Geloven in de Buurt Sneek",
+      "lat": 53.0384,
+      "lon": 5.65242,
+      "address": "Worp Tjaardastraat 336 , 8602 XP Sneek",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamersneek",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "c19e2034cdb8",
+      "title": "Hilversum - Buurthuiskamer",
+      "lat": 52.2267,
+      "lon": 5.17589,
+      "address": "Bussumerstraat 27 , 1211 BH Hilversum",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamer-hilversum",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "6fc601951104",
+      "title": "Hilversum - Geloofsgemeenschap",
+      "lat": 52.2267,
+      "lon": 5.17589,
+      "address": "Bussumerstraat 27 , 1211 BH Hilversum",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpshilversum",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a2c7121a3150",
+      "title": "Huiskamer Samen Assen",
+      "lat": 52.9929,
+      "lon": 6.56377,
+      "address": "Brink 42 , 9401HV Assen",
+      "categories": [
+        "community-center",
+        "workcenter"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/huiskamer-samen-assen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0f62d30bcd16",
+      "title": "Huiskamer van de Buurt 'De Kandelaar'",
+      "lat": 52.3831,
+      "lon": 4.83283,
+      "address": "Burg. Vening Meineszlaan 64 , 1063 BE Amsterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskameramsterdam-5",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "1c066136b375",
+      "title": "Inloop De Oostwal",
+      "lat": 51.5055,
+      "lon": 3.89148,
+      "address": "Oostwal 1 , 4461 JT Goes",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/inloop-de-oostwal",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "d16fbac7afa6",
+      "title": "Inloophuis Woerden",
+      "lat": 52.0857,
+      "lon": 4.88416,
+      "address": "Hogewoerd 3 A1, 3441 BE Woerden",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/inloop-huiswoerden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "65260a6927ff",
+      "title": "Jeugdbescherming Arnhem",
+      "lat": 51.9566,
+      "lon": 5.86132,
+      "address": "Van Pallandtstraat 11 , 6814 GM Arnhem",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-arnhem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "38950e317fa6",
+      "title": "Jeugdbescherming Den Haag",
+      "lat": 52.0706,
+      "lon": 4.33502,
+      "address": "Binckhorstlaan 287 , 2516 BC Den Haag",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-den-haag",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "010ef6b560d4",
+      "title": "Jeugdbescherming Eindhoven",
+      "lat": 51.4615,
+      "lon": 5.47019,
+      "address": "Dr. Cuyperslaan 80 , 5623 BB Eindhoven",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbecherming-eindhoven",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "42e2c9a8ce7f",
+      "title": "Jeugdbescherming Enschede",
+      "lat": 52.2228,
+      "lon": 6.87809,
+      "address": "Tubantiasingel 5 , 7514 AA Enschede",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-enschede",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "962538dd9561",
+      "title": "Jeugdbescherming Groningen",
+      "lat": 53.1936,
+      "lon": 6.55567,
+      "address": "Van Swietenlaan 23 , 9728 NX Groningen",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-groningen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7c5f6df9e28e",
+      "title": "Jeugdbescherming Leeuwarden",
+      "lat": 53.1976,
+      "lon": 5.8005,
+      "address": "Zoutbranderij 1 , 8933 AJ Leeuwarden",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-leeuwarden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "d41f16e46003",
+      "title": "Jeugdbescherming Lelystad",
+      "lat": 52.5146,
+      "lon": 5.47609,
+      "address": "De Meent 2 , 8224 BR Lelystad",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-lelystad",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0ade65fbdad0",
+      "title": "Jeugdbescherming Rotterdam",
+      "lat": 51.8873,
+      "lon": 4.53481,
+      "address": "Triathlonstraat 3 , 3078 HX Rotterdam",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-rotterdam",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "99de7509860b",
+      "title": "Jeugdbescherming Utrecht",
+      "lat": 52.035,
+      "lon": 5.10709,
+      "address": "Archimedesbaan 26 , 3439 ME Nieuwegein",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-utrecht-centraal-bureau",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0185ab3c64af",
+      "title": "Jeugdbescherming Velserbroek",
+      "lat": 52.4347,
+      "lon": 4.65174,
+      "address": "Kleermakerstraat 10 , 1991 JL Velserbroek",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-velserbroek",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "d31e809b6e10",
+      "title": "Jeugdbescherming Zwolle",
+      "lat": 52.5283,
+      "lon": 6.10205,
+      "address": "Dobbe 70 , 8032 JX Zwolle",
+      "categories": [
+        "youth"
+      ],
+      "kind": "jeugd",
+      "url": "https://www.legerdesheils.nl/locatie/jeugdbescherming-zwolle",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "20c084e3fc21",
+      "title": "Kledingwinkel Gorinchem",
+      "lat": 51.8373,
+      "lon": 4.97092,
+      "address": "Nicolaas Pieckstraat 43-45 , 4205 BR Gorinchem",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps",
+        "default"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/tweedehands-kledingwinkel-gorinchem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a6b229d2c5cf",
+      "title": "Koffie- en theecafé Kuppien",
+      "lat": 52.6615,
+      "lon": 5.59435,
+      "address": "Wijk 3 39 , 8321 EX Urk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/jongerencafe-kuppien",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "12ef396c7f42",
+      "title": "Korps Amsterdam Oost",
+      "lat": 52.3587,
+      "lon": 4.92453,
+      "address": "Derde Oosterparkstraat 271 , 1092 EA Amsterdam",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsamsterdam-2",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "39d170fe50e2",
+      "title": "Korps de Brug, Terneuzen",
+      "lat": 51.3382,
+      "lon": 3.8226,
+      "address": "Dijkstraat 90 , 4531 CR Terneuzen",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsterneuzen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "4b8a3f0f88fe",
+      "title": "Korps Eemland",
+      "lat": 52.1785,
+      "lon": 5.40375,
+      "address": "Albert Schweitzersingel 69 , 3822 BV Amersfoort",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpseemland",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b067f9ea3dda",
+      "title": "Korps Gouda",
+      "lat": 52.0222,
+      "lon": 4.71499,
+      "address": "Johan de Witlaan 31 , 2805 CM Gouda",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsgouda",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7e604bbb894f",
+      "title": "Korps Hoogeveen",
+      "lat": 52.7207,
+      "lon": 6.47585,
+      "address": "Reviusweg 5 , 7901 JN Hoogeveen",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpshoogeveen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "eeba9957bb14",
+      "title": "Korps Maassluis",
+      "lat": 51.9234,
+      "lon": 4.25686,
+      "address": "Noordvliet 61-63 , 3142 CJ Maassluis",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsmaassluis",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "aacbeb029047",
+      "title": "Korps Nieuwegein",
+      "lat": 52.0295,
+      "lon": 5.0847,
+      "address": "Sluyterslaan 533 , 3431 BL Nieuwegein",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsnieuwegein",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "9578c005bc6f",
+      "title": "Korps Rotterdam-Oost",
+      "lat": 51.966,
+      "lon": 4.57053,
+      "address": "Kooikerweg 12-14 , 3069 WP Rotterdam",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsrotterdam-oost",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "8e0aeb7f84dc",
+      "title": "Korps Spijkenisse",
+      "lat": 51.8562,
+      "lon": 4.29722,
+      "address": "Anth. van der Nootstraat 8 , 3201 BG Spijkenisse",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsspijkenisse",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "11bd141f01c9",
+      "title": "Korps Treebeek",
+      "lat": 50.9326,
+      "lon": 5.93402,
+      "address": "Horizonstraat 77 , 6446SC Brunssum",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamertreebeek",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b3a87d83c8b1",
+      "title": "Korps Vlaardingen",
+      "lat": 51.9166,
+      "lon": 4.35998,
+      "address": "Magnoliastraat 41 , 3135 VR Vlaardingen",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpsvlaardingen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "eaea45da4b60",
+      "title": "Korps Winschoten",
+      "lat": 53.1441,
+      "lon": 7.04022,
+      "address": "Dr. D. Bosstraat 16 , 9671 CC Winschoten",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpswinschoten",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "fb8fb7bb67b1",
+      "title": "Kringloopwinkel Oostburg",
+      "lat": 51.3282,
+      "lon": 3.49343,
+      "address": "Bredestraat 5 , 4501 EA Oostburg",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/kringloopwinkel-oostburg",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f1ee3d273bb7",
+      "title": "Leger des Heils - Wageningen",
+      "lat": 51.9787,
+      "lon": 5.67592,
+      "address": "Kamerlingh Onnesstraat 7 , 6706 JK Wageningen",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/wageningen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "dc033fef42ed",
+      "title": "Leger des Heils Almelo",
+      "lat": 52.3576,
+      "lon": 6.65239,
+      "address": "Troelstralaan 1 , 7604 VW Almelo",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/almelo",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "06a3b5dc9b29",
+      "title": "Leger des Heils Alphen aan den Rijn",
+      "lat": 52.1425,
+      "lon": 4.66902,
+      "address": "Zonneweg 3 , 2402 BE Alphen a/d Rijn",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/alphen-aan-den-rijn",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "22aab3d98ee1",
+      "title": "Leger des Heils Amsterdam Betondorp",
+      "lat": 52.3424,
+      "lon": 4.94629,
+      "address": "Brinkstraat 14 , 1097VM Amsterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-betondorp",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "3a6769c8a9c6",
+      "title": "Leger des Heils Amsterdam Centrum",
+      "lat": 52.3755,
+      "lon": 4.89977,
+      "address": "Oudezijds Voorburgwal 14 , 1012 GD Amsterdam",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-centrum",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "8bf1ca88d227",
+      "title": "Leger des Heils Amsterdam Goodwill",
+      "lat": 52.3735,
+      "lon": 4.8994,
+      "address": "Oudezijds Achterburgwal 45 , 1012 DB Amsterdam",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-goodwill",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "65dd8661ad29",
+      "title": "Leger des Heils Amsterdam Noord",
+      "lat": 52.3987,
+      "lon": 4.93062,
+      "address": "Loenermark 317-318 , 1025 TD Amsterdam",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-noord",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "77a8e97fd0c4",
+      "title": "Leger des Heils Amsterdam Noordkaap",
+      "lat": 52.3912,
+      "lon": 4.96367,
+      "address": "Hilversumstraat 338 , 1024 MB Amsterdam",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-noordkaap",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "9caebb320f83",
+      "title": "Leger des Heils Amsterdam Oost",
+      "lat": 52.3587,
+      "lon": 4.92453,
+      "address": "Derde Oosterparkstraat 271 , 1092 EA Amsterdam",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-oost",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "432cfb5507ae",
+      "title": "Leger des Heils Amsterdam West",
+      "lat": 52.3831,
+      "lon": 4.83283,
+      "address": "Burg. Vening Meineszlaan 64 , 1063 BE Amsterdam",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-west",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ea09e2e73639",
+      "title": "Leger des Heils Amsterdam Zuidoost",
+      "lat": 52.3153,
+      "lon": 4.97603,
+      "address": "Karspeldreef 1161 , 1104 SE Amsterdam",
+      "categories": [
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/amsterdam-zuidoost",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b8117fd16e1f",
+      "title": "Leger des Heils Apeldoorn",
+      "lat": 52.1965,
+      "lon": 5.96588,
+      "address": "Hofveld 21-23 , 7331 KB Apeldoorn",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/apeldoorn",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "4c39772f1b3e",
+      "title": "Leger des Heils Arnhem",
+      "lat": 51.9566,
+      "lon": 5.86132,
+      "address": "Leidenweg 11-13 , 6843 LA Arnhem",
+      "categories": [
+        "community-center",
+        "corps",
+        "office"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/arnhem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b651603cd8d7",
+      "title": "Leger des Heils Assen",
+      "lat": 52.9956,
+      "lon": 6.56877,
+      "address": "Rolderstraat 104 , 9401 AW Assen",
+      "categories": [
+        "clothing-store",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/assen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0c997f61d3bf",
+      "title": "Leger des Heils Bergen op Zoom",
+      "lat": 51.4858,
+      "lon": 4.30979,
+      "address": "Zonneplein 32 , 4624 BA Bergen op Zoom",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/bergenopzoom",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "20eec4563bcc",
+      "title": "Leger des Heils Bovenkarspel",
+      "lat": 52.6937,
+      "lon": 5.25188,
+      "address": "Murillostraat 22 , 1611 DC Bovenkarspel",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/bovenkarspel",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f3ccc6f882bf",
+      "title": "Leger des Heils Breda",
+      "lat": 51.6062,
+      "lon": 4.79771,
+      "address": "Thomas Vincidorstraat 2 , 4827 GA Breda",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/breda",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "bb0f34c99817",
+      "title": "Leger des Heils De Bron",
+      "lat": 52.0544,
+      "lon": 4.23235,
+      "address": "Pisuissestraat 9 , 2553 BA Loosduinen",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/de-bron",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7eaaa9d2ef24",
+      "title": "Leger des Heils De Hagedoorn Almelo",
+      "lat": 52.3468,
+      "lon": 6.65913,
+      "address": "Wilgenstraat 11 , 7605 EG Almelo",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/hagedoorn-almelo",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0b01fa7e26ad",
+      "title": "Leger des Heils De Klinker",
+      "lat": 52.4638,
+      "lon": 5.99811,
+      "address": "Klimopstraat 1 , 8091 VL Wezep",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/wezep",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "62073a03a88f",
+      "title": "Leger des Heils Delfzijl",
+      "lat": 53.3425,
+      "lon": 6.90703,
+      "address": "Skagerrak 109 A, 9933 SG Delfzijl",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/delfzijl",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b87ef4fbfaa8",
+      "title": "Leger des Heils Den Helder",
+      "lat": 52.9561,
+      "lon": 4.77004,
+      "address": "Vismarkt 22 , 1781 TA Den Helder",
+      "categories": [
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/denhelder",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f7354bc37303",
+      "title": "Leger des Heils Deventer",
+      "lat": 52.2511,
+      "lon": 6.16161,
+      "address": "Rijkmanstraat 26 , 7411 GB Deventer",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/deventer",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "5aa0357b4c52",
+      "title": "Leger des Heils Dokkum",
+      "lat": 53.3267,
+      "lon": 6.00103,
+      "address": "Oostersingel 15 , 9101 KL Dokkum",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/dokkum",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "34b341d67f24",
+      "title": "Leger des Heils Dordrecht",
+      "lat": 51.8128,
+      "lon": 4.67607,
+      "address": "Kasperspad 28 A, 3311 ZG Dordrecht",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/dordrecht",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ae2fde286ec4",
+      "title": "Leger des Heils Dordrecht Reeland",
+      "lat": 51.8078,
+      "lon": 4.68653,
+      "address": "Bankastraat 158 , 3312 GT Dordrecht",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/dordrecht-reeland",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f9e5b41b8994",
+      "title": "Leger des Heils Drachten",
+      "lat": 53.1138,
+      "lon": 6.09729,
+      "address": "Stationsweg 112 , 9201 GS Drachten",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/drachten",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0736ffded15d",
+      "title": "Leger des Heils Eindhoven",
+      "lat": 51.4587,
+      "lon": 5.47537,
+      "address": "Pisanostraat 47 A, 5623 CA Eindhoven",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/eindhoven",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ef991865f049",
+      "title": "Leger des Heils Elburg",
+      "lat": 52.4489,
+      "lon": 5.83458,
+      "address": "Beekstraat 13 , 8081 EA Elburg",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/elburg",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "afc3d1477054",
+      "title": "Leger des Heils Emmen",
+      "lat": 52.779,
+      "lon": 6.8954,
+      "address": "Van Schaikweg 42-44 , 7811 KK Emmen",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/emmen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "39a015840265",
+      "title": "Leger des Heils Enschede",
+      "lat": 52.1941,
+      "lon": 6.87666,
+      "address": "Zenderenbrink 2 , 7544 DZ Enschede",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/enschede",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "aac2b1d96ed2",
+      "title": "Leger des Heils Goes",
+      "lat": 51.507,
+      "lon": 3.88015,
+      "address": "Klein Frankrijk 17 , 4461 ZN Goes",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/goes",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b0c985f2d23e",
+      "title": "Leger des Heils Groningen",
+      "lat": 53.2218,
+      "lon": 6.5812,
+      "address": "Dirk Huizingastraat 15-17 , 9713 GL Groningen",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/groningen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7a420cc3e91a",
+      "title": "Leger des Heils Haaglanden",
+      "lat": 52.0355,
+      "lon": 4.26625,
+      "address": "Ambachtsgaarde 198 , 2542 EX Den Haag",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/haaglanden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a0f3372d15c2",
+      "title": "Leger des Heils Hengelo",
+      "lat": 52.2552,
+      "lon": 6.80256,
+      "address": "Agonstraat 10 , 7552 TJ Hengelo",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/hengelo",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "d597c1eaef18",
+      "title": "Leger des Heils Het Ketelhuis Oosterwolde",
+      "lat": 52.9846,
+      "lon": 6.2966,
+      "address": "Vossehaer 16 A, 8431 HB Oosterwolde",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/ketelhuis-oosterwolde",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b0e7d00093e8",
+      "title": "Leger des Heils Hoorn",
+      "lat": 52.6488,
+      "lon": 5.06507,
+      "address": "Johannes poststraat 52 , 1624 CD Hoorn",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/hoorn",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "99dca4bf4d4f",
+      "title": "Leger des Heils IJsselmuiden",
+      "lat": 52.5658,
+      "lon": 5.93399,
+      "address": "Erfgenamenstraat 1 C, 8271 TT IJsselmuiden",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/ijsselmuiden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "4c2e70863033",
+      "title": "Leger des Heils Joure",
+      "lat": 52.9671,
+      "lon": 5.79465,
+      "address": "Brugstraat 1 , 8501 EV Joure",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/joure",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "68fc1f201b85",
+      "title": "Leger des Heils Kampen",
+      "lat": 52.5556,
+      "lon": 5.9182,
+      "address": "Boven Nieuwstraat 33-35 , 8261 HA Kampen",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/kampen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a0c4b662bd70",
+      "title": "Leger des Heils Kennemerland",
+      "lat": 52.5001,
+      "lon": 4.66569,
+      "address": "Geysendorfferlaan 4 , 1945 XZ Beverwijk",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/kennemerland",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "5ad29409d243",
+      "title": "Leger des Heils Kerkrade - Ennúh Rolduckerveld",
+      "lat": 50.8694,
+      "lon": 6.06985,
+      "address": "Hertogenlaan 15 , 6461 BT Kerkrade",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/kerkrade-ennuh-rolduckerveld",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a10d2ce24dc8",
+      "title": "Leger des Heils Kleding- & Ontmoetingswinkel Arnhem",
+      "lat": 51.9692,
+      "lon": 5.90215,
+      "address": "Hoefbladlaan 38 , 6841 CE Arnhem",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/kledingwinkel-arnhem",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "39d770b7b6db",
+      "title": "Leger des Heils korps Utrecht",
+      "lat": 52.1144,
+      "lon": 5.12237,
+      "address": "Moldaudreef 1 , 3562 AA Utrecht",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerutrecht",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ef036e8c70e0",
+      "title": "Leger des Heils Korps Zeist",
+      "lat": 52.087,
+      "lon": 5.24188,
+      "address": "Weeshuislaan 30 , 3701 JX Zeist",
+      "categories": [
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/korpszeist",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "7c9341b55abd",
+      "title": "Leger des Heils LEEF!",
+      "lat": 51.3803,
+      "lon": 6.17839,
+      "address": "Boerendansweg 26 , 5914 RH Venlo",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/leef",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "5fb9a7b840e5",
+      "title": "Leger des Heils Leeuwarden",
+      "lat": 53.2153,
+      "lon": 5.78822,
+      "address": "Wollegaastdam 1 , 8918 GT Leeuwarden",
+      "categories": [
+        "clothing-store",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/leeuwarden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "468c623f8281",
+      "title": "Leger des Heils Leiden",
+      "lat": 52.1579,
+      "lon": 4.49908,
+      "address": "Groenesteeg 66 , 3212 SR Leiden",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/leiden",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "f6dc9102a936",
+      "title": "Leger des Heils Maaltijdproject Landgraaf",
+      "lat": 50.9052,
+      "lon": 6.04203,
+      "address": "Heigank 1 , 6373 KM Landgraaf",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/leger-des-heils-landgraaf",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b07954eb1b18",
+      "title": "Leger des Heils Maastricht",
+      "lat": 50.8459,
+      "lon": 5.72738,
+      "address": "Adelbert van Scharnlaan D 5, 6226 EG Maastricht",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/maastricht",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "54ad052d1bb0",
+      "title": "Leger des Heils Medan Vakantie sluiting 17 augustus - 6 september",
+      "lat": 52.4056,
+      "lon": 4.6522,
+      "address": "Medanstraat 34 , 2022 PH Haarlem",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/medan",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "266ae8643ea0",
+      "title": "Leger des Heils Meppel",
+      "lat": 52.6971,
+      "lon": 6.18652,
+      "address": "Havenstraat 13-15 , 7941 CP Meppel",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/meppel",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "aa7ad2ffd1c5",
+      "title": "Leger des Heils Nijmegen",
+      "lat": 51.8388,
+      "lon": 5.83628,
+      "address": "Molenweg 97 , 6543 VA Nijmegen",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/nijmegen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "51c4c4789aab",
+      "title": "Leger des Heils Nijverdal",
+      "lat": 52.3648,
+      "lon": 6.46467,
+      "address": "Grotestraat 47 , 7443 BB Nijverdal",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/nijverdal",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "e2ae8cb80f7a",
+      "title": "Leger des Heils S-amen Alkmaar",
+      "lat": 52.6442,
+      "lon": 4.76295,
+      "address": "Burgpoelwaard 2-4 , 1824 DW Alkmaar",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/s-amen-alkmaar",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a0cc257f0651",
+      "title": "Leger des Heils Scheveningen",
+      "lat": 52.1071,
+      "lon": 4.27299,
+      "address": "Wassenaarsestraat 8 , 2586 AP Scheveningen",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/scheveningen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "19cbd3892090",
+      "title": "Leger des Heils Treebeek",
+      "lat": 50.9326,
+      "lon": 5.93402,
+      "address": "Horizonstraat 77 , 6446SC Brunssum",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/treebeek",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "9e16949bc14a",
+      "title": "Leger des Heils Twekkelerveld Enschede",
+      "lat": 52.2283,
+      "lon": 6.85723,
+      "address": "Zonstraat 1 , 7521 HD Enschede",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/twekkelerveld-enschede",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b58dc89bb998",
+      "title": "Leger des Heils Valkenswaard",
+      "lat": 51.3521,
+      "lon": 5.46077,
+      "address": "Corridor 13 A, 5554 HL Valkenswaard",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/valkenswaard",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "00839a7a7698",
+      "title": "Leger des Heils Valleistreek",
+      "lat": 52.0202,
+      "lon": 5.66213,
+      "address": "Reehorsterweg 88 , 6717 LG Ede",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/ede",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "3849c187ce0a",
+      "title": "Leger des Heils Vlaardingen",
+      "lat": 51.9166,
+      "lon": 4.35998,
+      "address": "Magnoliastraat 41 , 3135 VR Vlaardingen",
+      "categories": [
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/vlaardingen-2",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "02370efbc83f",
+      "title": "Leger des Heils Voorburg",
+      "lat": 52.0784,
+      "lon": 4.35009,
+      "address": "Bruijnings Ingenhoeslaan 4 , 2273 KR Voorburg",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/voorburg",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "80a13b159414",
+      "title": "Leger des Heils Walcheren",
+      "lat": 51.4811,
+      "lon": 3.59757,
+      "address": "Het Zwin 1 , 4335 XT Middelburg",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/walcheren",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "6c1a2a472d77",
+      "title": "Leger des Heils Zaandam",
+      "lat": 52.4389,
+      "lon": 4.83185,
+      "address": "Tuiniersstraat 32 , 1501 NK Zaandam",
+      "categories": [
+        "clothing-store",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/zaandam",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "8815de82c649",
+      "title": "Leger des Heils Zutphen",
+      "lat": 52.1424,
+      "lon": 6.19851,
+      "address": "Hagepoortplein 4 , 7201 LN Zutphen",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/zutphen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "deb91e9aa34e",
+      "title": "Leger des Heils Zwolle",
+      "lat": 52.524,
+      "lon": 6.10889,
+      "address": "Geert Grootestraat 9-11 , 8022 CG Zwolle",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps",
+        "scouting"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/zwolle",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b309f74ea93a",
+      "title": "Lev huizen (nieuw) en Ontmoetingswinkels De Koempel & Os Hoes",
+      "lat": 50.9842,
+      "lon": 5.81364,
+      "address": "Anjelierstraat 13 , 6163 CJ Geleen",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamergeleen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "63cf80cae2a5",
+      "title": "Loods 3",
+      "lat": 51.5472,
+      "lon": 4.0805,
+      "address": "Sportlaan 3 , 4695 BA Sint Maartensdijk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/tweedehands-kledingwinkel-3",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "3f61fedb9145",
+      "title": "Ontmoetingshuis Steenwijk",
+      "lat": 52.7866,
+      "lon": 6.11752,
+      "address": "Koningsstraat 12 , 8331 HV Steenwijk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamersteenwijk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "0759120072ed",
+      "title": "Ontmoetingsplek De Smeltkroes",
+      "lat": 52.0298,
+      "lon": 4.32491,
+      "address": "Pieter Postmapad 4 , 2287 DB Rijswijk",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/de-smeltkroes-rijswijk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "eb1ec2ab5a82",
+      "title": "Ontmoetingswinkel 't Gasthoes in Echt",
+      "lat": 51.1048,
+      "lon": 5.86711,
+      "address": "Bovenstestraat 25 , 6101 EH Echt",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/t-gasthoes",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "9e5bd565f0b3",
+      "title": "Ontmoetingswinkel Bie Os - Heerlen",
+      "lat": 50.9158,
+      "lon": 5.95603,
+      "address": "Wannerstraat 9 , 6413 EV Heerlen",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerheerlen",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "364cced671dc",
+      "title": "Ontmoetingswinkel de Blokhut",
+      "lat": 51.1305,
+      "lon": 6.07455,
+      "address": "Koebroekweg 3 , 6063 AS Vlodrop",
+      "categories": [
+        "clothing-store",
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/ontmoetingswinkel-de-blokhut",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a0afcba03c32",
+      "title": "Ontmoetingswinkel Hoiie",
+      "lat": 51.1948,
+      "lon": 5.98704,
+      "address": "Schoenmakersstraat 12 , 6041 EZ Roermond",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/buurthuiskamerroermond",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "5578187a8519",
+      "title": "Scouting Con Tutti Almere",
+      "lat": 52.3685,
+      "lon": 5.18935,
+      "address": "Pianoweg 117 , 1312 JD Almere",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scouting-contutti",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "53bc1e298c56",
+      "title": "Scouting Kampeerterrein Belmont",
+      "lat": 52.0759,
+      "lon": 5.64952,
+      "address": "Goorsteeg 66 , 6718TB Ede",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/kampeerterrein-belmont",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "b1b6c037b225",
+      "title": "Scouting Others",
+      "lat": 52.3741,
+      "lon": 5.21496,
+      "address": "Spoordreef 10 , 1315 GN Almere",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scouting-others",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ecd9958f2819",
+      "title": "Scoutinggroep Jampeldekamp",
+      "lat": 52.6822,
+      "lon": 5.62959,
+      "address": "Vormtweg 7 N, 8322 NE Urk",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scouting-jampeldekamp",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "ad1e3ae7c75f",
+      "title": "Scoutinggroep Majoor Bosshardt",
+      "lat": 52.3153,
+      "lon": 4.97603,
+      "address": "Karspeldreef 1161 , 1104 SE Amsterdam",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scouting-majoor-bosshardt",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "37df6f33ef24",
+      "title": "Scoutinggroep Renatum 57 Zwolle",
+      "lat": 52.524,
+      "lon": 6.10889,
+      "address": "Geert Grootestraat 9-11 , 8022 CG Zwolle",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scoutinggroep-renatum-57",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "bfc29a6c6788",
+      "title": "Scoutinggroep Tesra Dordrecht",
+      "lat": 51.8129,
+      "lon": 4.70098,
+      "address": "Middelweg 19 , 3312 AL Dordrecht",
+      "categories": [
+        "scouting"
+      ],
+      "kind": "scouting",
+      "url": "https://www.legerdesheils.nl/locatie/scouting-tesra",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "6df28731c606",
+      "title": "Sportieve Huiskamer De PlaYce",
+      "lat": 52.102,
+      "lon": 5.10169,
+      "address": "Acaciastraat 42 , 3551 BH Utrecht",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/sportieve-huiskamer-de-playce",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "a64c79992410",
+      "title": "Tweedehands kledingwinkel Hengelo",
+      "lat": 52.2552,
+      "lon": 6.80256,
+      "address": "Agonstraat 10 , 7552 TJ Hengelo",
+      "categories": [
+        "community-center"
+      ],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/locatie/tweedehands-kledingwinkel-hengelo",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    },
+    {
+      "id": "8aae8861ed8d",
+      "title": "Zin in Harderwijk",
+      "lat": 52.3356,
+      "lon": 5.61376,
+      "address": "Kennedylaan 56 , 3844 BD Harderwijk",
+      "categories": [
+        "clothing-store",
+        "community-center",
+        "corps"
+      ],
+      "kind": "korps",
+      "url": "https://www.legerdesheils.nl/locatie/harderwijk",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    }
+  ]
+}
