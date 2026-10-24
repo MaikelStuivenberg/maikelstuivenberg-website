@@ -59,7 +59,12 @@ function KeyButton({
   onPress: () => void;
 }) {
   if (!label) {
-    return <div className={cn(wide ? "col-span-2" : "", "min-h-14")} />;
+    return (
+      <div
+        className={cn(wide ? "col-span-2" : "", "min-h-[2.5rem]")}
+        aria-hidden="true"
+      />
+    );
   }
   return (
     <button
@@ -70,8 +75,8 @@ function KeyButton({
         onPress();
       }}
       className={cn(
-        "kiosk-key rounded-xl bg-white/95 font-semibold text-[var(--kiosk-navy)] shadow-sm active:scale-95 active:bg-[var(--kiosk-mint)]",
-        small ? "min-h-[3rem] text-lg" : "min-h-[3.75rem] text-2xl",
+        "kiosk-key font-semibold text-[var(--kiosk-navy)]",
+        small ? "kiosk-key--small" : "",
         wide && "col-span-2",
       )}
     >
@@ -95,17 +100,17 @@ function SnippetButton({
         e.preventDefault();
         onPress();
       }}
-      className="min-h-[3rem] flex-1 rounded-xl bg-[var(--kiosk-mint)]/50 px-2 text-lg font-bold text-[var(--kiosk-navy)] active:bg-[var(--kiosk-mint)]"
+      className="kiosk-key-snippet kiosk-key font-semibold text-[var(--kiosk-navy)]"
     >
       {label}
     </button>
   );
 }
 
-export function SearchIcon() {
+export function SearchIcon({ className }: { className?: string }) {
   return (
     <svg
-      className="h-8 w-8 shrink-0"
+      className={cn("kiosk-key-submit-icon shrink-0", className)}
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
@@ -131,7 +136,7 @@ function LetterRows({
   return (
     <>
       {rows.map((row, i) => (
-        <div key={i} className="grid grid-cols-10 gap-1.5 sm:gap-2">
+        <div key={i} className="kiosk-key-row grid grid-cols-10">
           {row.map((key) => (
             <KeyButton
               key={`${i}-${key}`}
@@ -156,7 +161,7 @@ export function OnScreenKeyboard({
   const showSubmit = Boolean(onSubmit && submitLabel);
 
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("kiosk-keyboard flex flex-col", className)}>
       {mode === "email" && (
         <>
           <div className="flex flex-wrap gap-2">
@@ -168,13 +173,13 @@ export function OnScreenKeyboard({
               />
             ))}
           </div>
-          <div className="grid grid-cols-10 gap-1.5 sm:gap-2">
+          <div className="kiosk-key-row grid grid-cols-10">
             {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map((d) => (
               <KeyButton key={d} label={d} onPress={() => onKey(d)} />
             ))}
           </div>
           <LetterRows rows={ROWS_EMAIL_LETTERS} onKey={onKey} />
-          <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+          <div className="kiosk-key-row grid grid-cols-5">
             {ROWS_EMAIL_SYMBOLS.map((sym) => (
               <KeyButton key={sym} label={sym} onPress={() => onKey(sym)} />
             ))}
@@ -192,7 +197,7 @@ export function OnScreenKeyboard({
         ROWS_PIN.map((row, i) => (
           <div
             key={i}
-            className="grid grid-cols-3 gap-2"
+            className="kiosk-key-row grid grid-cols-3"
             style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
           >
             {row.map((key) => (
@@ -205,33 +210,17 @@ export function OnScreenKeyboard({
           </div>
         ))}
 
-      {mode !== "pin" && (
-        <button
-          type="button"
-          onPointerDown={(e) => e.preventDefault()}
-          onPointerUp={(e) => {
-            e.preventDefault();
-            onBackspace();
-          }}
-          className="min-h-[3.75rem] rounded-xl bg-[var(--kiosk-navy)] text-xl font-semibold text-white active:opacity-90"
-        >
-          ⌫
-        </button>
-      )}
-
-      {mode === "pin" && (
-        <button
-          type="button"
-          onPointerDown={(e) => e.preventDefault()}
-          onPointerUp={(e) => {
-            e.preventDefault();
-            onBackspace();
-          }}
-          className="min-h-[3.75rem] rounded-xl bg-[var(--kiosk-navy)] text-xl font-semibold text-white active:opacity-90"
-        >
-          ⌫
-        </button>
-      )}
+      <button
+        type="button"
+        onPointerDown={(e) => e.preventDefault()}
+        onPointerUp={(e) => {
+          e.preventDefault();
+          onBackspace();
+        }}
+        className="kiosk-key-backspace kiosk-key kiosk-key--dark font-semibold"
+      >
+        ⌫
+      </button>
 
       {showSubmit ? (
         <button
@@ -242,7 +231,7 @@ export function OnScreenKeyboard({
             e.stopPropagation();
             onSubmit!();
           }}
-          className="flex min-h-[4.25rem] w-full items-center justify-center gap-3 rounded-2xl bg-[var(--kiosk-red)] text-2xl font-extrabold text-white shadow-lg active:scale-[0.99]"
+          className="kiosk-key-submit kiosk-btn-primary flex w-full items-center justify-center font-extrabold"
         >
           <SearchIcon />
           <span>{submitLabel}</span>
