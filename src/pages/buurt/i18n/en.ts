@@ -65,9 +65,11 @@ export const en: Messages = {
   adminPin: "PIN",
   adminWrongPin: "Wrong PIN",
   adminExport: "Download CSV",
-  adminCount: "sign-ups",
+  adminOutboxCount: "not sent yet (outbox)",
   adminClose: "Close",
-  adminEmpty: "No sign-ups on this screen yet.",
+  adminOutboxEmpty: "Everything is synced. No outbox on this screen.",
+  adminOutboxHint:
+    "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",
 
   linksVolunteerVacancies: "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk",

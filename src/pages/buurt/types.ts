@@ -17,17 +17,6 @@ export type LocationsBundle = {
   locations: KioskLocation[];
 };
 
-export type KioskEntry = {
-  id: string;
-  createdAt: string;
-  name: string;
-  email: string;
-  consent: boolean;
-  locale: string;
-  placeId?: string;
-  placeTitle?: string;
-};
-
 export type Screen =
   | "attract"
   | "choose"

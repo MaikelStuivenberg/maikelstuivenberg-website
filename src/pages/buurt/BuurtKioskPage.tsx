@@ -13,11 +13,12 @@ import { OnScreenKeyboard } from "./OnScreenKeyboard";
 import { geocodeDutch, nearestLocations } from "./geo";
 import { t, type Locale } from "./i18n";
 import {
-  downloadCsv,
+  clearLegacyEntryStore,
+  downloadOutboxCsv,
   KIOSK_ADMIN_PIN,
-  loadEntries,
-  saveEntry,
+  loadOutbox,
 } from "./kiosk-storage";
+import { flushSignupOutbox, submitSignupWithSync } from "./signup-sync";
 import type {
   GeoPoint,
   KioskLocation,
@@ -136,6 +137,7 @@ export function BuurtKioskPage() {
   const [adminPin, setAdminPin] = useState("");
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminHold, setAdminHold] = useState(0);
+  const [outboxCount, setOutboxCount] = useState(0);
   const idleRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holdRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -171,12 +173,31 @@ export function BuurtKioskPage() {
     };
   }, [bumpIdle]);
 
+  const refreshOutboxCount = useCallback(() => {
+    setOutboxCount(loadOutbox().length);
+  }, []);
+
   useEffect(() => {
     fetch("/data/gidb-locations.json")
       .then((r) => r.json())
       .then((data: LocationsBundle) => setLocations(data.locations))
       .catch(() => setLoadError(true));
   }, []);
+
+  useEffect(() => {
+    clearLegacyEntryStore();
+    refreshOutboxCount();
+    const sync = () => {
+      void flushSignupOutbox().then(() => refreshOutboxCount());
+    };
+    sync();
+    const intervalId = window.setInterval(sync, 60_000);
+    window.addEventListener("online", sync);
+    return () => {
+      window.clearInterval(intervalId);
+      window.removeEventListener("online", sync);
+    };
+  }, [refreshOutboxCount]);
 
   useEffect(() => {
     if (screen !== "attract") return;
@@ -223,7 +244,7 @@ export function BuurtKioskPage() {
     go("map");
   };
 
-  const submitSignup = () => {
+  const submitSignup = async () => {
     bumpIdle();
     if (!name.trim()) {
       setFormError(m.signupNeedName);
@@ -238,16 +259,16 @@ export function BuurtKioskPage() {
       return;
     }
     setFormError(null);
-    saveEntry({
-      id: crypto.randomUUID(),
-      createdAt: new Date().toISOString(),
+    const postcode = searchQuery.trim().slice(0, 40) || null;
+    await submitSignupWithSync({
       name: name.trim(),
       email: email.trim(),
       consent: true,
-      locale,
-      placeId: selected?.id,
-      placeTitle: selected?.title,
+      language: locale,
+      postcode,
+      source: "kiosk",
     });
+    refreshOutboxCount();
     go("thanks");
   };
 
@@ -278,7 +299,7 @@ export function BuurtKioskPage() {
     }
   };
 
-  const entries = loadEntries();
+  const outbox = loadOutbox();
 
   return (
     <>
@@ -634,16 +655,19 @@ export function BuurtKioskPage() {
               </>
             ) : (
               <>
-                <p>
-                  {entries.length} {m.adminCount}
+                <p className="text-lg font-semibold">
+                  {outboxCount} {m.adminOutboxCount}
                 </p>
-                {entries.length === 0 ? (
-                  <p>{m.adminEmpty}</p>
+                <p className="text-sm text-[var(--kiosk-teal)]">
+                  {m.adminOutboxHint}
+                </p>
+                {outboxCount === 0 ? (
+                  <p>{m.adminOutboxEmpty}</p>
                 ) : (
                   <button
                     type="button"
                     className="min-h-14 rounded-xl bg-[var(--kiosk-red)] font-bold text-white"
-                    onClick={() => downloadCsv(entries)}
+                    onClick={() => downloadOutboxCsv(outbox)}
                   >
                     {m.adminExport}
                   </button>

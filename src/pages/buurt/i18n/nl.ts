@@ -64,9 +64,11 @@ export const nl = {
   adminPin: "PIN",
   adminWrongPin: "Verkeerde PIN",
   adminExport: "Download CSV",
-  adminCount: "inschrijvingen",
+  adminOutboxCount: "nog niet verzonden (wachtrij)",
   adminClose: "Sluiten",
-  adminEmpty: "Nog geen inschrijvingen op dit scherm.",
+  adminOutboxEmpty: "Alles is verzonden. Geen wachtrij op dit scherm.",
+  adminOutboxHint:
+    "Als wifi hapert blijven inschrijvingen hier tot ze naar de server zijn gestuurd.",
   loadError: "Locaties laden mislukt. Vernieuw de pagina.",
 
   linksVolunteerVacancies: "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk",
