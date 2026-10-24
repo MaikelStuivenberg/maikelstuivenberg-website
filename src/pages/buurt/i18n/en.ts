@@ -15,7 +15,7 @@ export const en: Messages = {
     "Geloven in de Buurt: your first step starts on your own street.",
   ],
   attractCta: "Tap to start",
-  attractLunchPromo: "Win 1 of 3 free lunches",
+  attractLunchPromo: "🎁 Win 1 of 3 free lunches",
   attractPlacesCount: "{count} places across the Netherlands",
 
   chooseTitle: "Where will you take your first step?",
@@ -85,8 +85,6 @@ export const en: Messages = {
   adminAutoFullscreenHint:
     "The first tap on the screen enters full screen (handy on Android kiosks).",
   navHome: "Home",
-  fullscreenEnter: "Full screen",
-  fullscreenExit: "Exit full screen",
   adminOutboxHint:
     "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",

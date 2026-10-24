@@ -698,60 +698,22 @@
 }
 
 .kiosk-attract-lunch-promo {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.4rem, 1.8cqw, 0.65rem);
-  width: 100%;
-  min-height: clamp(2.35rem, min(9.5cqw, 6cqh), 3.25rem);
-  padding: clamp(0.35rem, 1.2cqh, 0.55rem) clamp(0.75rem, 3cqw, 1.25rem);
-  border: 2px solid rgba(7, 35, 41, 0.12);
-  border-radius: 999px;
-  background: linear-gradient(
-    135deg,
-    var(--kiosk-yellow) 0%,
-    #ffd56a 48%,
-    var(--kiosk-yellow) 100%
-  );
-  background-size: 200% 100%;
-  color: var(--kiosk-navy);
-  font-size: clamp(0.78rem, min(3.4cqw, 2.35cqh), 1.35rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  box-shadow: 0 4px 14px rgba(7, 35, 41, 0.1);
-  touch-action: manipulation;
-  animation: kiosk-lunch-promo-shimmer 5.5s ease-in-out infinite;
-}
-
-.kiosk-attract-lunch-promo-icon {
-  width: clamp(1.15rem, min(4.8cqw, 3.2cqh), 1.65rem);
-  height: clamp(1.15rem, min(4.8cqw, 3.2cqh), 1.65rem);
-  flex-shrink: 0;
-}
-
-.kiosk-attract-lunch-promo-label {
+  margin: 0;
+  padding: 0 0.15em;
   text-align: center;
-}
-
-@keyframes kiosk-lunch-promo-shimmer {
-  0%,
-  100% {
-    background-position: 0% 50%;
-    box-shadow: 0 4px 14px rgba(7, 35, 41, 0.1);
-  }
-  50% {
-    background-position: 100% 50%;
-    box-shadow: 0 5px 18px rgba(255, 184, 28, 0.35);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .kiosk-attract-lunch-promo {
-    animation: none;
-    background: var(--kiosk-yellow);
-  }
+  font-size: clamp(0.82rem, min(3.6cqw, 2.5cqh), 1.05rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--kiosk-navy);
+  background: linear-gradient(
+    to top,
+    rgba(255, 184, 28, 0.55) 0%,
+    rgba(255, 184, 28, 0.55) 38%,
+    transparent 38%
+  );
+  background-size: 100% 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .kiosk-attract-question {
@@ -941,13 +903,9 @@
   }
 
   .kiosk-attract-lunch-promo {
-    min-height: clamp(3rem, 8cqh, 4rem);
-    font-size: clamp(1.05rem, 2.8cqw, 1.45rem);
-  }
-
-  .kiosk-attract-lunch-promo-icon {
-    width: clamp(1.35rem, 3.5cqw, 1.85rem);
-    height: clamp(1.35rem, 3.5cqw, 1.85rem);
+    font-size: clamp(1.05rem, min(4.25cqw, 3.2cqh), 2.35rem);
+    font-weight: 600;
+    color: var(--kiosk-red);
   }
 
   .kiosk-attract-question {
@@ -1054,9 +1012,7 @@
   }
 
   .kiosk-attract-lunch-promo {
-    min-height: 2.15rem;
     font-size: clamp(0.72rem, 3.2cqw, 0.88rem);
-    padding-block: 0.3rem;
   }
 
   .kiosk-attract-cta {
@@ -1264,67 +1220,7 @@
   white-space: nowrap;
 }
 
-.kiosk-fullscreen-enter {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.25rem, 1cqw, 0.45rem);
-  min-height: clamp(2.5rem, min(10cqw, 5.5cqh), 3.75rem);
-  max-width: min(9.5rem, 34cqw);
-  flex-shrink: 1;
-  min-width: 0;
-  padding: clamp(0.3rem, 1.2cqw, 0.45rem) clamp(0.45rem, 1.8cqw, 0.7rem);
-  border-radius: 999px;
-  border: 1px solid rgba(7, 35, 41, 0.1);
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--kiosk-teal);
-  font-size: clamp(0.65rem, min(2.4cqw, 1.7cqh), 0.85rem);
-  font-weight: 600;
-  box-shadow: var(--kiosk-shadow-soft);
-  touch-action: manipulation;
-}
-
-.kiosk-fullscreen-enter:active {
-  background: #fff;
-}
-
-.kiosk-fullscreen-enter-icon {
-  width: clamp(0.95rem, 3.8cqw, 1.15rem);
-  height: clamp(0.95rem, 3.8cqw, 1.15rem);
-  flex-shrink: 0;
-  color: var(--kiosk-navy);
-}
-
-.kiosk-fullscreen-enter-label {
-  line-height: 1.1;
-  text-align: left;
-}
-
-.kiosk-fullscreen-exit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  min-width: clamp(2.5rem, 10cqw, 2.75rem);
-  min-height: clamp(2.5rem, min(10cqw, 5.5cqh), 3.75rem);
-  border-radius: 999px;
-  border: 1px solid rgba(7, 35, 41, 0.08);
-  background: rgba(255, 255, 255, 0.55);
-  color: rgba(7, 35, 41, 0.55);
-  touch-action: manipulation;
-}
-
-.kiosk-fullscreen-exit:active {
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.kiosk-fullscreen-exit-icon {
-  width: clamp(1.1rem, 4.5cqw, 1.35rem);
-  height: clamp(1.1rem, 4.5cqw, 1.35rem);
-}
-
 @media (max-width: 420px) {
-  .kiosk-fullscreen-enter-label,
   .kiosk-home-btn-label {
     position: absolute;
     width: 1px;
@@ -1337,7 +1233,6 @@
     border: 0;
   }
 
-  .kiosk-fullscreen-enter,
   .kiosk-home-btn {
     max-width: 3rem;
     min-width: clamp(2.35rem, min(10cqw, 5.2cqh), 2.75rem);
@@ -1352,23 +1247,6 @@
   .kiosk-lang-btn {
     min-width: clamp(2.35rem, min(10cqw, 5.2cqh), 2.75rem);
     padding-inline: clamp(0.4rem, 1.6cqw, 0.55rem);
-  }
-}
-
-@media (min-width: 600px) and (min-height: 900px) {
-  .kiosk-fullscreen-exit {
-    min-width: 3.5rem;
-    min-height: 3.5rem;
-  }
-
-  .kiosk-fullscreen-exit-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .kiosk-fullscreen-enter {
-    max-width: 14rem;
-    font-size: clamp(0.8rem, 1.6cqw, 1rem);
   }
 }
 

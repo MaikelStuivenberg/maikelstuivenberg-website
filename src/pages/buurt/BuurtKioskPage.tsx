@@ -28,11 +28,8 @@ import type {
 } from "./types";
 import { AttractScreen } from "./AttractScreen";
 import { LDH_LOGO_PATH } from "./brand";
-import {
-  KioskFullscreenControls,
-  useAutoFullscreenOnFirstTap,
-} from "./KioskFullscreenControls";
 import { KioskHomeButton } from "./KioskHomeButton";
+import { useKioskAutoFullscreen } from "./useKioskAutoFullscreen";
 import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
 import {
   persistAutoFullscreen,
@@ -185,7 +182,7 @@ function BuurtKioskApp() {
   useKioskLockdown();
   const { rotation, setRotation, isRotated } = useKioskRotation();
   const [autoFullscreen, setAutoFullscreen] = useState(readAutoFullscreenEnabled);
-  useAutoFullscreenOnFirstTap(autoFullscreen);
+  useKioskAutoFullscreen(autoFullscreen);
   const [locale, setLocale] = useState<Locale>("nl");
   const [screen, setScreen] = useState<Screen>("attract");
   const [mapMode, setMapMode] = useState<MapMode>("all");
@@ -409,22 +406,15 @@ function BuurtKioskApp() {
         }}
         onActivity={bumpIdle}
         headerTools={
-          <>
-            <KioskFullscreenControls
-              showEnterOnAttract={screen === "attract"}
-              enterLabel={m.fullscreenEnter}
-              exitLabel={m.fullscreenExit}
+          screen !== "attract" ? (
+            <KioskHomeButton
+              label={m.navHome}
+              onClick={() => {
+                bumpIdle();
+                resetKiosk();
+              }}
             />
-            {screen !== "attract" ? (
-              <KioskHomeButton
-                label={m.navHome}
-                onClick={() => {
-                  bumpIdle();
-                  resetKiosk();
-                }}
-              />
-            ) : null}
-          </>
+          ) : null
         }
       >
         {screen === "attract" && (
@@ -438,13 +428,6 @@ function BuurtKioskApp() {
             placesCountTemplate={m.attractPlacesCount}
             locations={locations}
             onStart={() => go("choose")}
-            onLunchPromo={() => {
-              setMapMode("all");
-              setSelected(null);
-              setSearchQuery("");
-              setSearchError(null);
-              go("signup");
-            }}
           />
         )}
 
