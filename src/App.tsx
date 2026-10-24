@@ -3,12 +3,15 @@ import { AppShell } from "@/components/layout/AppShell";
 import { ContactPage } from "@/pages/ContactPage";
 import { HomePage } from "@/pages/HomePage";
 import { PrivacyPage } from "@/pages/PrivacyPage";
+import { BuurtKioskPage } from "@/pages/buurt/BuurtKioskPage";
 
 export function App() {
   return (
     <Routes>
       <Route index element={<Navigate to="/home" replace />} />
       <Route path="home" element={<HomePage />} />
+      <Route path="buurt" element={<BuurtKioskPage />} />
+      <Route path="leger-des-heils/kiosk" element={<BuurtKioskPage />} />
       <Route element={<AppShell />}>
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="contact" element={<ContactPage />} />

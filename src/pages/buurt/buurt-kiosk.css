@@ -1,0 +1,193 @@
+@import "leaflet/dist/leaflet.css";
+
+.buurt-kiosk {
+  --kiosk-red: #e7231a;
+  --kiosk-red-dark: #cb1e15;
+  --kiosk-red-light: #f9d8d6;
+  --kiosk-navy: #072329;
+  --kiosk-teal: #335255;
+  --kiosk-mint: #c8d9d4;
+  --kiosk-bg: #f6f3ef;
+  --kiosk-yellow: #c8d9d4;
+
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--kiosk-bg);
+  color: var(--kiosk-navy);
+  font-family: "Onest", system-ui, sans-serif;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.buurt-kiosk * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.buurt-kiosk .leaflet-container {
+  font-family: inherit;
+  border-radius: 1rem;
+}
+
+.kiosk-attract {
+  isolation: isolate;
+  background: var(--kiosk-bg);
+}
+
+.kiosk-attract-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    var(--kiosk-red-light) 0%,
+    var(--kiosk-bg) 45%,
+    rgba(200, 217, 212, 0.45) 100%
+  );
+  background-size: 200% 200%;
+  animation: kiosk-gradient-shift 14s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.kiosk-attract-lines {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.12;
+  background: repeating-linear-gradient(
+    -12deg,
+    var(--kiosk-red) 0,
+    var(--kiosk-red) 2px,
+    transparent 2px,
+    transparent 18px
+  );
+  animation: kiosk-lines-drift 22s linear infinite;
+  will-change: transform;
+}
+
+.kiosk-attract-map-wrap {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: min(72vw, 420px);
+  aspect-ratio: 200 / 240;
+  transform: translateX(-50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.kiosk-attract-map {
+  width: 100%;
+  height: 100%;
+}
+
+.kiosk-attract-map-fill {
+  fill: rgba(200, 217, 212, 0.35);
+}
+
+.kiosk-attract-map-stroke {
+  fill: none;
+  stroke: var(--kiosk-teal);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.kiosk-attract-pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--kiosk-red);
+  box-shadow: 0 0 0 4px rgba(231, 35, 26, 0.25);
+  animation: kiosk-pin-drift 5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.kiosk-attract-pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 2px;
+  height: 8px;
+  margin-left: -1px;
+  background: var(--kiosk-navy);
+  border-radius: 1px;
+}
+
+.kiosk-attract-question {
+  max-width: min(28rem, 92vw);
+  font-size: clamp(2rem, 5.2vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--kiosk-navy);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  animation: kiosk-question-in 0.65s ease-out both;
+  will-change: transform, opacity;
+}
+
+.kiosk-attract-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 1.25rem;
+  background: var(--kiosk-red);
+  color: #fff;
+  padding: 1.1rem 1.75rem;
+  box-shadow: 0 12px 32px rgba(7, 35, 41, 0.18);
+  animation: kiosk-cta-pulse 2.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes kiosk-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes kiosk-lines-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(40px, 24px, 0);
+  }
+}
+
+@keyframes kiosk-pin-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(6px, -10px, 0) scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes kiosk-question-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes kiosk-cta-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
