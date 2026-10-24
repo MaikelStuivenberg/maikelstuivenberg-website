@@ -16,13 +16,17 @@ export function AttractLunchPromo({
   onActivate,
 }: Props) {
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       className="kiosk-lunch-lockup"
       aria-label={`${headlineLine1} ${headlineLine2Prefix}${soulStationName}`}
-      onClick={(e) => {
-        e.stopPropagation();
-        onActivate();
+      onClick={() => onActivate()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onActivate();
+        }
       }}
     >
       <span className="kiosk-lunch-tape">{tapeLabel}</span>
@@ -34,6 +38,6 @@ export function AttractLunchPromo({
         </span>
       </span>
       <span className="kiosk-lunch-fine">{finePrint}</span>
-    </button>
+    </div>
   );
 }

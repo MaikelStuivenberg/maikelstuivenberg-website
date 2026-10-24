@@ -7,6 +7,7 @@ import {
 } from "./nl-map";
 import { AttractLunchPromo } from "./AttractLunchPromo";
 import { isSoulStation } from "./soul-station";
+import { useCountUp } from "./useCountUp";
 
 type Props = {
   questions: string[];
@@ -40,21 +41,32 @@ function TouchFingerIcon() {
   );
 }
 
-function PlacesCountStat({
+function MapPlacesCounter({
   count,
   template,
+  cycleKey,
 }: {
   count: number | string;
   template: string;
+  cycleKey: number;
 }) {
+  const numeric =
+    typeof count === "number" && Number.isFinite(count) ? count : null;
+  const animated = useCountUp(numeric ?? 0, cycleKey);
+  const display = numeric === null ? count : animated;
   const suffix = template.replace("{count}", "").trimStart();
+
   return (
-    <p className="kiosk-attract-count">
-      <span className="kiosk-attract-count-num">{count}</span>
-      {suffix ? (
-        <span className="kiosk-attract-count-label">{suffix}</span>
-      ) : null}
-    </p>
+    <div className="kiosk-attract-map-counter" aria-live="polite">
+      <div className="kiosk-attract-map-counter-align">
+        <div className="kiosk-attract-map-counter-card">
+          <p className="kiosk-attract-map-counter-num">{display}</p>
+          {suffix ? (
+            <p className="kiosk-attract-map-counter-label">{suffix}</p>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -83,14 +95,14 @@ export function AttractScreen({
     if (dots.length === 0) return;
     const id = window.setInterval(() => {
       setSpotlight((s) => (s + 1) % dots.length);
-    }, 1600);
+    }, 1400);
     return () => window.clearInterval(id);
   }, [dots.length]);
 
   const rippleDots = useMemo(() => {
     if (dots.length === 0) return new Map<string, number>();
     const map = new Map<string, number>();
-    const count = Math.min(5, dots.length);
+    const count = Math.min(8, dots.length);
     for (let i = 0; i < count; i += 1) {
       const idx = (spotlight + i) % dots.length;
       map.set(dots[idx].id, i);
@@ -98,127 +110,135 @@ export function AttractScreen({
     return map;
   }, [dots, spotlight]);
 
+  const countCycleKey =
+    typeof placesCount === "number" ? placesCount * 1000 + questionIndex : 0;
+
   return (
     <div
       className="kiosk-attract kiosk-surface h-full min-h-0 flex-1 overflow-hidden text-center"
     >
-      <button
-        type="button"
-        className="kiosk-attract-hero-tap"
-        onClick={onStart}
-        aria-label={cta}
-      >
-        <div className="kiosk-attract-ambient" aria-hidden="true">
-          <div className="kiosk-attract-glow kiosk-attract-glow--red" />
-          <div className="kiosk-attract-glow kiosk-attract-glow--teal" />
-          <div className="kiosk-attract-stripes" />
-        </div>
+      <div className="kiosk-attract-ambient" aria-hidden="true">
+        <div className="kiosk-attract-glow kiosk-attract-glow--red" />
+        <div className="kiosk-attract-glow kiosk-attract-glow--teal" />
+        <div className="kiosk-attract-stripes" />
+      </div>
 
+      <header className="kiosk-attract-headline">
+        <p key={questionIndex} className="kiosk-attract-question">
+          {question}
+        </p>
+        <p className="kiosk-attract-tagline">
+          <span className="kiosk-attract-tagline-text">{tagline}</span>
+        </p>
+      </header>
+
+      <div className="kiosk-attract-stage">
         <div className="kiosk-attract-map-panel" aria-hidden="true">
           <div className="kiosk-attract-map-center">
-          <svg
-            className="kiosk-attract-map-svg"
-            viewBox={`0 0 ${NL_VIEW.width} ${NL_VIEW.height}`}
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <defs>
-              <filter
-                id="kiosk-map-soft-shadow"
-                x="-8%"
-                y="-8%"
-                width="116%"
-                height="116%"
-              >
-                <feDropShadow
-                  dx="0"
-                  dy="6"
-                  stdDeviation="10"
-                  floodColor="#072329"
-                  floodOpacity="0.08"
-                />
-              </filter>
-            </defs>
-            <path
-              className="kiosk-attract-map-fill"
-              fillRule="evenodd"
-              filter="url(#kiosk-map-soft-shadow)"
-              d={outlinePath}
-            />
-            <path className="kiosk-attract-map-stroke" d={outlinePath} />
-            {dots.map((dot) => {
+            <svg
+              className="kiosk-attract-map-svg"
+              viewBox={`0 0 ${NL_VIEW.width} ${NL_VIEW.height}`}
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <filter
+                  id="kiosk-map-soft-shadow"
+                  x="-8%"
+                  y="-8%"
+                  width="116%"
+                  height="116%"
+                >
+                  <feDropShadow
+                    dx="0"
+                    dy="6"
+                    stdDeviation="10"
+                    floodColor="#072329"
+                    floodOpacity="0.08"
+                  />
+                </filter>
+              </defs>
+              <path
+                className="kiosk-attract-map-fill"
+                fillRule="evenodd"
+                filter="url(#kiosk-map-soft-shadow)"
+                d={outlinePath}
+              />
+              <path className="kiosk-attract-map-stroke" d={outlinePath} />
+            {dots.map((dot, dotIndex) => {
               const rippleIndex = rippleDots.get(dot.id);
               const rippling = rippleIndex !== undefined;
               const featured = isSoulStation(dot.id);
+              const idleDelay = `${(dotIndex % 7) * 0.22}s`;
               return (
-                <g key={dot.id}>
-                  {featured ? (
+                  <g key={dot.id}>
+                    {featured ? (
+                      <circle
+                        cx={dot.x}
+                        cy={dot.y}
+                        r={10}
+                        className="kiosk-attract-dot-feature-ring"
+                      />
+                    ) : null}
+                    {rippling ? (
+                      <circle
+                        cx={dot.x}
+                        cy={dot.y}
+                        r={7}
+                        className="kiosk-attract-dot-ring"
+                        style={{ animationDelay: `${rippleIndex * 0.15}s` }}
+                      />
+                    ) : null}
                     <circle
                       cx={dot.x}
                       cy={dot.y}
-                      r={10}
-                      className="kiosk-attract-dot-feature-ring"
+                      r={rippling ? 6.5 : 5.5}
+                      className={
+                        rippling
+                          ? "kiosk-attract-dot kiosk-attract-dot--ripple"
+                          : featured
+                            ? "kiosk-attract-dot kiosk-attract-dot--featured kiosk-attract-dot--idle"
+                            : "kiosk-attract-dot kiosk-attract-dot--idle"
+                      }
+                      style={
+                        rippling
+                          ? { animationDelay: `${rippleIndex * 0.15}s` }
+                          : { animationDelay: idleDelay }
+                      }
                     />
-                  ) : null}
-                  {rippling ? (
-                    <circle
-                      cx={dot.x}
-                      cy={dot.y}
-                      r={7}
-                      className="kiosk-attract-dot-ring"
-                      style={{ animationDelay: `${rippleIndex * 0.18}s` }}
-                    />
-                  ) : null}
-                  <circle
-                    cx={dot.x}
-                    cy={dot.y}
-                    r={rippling ? 6.5 : 5.5}
-                    className={
-                      rippling
-                        ? "kiosk-attract-dot kiosk-attract-dot--ripple"
-                        : featured
-                          ? "kiosk-attract-dot kiosk-attract-dot--featured"
-                          : "kiosk-attract-dot"
-                    }
-                    style={
-                      rippling
-                        ? { animationDelay: `${rippleIndex * 0.18}s` }
-                        : undefined
-                    }
-                  />
-                </g>
-              );
-            })}
-          </svg>
+                  </g>
+                );
+              })}
+            </svg>
           </div>
-        </div>
-
-        <div className="kiosk-attract-hero-copy">
-          <p key={questionIndex} className="kiosk-attract-question">
-            {question}
-          </p>
-          <p className="kiosk-attract-tagline">
-            <span className="kiosk-attract-tagline-text">{tagline}</span>
-          </p>
-          <PlacesCountStat
+          <MapPlacesCounter
             count={placesCount}
             template={placesCountTemplate}
+            cycleKey={countCycleKey}
           />
         </div>
-      </button>
 
-      <div className="kiosk-attract-mid">
-        <AttractLunchPromo
-          tapeLabel={lunchTapeLabel}
-          headlineLine1={lunchHeadline1}
-          headlineLine2Prefix={lunchHeadline2Prefix}
-          soulStationName={soulStationName}
-          finePrint={lunchFinePrint}
-          onActivate={onLunchPromo}
-        />
+        <div className="kiosk-attract-mid">
+          <div className="kiosk-attract-mid-inner">
+            <div className="kiosk-attract-mid-cell">
+            <AttractLunchPromo
+              tapeLabel={lunchTapeLabel}
+              headlineLine1={lunchHeadline1}
+              headlineLine2Prefix={lunchHeadline2Prefix}
+              soulStationName={soulStationName}
+              finePrint={lunchFinePrint}
+              onActivate={onLunchPromo}
+            />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="kiosk-attract-actions">
-        <button type="button" className="kiosk-attract-cta" onClick={onStart}>
+        <button
+          type="button"
+          className="kiosk-attract-cta kiosk-attract-cta--pulse"
+          onClick={onStart}
+        >
           <TouchFingerIcon />
           <span>{cta}</span>
         </button>
