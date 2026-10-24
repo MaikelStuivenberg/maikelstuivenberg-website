@@ -27,19 +27,36 @@ async function captureFlow(page, outDir) {
   if (onlyAttractChoice) return;
 
   await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
-  await snap("03-search-keyboard");
+  await snap("03-search-location");
 
-  await page.getByRole("button", { name: /Terug|Back/i }).click();
+  await page
+    .locator("button.kiosk-touch-btn")
+    .filter({ hasText: /^(Terug|Back)$/ })
+    .click();
   await page
     .getByRole("button", { name: /Laat alle plekken|Show all places/i })
     .click();
   await page.waitForTimeout(1200);
-  await snap("04-map-all");
+  await page.getByRole("button", { name: /Kom in actie|Take action/i }).click();
+  await page.getByRole("button", { name: /e-mail|email/i }).click();
+  await snap("04-signup-email-keyboard");
+
+  if (process.env.KIOSK_SHOT_KEYBOARD === "1") return;
+
+  await page
+    .getByRole("button", { name: /Overslaan|Skip/i })
+    .click();
+
+  await page
+    .getByRole("button", { name: /Laat alle plekken|Show all places/i })
+    .click();
+  await page.waitForTimeout(1200);
+  await snap("05-map-all");
 
   await page
     .getByRole("button", { name: /Kom in actie|Take action/i })
     .click();
-  await snap("05-signup");
+  await snap("06-signup");
 }
 
 const browser = await chromium.launch();
