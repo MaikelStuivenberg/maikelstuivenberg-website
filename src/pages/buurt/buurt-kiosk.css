@@ -1026,15 +1026,16 @@
   }
 
   .kiosk-attract-lunch-promo-line {
-    font-size: clamp(1.05rem, min(4.25cqw, 3.2cqh), 2.35rem);
-    font-weight: 600;
-    color: var(--kiosk-red);
+    font-size: clamp(1.15rem, min(4.25cqw, 3.2cqh), 2.35rem);
   }
 
   .kiosk-attract-lunch-promo-sub {
-    font-size: clamp(0.95rem, min(3.4cqw, 2.5cqh), 1.65rem);
-    color: var(--kiosk-teal);
+    font-size: clamp(1rem, min(3.4cqw, 2.5cqh), 1.65rem);
     max-width: 36rem;
+  }
+
+  .kiosk-new-sticker {
+    font-size: clamp(0.62rem, 1.6cqw, 0.85rem);
   }
 
   .kiosk-attract-question {
