@@ -1,6 +1,7 @@
 @import "leaflet/dist/leaflet.css";
 
 .buurt-kiosk {
+  position: relative;
   --kiosk-red: #e7231a;
   --kiosk-red-dark: #cb1e15;
   --kiosk-red-light: #f9d8d6;
@@ -1084,6 +1085,85 @@
   border-color: var(--kiosk-red);
   background: rgba(231, 35, 26, 0.12);
   color: var(--kiosk-red);
+}
+
+.kiosk-fullscreen-enter {
+  position: absolute;
+  top: clamp(0.2rem, 0.8cqh, 0.65rem);
+  left: 0;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.25rem, 1cqw, 0.45rem);
+  max-width: min(11rem, 42cqw);
+  padding: clamp(0.3rem, 1.2cqw, 0.45rem) clamp(0.45rem, 1.8cqw, 0.7rem);
+  border-radius: 999px;
+  border: 1px solid rgba(7, 35, 41, 0.1);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--kiosk-teal);
+  font-size: clamp(0.65rem, min(2.4cqw, 1.7cqh), 0.85rem);
+  font-weight: 600;
+  box-shadow: var(--kiosk-shadow-soft);
+  touch-action: manipulation;
+}
+
+.kiosk-fullscreen-enter:active {
+  background: #fff;
+}
+
+.kiosk-fullscreen-enter-icon {
+  width: clamp(0.95rem, 3.8cqw, 1.15rem);
+  height: clamp(0.95rem, 3.8cqw, 1.15rem);
+  flex-shrink: 0;
+  color: var(--kiosk-navy);
+}
+
+.kiosk-fullscreen-enter-label {
+  line-height: 1.1;
+  text-align: left;
+}
+
+.kiosk-fullscreen-exit {
+  position: absolute;
+  top: clamp(0.2rem, 0.8cqh, 0.65rem);
+  right: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(2.5rem, 10cqw, 2.75rem);
+  min-height: clamp(2.5rem, 10cqw, 2.75rem);
+  border-radius: 999px;
+  border: 1px solid rgba(7, 35, 41, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(7, 35, 41, 0.55);
+  touch-action: manipulation;
+}
+
+.kiosk-fullscreen-exit:active {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.kiosk-fullscreen-exit-icon {
+  width: clamp(1.1rem, 4.5cqw, 1.35rem);
+  height: clamp(1.1rem, 4.5cqw, 1.35rem);
+}
+
+@media (min-width: 600px) and (min-height: 900px) {
+  .kiosk-fullscreen-exit {
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+  }
+
+  .kiosk-fullscreen-exit-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .kiosk-fullscreen-enter {
+    max-width: 14rem;
+    font-size: clamp(0.8rem, 1.6cqw, 1rem);
+  }
 }
 
 @keyframes kiosk-question-in {

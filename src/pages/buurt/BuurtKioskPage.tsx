@@ -28,7 +28,15 @@ import type {
 } from "./types";
 import { AttractScreen } from "./AttractScreen";
 import { LDH_LOGO_PATH } from "./brand";
+import {
+  KioskFullscreenControls,
+  useAutoFullscreenOnFirstTap,
+} from "./KioskFullscreenControls";
 import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
+import {
+  persistAutoFullscreen,
+  readAutoFullscreenEnabled,
+} from "./kiosk-fullscreen";
 import type { KioskRotation } from "./kiosk-rotation";
 import "./buurt-kiosk.css";
 
@@ -150,7 +158,9 @@ function KioskShell({
         </div>
         <LanguageToggle locale={locale} onChange={onLocaleChange} />
       </header>
-      <main className="kiosk-main">{children}</main>
+      <main className="kiosk-main">
+        {children}
+      </main>
     </div>
   );
 }
@@ -165,6 +175,8 @@ export function BuurtKioskPage() {
 
 function BuurtKioskApp() {
   const { rotation, setRotation, isRotated } = useKioskRotation();
+  const [autoFullscreen, setAutoFullscreen] = useState(readAutoFullscreenEnabled);
+  useAutoFullscreenOnFirstTap(autoFullscreen);
   const [locale, setLocale] = useState<Locale>("nl");
   const [screen, setScreen] = useState<Screen>("attract");
   const [mapMode, setMapMode] = useState<MapMode>("all");
@@ -818,6 +830,27 @@ function BuurtKioskApp() {
                     ))}
                   </div>
                 </div>
+                <div className="kiosk-card p-4">
+                  <p className="font-bold text-[var(--kiosk-navy)]">
+                    {m.adminAutoFullscreenTitle}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--kiosk-teal)]">
+                    {m.adminAutoFullscreenHint}
+                  </p>
+                  <label className="mt-3 flex items-center gap-3 text-sm font-semibold">
+                    <input
+                      type="checkbox"
+                      checked={autoFullscreen}
+                      onChange={(e) => {
+                        const on = e.target.checked;
+                        setAutoFullscreen(on);
+                        persistAutoFullscreen(on);
+                      }}
+                      className="h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
+                    />
+                    <span>{m.adminAutoFullscreenTitle}</span>
+                  </label>
+                </div>
                 <p className="text-lg font-semibold">
                   {outboxCount} {m.adminOutboxCount}
                 </p>
@@ -849,6 +882,12 @@ function BuurtKioskApp() {
             </button>
           </div>
         )}
+
+        <KioskFullscreenControls
+          showEnterOnAttract={screen === "attract"}
+          enterLabel={m.fullscreenEnter}
+          exitLabel={m.fullscreenExit}
+        />
 
         <button
           type="button"

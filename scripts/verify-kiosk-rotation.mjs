@@ -32,13 +32,17 @@ async function testRotation(viewport, query, label) {
   await page.getByRole("button", { name: /^en$/i }).click();
   await page.getByRole("button", { name: /^nl$/i }).click();
   await page.locator(".kiosk-attract").click();
-  await page.getByRole("button", { name: /Zoek bij mij|Search near/i }).click();
+  await page.getByRole("button", {
+    name: /Zoek in jouw buurt|Search your neighbourhood/i,
+  }).click();
   for (const d of "3511") {
     await page.locator("button.kiosk-key").filter({ hasText: d }).first().click();
   }
-  await page.locator("button.kiosk-key--submit").click();
+  await page.locator("button.kiosk-key.kiosk-key--submit").click();
   await page.waitForTimeout(2500);
-  await page.getByRole("heading", { name: /Dichtbij|Near you/i }).waitFor({
+  await page.getByRole("heading", {
+    name: /In jouw buurt|In your neighbourhood/i,
+  }).waitFor({
     timeout: 10000,
   });
 
