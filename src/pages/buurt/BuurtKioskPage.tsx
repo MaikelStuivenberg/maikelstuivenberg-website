@@ -125,11 +125,13 @@ function KioskShell({
   locale,
   onLocaleChange,
   onActivity,
+  headerTools,
   children,
 }: {
   locale: Locale;
   onLocaleChange: (l: Locale) => void;
   onActivity: () => void;
+  headerTools?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -156,7 +158,10 @@ function KioskShell({
             </p>
           </div>
         </div>
-        <LanguageToggle locale={locale} onChange={onLocaleChange} />
+        <div className="kiosk-header-tools flex shrink-0 items-stretch gap-1.5 sm:gap-2">
+          {headerTools}
+          <LanguageToggle locale={locale} onChange={onLocaleChange} />
+        </div>
       </header>
       <main className="kiosk-main">
         {children}
@@ -399,6 +404,13 @@ function BuurtKioskApp() {
           setLocale(l);
         }}
         onActivity={bumpIdle}
+        headerTools={
+          <KioskFullscreenControls
+            showEnterOnAttract={screen === "attract"}
+            enterLabel={m.fullscreenEnter}
+            exitLabel={m.fullscreenExit}
+          />
+        }
       >
         {screen === "attract" && (
           <AttractScreen
@@ -882,12 +894,6 @@ function BuurtKioskApp() {
             </button>
           </div>
         )}
-
-        <KioskFullscreenControls
-          showEnterOnAttract={screen === "attract"}
-          enterLabel={m.fullscreenEnter}
-          exitLabel={m.fullscreenExit}
-        />
 
         <button
           type="button"
