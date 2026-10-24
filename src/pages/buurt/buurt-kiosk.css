@@ -34,16 +34,32 @@
   font-family: "Onest", system-ui, sans-serif;
   touch-action: manipulation;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .buurt-kiosk * {
   -webkit-tap-highlight-color: transparent;
 }
 
+.buurt-kiosk input,
+.buurt-kiosk textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
+  touch-action: manipulation;
+}
+
+.buurt-kiosk img,
+.buurt-kiosk a {
+  -webkit-user-drag: none;
+}
+
 .buurt-kiosk .leaflet-container {
   font-family: inherit;
   border-radius: var(--kiosk-radius);
   box-shadow: var(--kiosk-shadow-soft);
+  touch-action: none;
 }
 
 .kiosk-surface {
@@ -1089,7 +1105,42 @@
 
 .kiosk-header-tools {
   align-items: stretch;
-  max-width: min(52%, 22rem);
+  max-width: min(58%, 24rem);
+}
+
+.kiosk-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 1cqw, 0.45rem);
+  flex-shrink: 0;
+  min-height: clamp(2.5rem, min(10cqw, 5.5cqh), 3.75rem);
+  min-width: clamp(2.5rem, min(10cqw, 5.5cqh), 3.75rem);
+  padding: clamp(0.3rem, 1.2cqw, 0.45rem) clamp(0.45rem, 1.8cqw, 0.7rem);
+  border-radius: 999px;
+  border: 1px solid rgba(7, 35, 41, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--kiosk-navy);
+  font-size: clamp(0.65rem, min(2.4cqw, 1.7cqh), 0.85rem);
+  font-weight: 700;
+  box-shadow: var(--kiosk-shadow-soft);
+  touch-action: manipulation;
+}
+
+.kiosk-home-btn:active {
+  background: #fff;
+}
+
+.kiosk-home-btn-icon {
+  width: clamp(1.05rem, 4.2cqw, 1.25rem);
+  height: clamp(1.05rem, 4.2cqw, 1.25rem);
+  flex-shrink: 0;
+  color: var(--kiosk-navy);
+}
+
+.kiosk-home-btn-label {
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .kiosk-fullscreen-enter {
@@ -1151,8 +1202,9 @@
   height: clamp(1.1rem, 4.5cqw, 1.35rem);
 }
 
-@media (max-width: 380px) {
-  .kiosk-fullscreen-enter-label {
+@media (max-width: 420px) {
+  .kiosk-fullscreen-enter-label,
+  .kiosk-home-btn-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1164,8 +1216,20 @@
     border: 0;
   }
 
-  .kiosk-fullscreen-enter {
+  .kiosk-fullscreen-enter,
+  .kiosk-home-btn {
     max-width: 3rem;
+    min-width: clamp(2.35rem, min(10cqw, 5.2cqh), 2.75rem);
+    padding-inline: clamp(0.4rem, 1.6cqw, 0.55rem);
+  }
+
+  .kiosk-header-tools {
+    gap: 0.25rem;
+    max-width: min(62%, 26rem);
+  }
+
+  .kiosk-lang-btn {
+    min-width: clamp(2.35rem, min(10cqw, 5.2cqh), 2.75rem);
     padding-inline: clamp(0.4rem, 1.6cqw, 0.55rem);
   }
 }

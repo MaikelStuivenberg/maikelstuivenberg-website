@@ -2,8 +2,9 @@
  * Fetches Leger des Heils map spots from legerdesheils.nl/locaties
  * and writes public/data/gidb-locations.json for the kiosk.
  */
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { fileURLToPath } from "node:url";
 
 const SOURCE_URL = "https://www.legerdesheils.nl/locaties";
 const RELEVANT = new Set(["corps", "community-center", "scouting", "youth"]);
@@ -86,13 +87,24 @@ for (const g of geos) {
   }
 }
 
-locations.sort((a, b) => a.title.localeCompare(b.title, "nl"));
+const manualPath = fileURLToPath(
+  new URL("./gidb-locations-manual.json", import.meta.url),
+);
+const manual = JSON.parse(readFileSync(manualPath, "utf8"));
+const manualLocations = manual.locations ?? [];
+
+const byId = new Map(locations.map((loc) => [loc.id, loc]));
+for (const extra of manualLocations) {
+  byId.set(extra.id, extra);
+}
+const merged = [...byId.values()];
+merged.sort((a, b) => a.title.localeCompare(b.title, "nl"));
 
 const out = {
   generatedAt: new Date().toISOString(),
   source: SOURCE_URL,
-  count: locations.length,
-  locations,
+  count: merged.length,
+  locations: merged,
 };
 
 writeFileSync(
@@ -101,4 +113,6 @@ writeFileSync(
   "utf8",
 );
 
-console.log(`Wrote ${locations.length} locations to public/data/gidb-locations.json`);
+console.log(
+  `Wrote ${merged.length} locations (${manualLocations.length} manual) to public/data/gidb-locations.json`,
+);

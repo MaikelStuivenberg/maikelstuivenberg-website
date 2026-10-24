@@ -83,6 +83,7 @@ export const en: Messages = {
   adminAutoFullscreenTitle: "Auto full screen",
   adminAutoFullscreenHint:
     "The first tap on the screen enters full screen (handy on Android kiosks).",
+  navHome: "Home",
   fullscreenEnter: "Full screen",
   fullscreenExit: "Exit full screen",
   adminOutboxHint:

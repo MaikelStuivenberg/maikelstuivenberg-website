@@ -82,6 +82,7 @@ export const nl = {
   adminAutoFullscreenTitle: "Automatisch volledig scherm",
   adminAutoFullscreenHint:
     "Eerste tik op het scherm opent volledig scherm (handig op Android-kiosks).",
+  navHome: "Naar start",
   fullscreenEnter: "Volledig scherm",
   fullscreenExit: "Volledig scherm sluiten",
   adminOutboxHint:

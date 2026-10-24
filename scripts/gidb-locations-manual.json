@@ -1,0 +1,15 @@
+{
+  "locations": [
+    {
+      "id": "4a181cd8acc7",
+      "title": "Soul Station",
+      "lat": 52.37654362,
+      "lon": 4.89928455,
+      "address": "Prins Hendrikkade 49, 1012 AC Amsterdam",
+      "categories": ["community-center"],
+      "kind": "buurt",
+      "url": "https://www.legerdesheils.nl/artikel/soul-station-geopend-in-voormalig-hoofdkwartier-leger-des-heils",
+      "volunteerUrl": "https://www.legerdesheils.nl/vacatures/vrijwilligerswerk"
+    }
+  ]
+}
