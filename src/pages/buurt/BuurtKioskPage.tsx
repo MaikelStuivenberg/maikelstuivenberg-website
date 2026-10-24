@@ -28,6 +28,16 @@ import type {
 } from "./types";
 import { AttractScreen } from "./AttractScreen";
 import { LDH_LOGO_PATH } from "./brand";
+import {
+  KioskFullscreenControls,
+  useAutoFullscreenOnFirstTap,
+} from "./KioskFullscreenControls";
+import { KioskRotateRoot, useKioskRotation } from "./KioskRotateRoot";
+import {
+  persistAutoFullscreen,
+  readAutoFullscreenEnabled,
+} from "./kiosk-fullscreen";
+import type { KioskRotation } from "./kiosk-rotation";
 import "./buurt-kiosk.css";
 
 const IDLE_MS = 75_000;
@@ -115,11 +125,13 @@ function KioskShell({
   locale,
   onLocaleChange,
   onActivity,
+  headerTools,
   children,
 }: {
   locale: Locale;
   onLocaleChange: (l: Locale) => void;
   onActivity: () => void;
+  headerTools?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -146,14 +158,30 @@ function KioskShell({
             </p>
           </div>
         </div>
-        <LanguageToggle locale={locale} onChange={onLocaleChange} />
+        <div className="kiosk-header-tools flex shrink-0 items-stretch gap-1.5 sm:gap-2">
+          {headerTools}
+          <LanguageToggle locale={locale} onChange={onLocaleChange} />
+        </div>
       </header>
-      <main className="kiosk-main">{children}</main>
+      <main className="kiosk-main">
+        {children}
+      </main>
     </div>
   );
 }
 
 export function BuurtKioskPage() {
+  return (
+    <KioskRotateRoot>
+      <BuurtKioskApp />
+    </KioskRotateRoot>
+  );
+}
+
+function BuurtKioskApp() {
+  const { rotation, setRotation, isRotated } = useKioskRotation();
+  const [autoFullscreen, setAutoFullscreen] = useState(readAutoFullscreenEnabled);
+  useAutoFullscreenOnFirstTap(autoFullscreen);
   const [locale, setLocale] = useState<Locale>("nl");
   const [screen, setScreen] = useState<Screen>("attract");
   const [mapMode, setMapMode] = useState<MapMode>("all");
@@ -376,6 +404,13 @@ export function BuurtKioskPage() {
           setLocale(l);
         }}
         onActivity={bumpIdle}
+        headerTools={
+          <KioskFullscreenControls
+            showEnterOnAttract={screen === "attract"}
+            enterLabel={m.fullscreenEnter}
+            exitLabel={m.fullscreenExit}
+          />
+        }
       >
         {screen === "attract" && (
           <AttractScreen
@@ -508,6 +543,7 @@ export function BuurtKioskPage() {
                   bumpIdle();
                 }}
                 fitBounds={mapMode === "all"}
+                softwareRotated={isRotated}
               />
             </div>
             {mapMode === "nearby" && nearbyList.length === 0 && (
@@ -783,6 +819,50 @@ export function BuurtKioskPage() {
               </>
             ) : (
               <>
+                <div className="kiosk-card p-4">
+                  <p className="font-bold text-[var(--kiosk-navy)]">
+                    {m.adminRotationTitle}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--kiosk-teal)]">
+                    {m.adminRotationHint}
+                  </p>
+                  <div className="kiosk-admin-rotate mt-3">
+                    {([0, 90, 270] as const).map((deg) => (
+                      <button
+                        key={deg}
+                        type="button"
+                        className={cn(
+                          "kiosk-admin-rotate-btn",
+                          rotation === deg && "kiosk-admin-rotate-btn--active",
+                        )}
+                        onClick={() => setRotation(deg as KioskRotation)}
+                      >
+                        {deg}°
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="kiosk-card p-4">
+                  <p className="font-bold text-[var(--kiosk-navy)]">
+                    {m.adminAutoFullscreenTitle}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--kiosk-teal)]">
+                    {m.adminAutoFullscreenHint}
+                  </p>
+                  <label className="mt-3 flex items-center gap-3 text-sm font-semibold">
+                    <input
+                      type="checkbox"
+                      checked={autoFullscreen}
+                      onChange={(e) => {
+                        const on = e.target.checked;
+                        setAutoFullscreen(on);
+                        persistAutoFullscreen(on);
+                      }}
+                      className="h-6 w-6 shrink-0 accent-[var(--kiosk-red)]"
+                    />
+                    <span>{m.adminAutoFullscreenTitle}</span>
+                  </label>
+                </div>
                 <p className="text-lg font-semibold">
                   {outboxCount} {m.adminOutboxCount}
                 </p>

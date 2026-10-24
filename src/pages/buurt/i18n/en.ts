@@ -76,6 +76,14 @@ export const en: Messages = {
   adminOutboxCount: "not sent yet (outbox)",
   adminClose: "Close",
   adminOutboxEmpty: "Everything is synced. No outbox on this screen.",
+  adminRotationTitle: "Screen rotation",
+  adminRotationHint:
+    "For a landscape panel mounted portrait. Also via ?rotate=90 or ?rotate=270 in the URL.",
+  adminAutoFullscreenTitle: "Auto full screen",
+  adminAutoFullscreenHint:
+    "The first tap on the screen enters full screen (handy on Android kiosks).",
+  fullscreenEnter: "Full screen",
+  fullscreenExit: "Exit full screen",
   adminOutboxHint:
     "If wifi drops, sign-ups stay here until they are sent to the server.",
   loadError: "Could not load locations. Refresh the page.",
